@@ -26,6 +26,7 @@
     "@adonisjs/lucid": "^5.0.4",
     "@adonisjs/session": "^1.0.25",
     "@adonisjs/shield": "^1.0.6",
+    "mockjs": "^1.0.1-beta3",
     "ra-data-json-server": "^2.2.0",
     "react": "^16.4.2",
     "react-admin": "^2.2.0",
