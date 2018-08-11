@@ -15,4 +15,8 @@
 
 const Route = use('Route')
 
-Route.on('/').render('welcome')
+Route.on('/admin').render('admin')
+
+Route.group(() => {
+  Route.get('posts', 'PostController.index')
+}).prefix('api')
