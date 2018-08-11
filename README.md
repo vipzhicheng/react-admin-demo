@@ -21,7 +21,6 @@ adonis new yardstick
 
 or manually clone the repo and then run `npm install`.
 
-
 ### Migrations
 
 Run the following command to run startup migrations.
@@ -29,3 +28,9 @@ Run the following command to run startup migrations.
 ```js
 adonis migration:run
 ```
+
+## Packages
+
+- Adonis.js
+- React Admin
+- Mock.js

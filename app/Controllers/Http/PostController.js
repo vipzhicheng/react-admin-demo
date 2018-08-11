@@ -1,11 +1,8 @@
 'use strict'
 
 class PostController {
-  index() {
-    return {
-      data: [],
-      total: 1
-    }
+  index({ request }) {
+    return use('App/Mocks/Post').index({ request })
   }
 }
 

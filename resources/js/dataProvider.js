@@ -33,7 +33,7 @@ export default (type, resource, params) => {
       const { field, order } = params.sort
       query = {
         sort: JSON.stringify([field, order]),
-        range: JSON.stringify([(page - 1) * perPage, page * perPage - 1]),
+        range: JSON.stringify([(page - 1) * perPage, perPage]),
         filter: JSON.stringify(params.filter)
       }
       url = `${apiUrl}/${resource}?${stringify(query)}`
