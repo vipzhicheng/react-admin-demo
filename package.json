@@ -25,9 +25,16 @@
     "@adonisjs/ignitor": "^2.0.6",
     "@adonisjs/lucid": "^5.0.4",
     "@adonisjs/session": "^1.0.25",
-    "@adonisjs/shield": "^1.0.6"
+    "@adonisjs/shield": "^1.0.6",
+    "ra-data-json-server": "^2.2.0",
+    "react": "^16.4.2",
+    "react-admin": "^2.2.0",
+    "react-dom": "^16.4.2"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "laravel-mix": "^2.1.11",
+    "webpack-cli": "^3.1.0"
+  },
   "autoload": {
     "App": "./app"
   }
