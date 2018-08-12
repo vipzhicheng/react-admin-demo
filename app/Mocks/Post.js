@@ -1,14 +1,16 @@
 const Mock = require('mockjs')
 
 module.exports = {
-  index({ request }) {
+  index({ request, response, params }) {
     const total = 100
-    let id = 1
+    const [field, sort] = request.input('sort')
+    const [offset, limit] = request.input('range')
+    let id = sort == 'DESC' ? 100 : 1
     return {
       data: [...Array(total).keys()].map(() => {
         return {
           id: Mock.mock(function() {
-            return id++
+            return sort == 'DESC' ? id-- : id++
           }),
           title: Mock.mock('@sentence(5)'),
           body: Mock.mock('@paragraph')
