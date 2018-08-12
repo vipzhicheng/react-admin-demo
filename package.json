@@ -30,6 +30,7 @@
     "@adonisjs/lucid": "^5.0.4",
     "@adonisjs/session": "^1.0.25",
     "@adonisjs/shield": "^1.0.6",
+    "lodash": "^4.17.10",
     "mockjs": "^1.0.1-beta3",
     "ra-data-json-server": "^2.2.0",
     "react": "^16.4.2",
