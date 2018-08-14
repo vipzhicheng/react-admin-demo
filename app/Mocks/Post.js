@@ -13,7 +13,8 @@ module.exports = {
     let id = sort == 'DESC' ? 100 : 1
 
     return {
-      data: [...Array(total).keys()]
+      // data: [...Array(total).keys()]
+      data: _.range(total)
         .map(() => {
           return {
             id: Mock.mock(function() {
