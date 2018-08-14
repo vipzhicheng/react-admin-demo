@@ -18,5 +18,6 @@ const Route = use('Route')
 Route.on('/admin').render('admin')
 
 Route.group(() => {
-  Route.get('posts', 'PostController.index')
+  Route.post('signin', 'UserController.signin')
+  Route.get('posts', 'PostController.index').middleware(['auth'])
 }).prefix('api')

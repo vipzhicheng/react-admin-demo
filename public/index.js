@@ -57965,7 +57965,8 @@ module.exports = camelize;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_admin__ = __webpack_require__(202);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_admin___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_react_admin__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__dataProvider__ = __webpack_require__(1310);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__posts__ = __webpack_require__(1311);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__authProvider__ = __webpack_require__(1317);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__posts__ = __webpack_require__(1311);
 
 
 
@@ -57975,11 +57976,16 @@ module.exports = camelize;
 
 
 
+
 var App = function App() {
   return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
     __WEBPACK_IMPORTED_MODULE_1_react_admin__["Admin"],
-    { dataProvider: __WEBPACK_IMPORTED_MODULE_2__dataProvider__["a" /* default */] },
-    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_react_admin__["Resource"], { name: 'posts', list: __WEBPACK_IMPORTED_MODULE_3__posts__["a" /* PostList */] })
+    {
+      authProvider: __WEBPACK_IMPORTED_MODULE_3__authProvider__["a" /* default */],
+      dataProvider: __WEBPACK_IMPORTED_MODULE_2__dataProvider__["a" /* default */],
+      title: '\u6D3B\u52A8\u7BA1\u7406\u7CFB\u7EDF'
+    },
+    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_react_admin__["Resource"], { name: 'posts', list: __WEBPACK_IMPORTED_MODULE_4__posts__["a" /* PostList */] })
   );
 };
 
@@ -125931,6 +125937,43 @@ var PostList = function PostList(props) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 1313 */,
+/* 1314 */,
+/* 1315 */,
+/* 1316 */,
+/* 1317 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react_admin__ = __webpack_require__(202);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react_admin___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react_admin__);
+
+
+/* harmony default export */ __webpack_exports__["a"] = (function (type, params) {
+  if (type === __WEBPACK_IMPORTED_MODULE_0_react_admin__["AUTH_LOGIN"]) {
+    var username = params.username,
+        password = params.password;
+
+    var request = new Request('http://127.0.0.1:3333/api/signin', {
+      method: 'POST',
+      body: JSON.stringify({ username: username, password: password }),
+      headers: new Headers({ 'Content-Type': 'application/json' })
+    });
+    return fetch(request).then(function (response) {
+      if (response.status < 200 || response.status >= 300) {
+        throw new Error(response.statusText);
+      }
+      return response.json();
+    }).then(function (_ref) {
+      var token = _ref.token;
+
+      localStorage.setItem('token', token);
+    });
+  }
+  return Promise.resolve();
+});
 
 /***/ })
 /******/ ]);

@@ -9,5 +9,6 @@ tmp
 
 # The development sqlite file
 database/development.sqlite
+database/adonis.sqlite
 
 public
