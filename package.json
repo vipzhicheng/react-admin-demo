@@ -35,7 +35,8 @@
     "ra-data-json-server": "^2.2.0",
     "react": "^16.4.2",
     "react-admin": "^2.2.0",
-    "react-dom": "^16.4.2"
+    "react-dom": "^16.4.2",
+    "sqlite3": "^4.0.2"
   },
   "devDependencies": {
     "babel-preset-react": "^6.24.1",
