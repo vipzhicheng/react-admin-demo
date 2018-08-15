@@ -2,12 +2,12 @@
 
 class UserController {
   async signin({ request, response, auth }) {
-    // const { username, password } = request.all()
-
-    // const ret = await auth.remember(true).attempt(username, password)
-
+    const { username, password } = request.all()
+    console.log(auth.remember)
+    // const ret = await auth.attempt(username, password)
+    response.redirect('/admin')
     // console.log(ret)
-    return all
+    // return ret
   }
 }
 

@@ -22,7 +22,7 @@
     prompt-list "^3.2.0"
     prompt-password "^1.2.0"
 
-"@adonisjs/auth@^3.0.5":
+"@adonisjs/auth@^3.0.6":
   version "3.0.6"
   resolved "http://registry.npm.taobao.org/@adonisjs/auth/download/@adonisjs/auth-3.0.6.tgz#ed4014ba1c656a9cd40dd2be5d306779114d674d"
   dependencies:
