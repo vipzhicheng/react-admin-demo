@@ -11,12 +11,20 @@
 |
 */
 
-// const Factory = use('Factory')
+const Mock = require('mockjs')
+const Factory = use('Factory')
 
-/**
-  Factory.blueprint('App/Models/User', (faker) => {
-    return {
-      username: faker.username()
-    }
-  })
-*/
+Factory.blueprint('App/Models/Page', (faker) => {
+  return {
+    admin_title: Mock.mock('@sentence(3)'),
+
+    title: Mock.mock('@sentence(2)'),
+    description: Mock.mock('@paragraph(2)'),
+    keywords: Mock.mock('@sentence(2)'),
+
+    type: Mock.mock('@integer(1, 3)'),
+
+    start_time: Mock.mock('@datetime()'),
+    end_time: Mock.mock('@datetime()'),
+  }
+})

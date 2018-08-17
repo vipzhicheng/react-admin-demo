@@ -2,7 +2,7 @@ import React from 'react'
 import { List, Datagrid, TextField } from 'react-admin'
 
 export const PostList = props => (
-  <List {...props} sort={{ order: 'ASC' }}>
+  <List {...props} sort={{ order: 'ASC' }} label="文章" >
     <Datagrid>
       <TextField source="id" />
       <TextField source="title" />
