@@ -3,17 +3,24 @@
 class UserController {
   async login({ request, response, auth }) {
     const { username, password } = request.all()
-    console.log({ username, password })
-    await auth.attempt(username, password)
-    return 'Logged in successfully'
+
+    try {
+      await auth.check()
+      return 'Already logged in'
+    } catch(e) {
+      await auth.attempt(username, password)
+      return 'Logged in successfully'
+    }
   }
 
   async check({ auth }) {
-    return await auth.check()
+    await auth.check()
+    return 'Logged in'
   }
 
   async logout({ auth }) {
-    return await auth.logout()
+    await auth.logout()
+    return 'Logged out successfully'
   }
 }
 

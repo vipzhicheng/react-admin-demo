@@ -5,7 +5,9 @@ import {
   GET_ONE,
   CREATE,
   UPDATE,
+  UPDATE_MANY,
   DELETE,
+  DELETE_MANY,
   GET_MANY,
   GET_MANY_REFERENCE
 } from 'react-admin'
@@ -99,19 +101,15 @@ export default (type, resource, params) => {
 
   return fetchUtils
     .fetchJson(url, options)
-    .then(res => res.json())
     .then(response => {
-      /* Convert HTTP Response to Data Provider Response */
-      /* Covered in the next section */
-
       switch (type) {
         case GET_LIST:
         case GET_MANY_REFERENCE:
-          return response
+          return response.json
         case CREATE:
-          return { data: { ...params.data, id: response.id } }
+          return { data: { ...params.data, id: response.json.id } }
         default:
-          return { data: json }
+          return { data: response.json }
       }
     })
 }

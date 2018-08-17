@@ -1,7 +1,20 @@
-POST http://127.0.0.1:3333/api/login
+@host = http://127.0.0.1:3333
+
+## 用户相关
+
+### 用户登录
+POST {{host}}/api/user/login
 content-type: application/json
 
 {
   "username": "admin",
   "password": "admin"
 }
+
+### 用户状态检查
+GET {{host}}/api/user/check
+content-type: application/json
+
+### 用户登出
+GET {{host}}/api/user/logout
+content-type: application/json
