@@ -18,6 +18,12 @@ const Route = use('Route')
 Route.on('/admin').render('admin')
 
 Route.group(() => {
-  Route.post('signin', 'UserController.signin')
-  Route.get('posts', 'PostController.index').middleware(['auth'])
+  Route.get('/', () => {
+    return 'ok'
+  })
+
+  Route.post('user/login', 'UserController.login')
+  Route.get('user/check', 'UserController.check')
+  Route.get('user/logout', 'UserController.logout')
+  Route.get('posts', 'PostController.index').middleware('auth')
 }).prefix('api')

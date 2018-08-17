@@ -1,13 +1,19 @@
 'use strict'
 
 class UserController {
-  async signin({ request, response, auth }) {
+  async login({ request, response, auth }) {
     const { username, password } = request.all()
-    console.log(auth.remember)
-    // const ret = await auth.attempt(username, password)
-    response.redirect('/admin')
-    // console.log(ret)
-    // return ret
+    console.log({ username, password })
+    await auth.attempt(username, password)
+    return 'Logged in successfully'
+  }
+
+  async check({ auth }) {
+    return await auth.check()
+  }
+
+  async logout({ auth }) {
+    return await auth.logout()
   }
 }
 

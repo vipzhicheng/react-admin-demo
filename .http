@@ -1,0 +1,7 @@
+POST http://127.0.0.1:3333/api/login
+content-type: application/json
+
+{
+  "username": "admin",
+  "password": "admin"
+}

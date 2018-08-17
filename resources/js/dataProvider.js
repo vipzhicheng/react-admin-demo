@@ -1,5 +1,6 @@
 import { stringify } from 'query-string'
 import {
+  fetchUtils,
   GET_LIST,
   GET_ONE,
   CREATE,
@@ -96,7 +97,8 @@ export default (type, resource, params) => {
       throw new Error(`Unsupported Data Provider request type ${type}`)
   }
 
-  return fetch(url, options)
+  return fetchUtils
+    .fetchJson(url, options)
     .then(res => res.json())
     .then(response => {
       /* Convert HTTP Response to Data Provider Response */

@@ -16,10 +16,13 @@ const Hash = use('Hash')
 
 class DatabaseSeeder {
   async run() {
+    // const password = await Hash.make('admin')
+    // console.log(password)
+    await User.truncate()
     await User.create({
       username: 'admin',
       email: 'admin@admin.com',
-      password: await Hash.make('admin')
+      password: 'admin'
     })
   }
 }
