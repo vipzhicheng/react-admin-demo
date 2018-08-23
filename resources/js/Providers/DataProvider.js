@@ -12,6 +12,8 @@ import {
   GET_MANY_REFERENCE
 } from 'react-admin'
 
+import { GET_OPTIONS } from '../Actions/Options'
+
 const apiUrl = '/api'
 
 /**
@@ -95,21 +97,23 @@ export default (type, resource, params) => {
       url = `${apiUrl}/${resource}?${stringify(query)}`
       break
     }
+    case GET_OPTIONS: {
+      url = `${apiUrl}/${resource}`
+      break
+    }
     default:
       throw new Error(`Unsupported Data Provider request type ${type}`)
   }
 
-  return fetchUtils
-    .fetchJson(url, options)
-    .then(response => {
-      switch (type) {
-        case GET_LIST:
-        case GET_MANY_REFERENCE:
-          return response.json
-        case CREATE:
-          return { data: { ...params.data, id: response.json.id } }
-        default:
-          return { data: response.json }
-      }
-    })
+  return fetchUtils.fetchJson(url, options).then(response => {
+    switch (type) {
+      case GET_LIST:
+      case GET_MANY_REFERENCE:
+        return response.json
+      case CREATE:
+        return { data: { ...params.data, id: response.json.id } }
+      default:
+        return { data: response.json }
+    }
+  })
 }

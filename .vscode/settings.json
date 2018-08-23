@@ -1,0 +1,27 @@
+{
+  "favorites.sortDirection": "ASC",
+  "favorites.groupsFirst": true,
+  "favorites.root": [
+    {
+      "type": "Directory",
+      "name": "/Users/zhicheng/Sites/try_adonis/react-admin-demo/node_modules/react-admin",
+      "parent_id": null,
+      "workspacePath": "node_modules/react-admin",
+      "id": "s3jNWZ5QdxIcGabY"
+    },
+    {
+      "type": "Directory",
+      "name": "/Users/zhicheng/Sites/try_adonis/react-admin-demo/node_modules/ra-core",
+      "parent_id": null,
+      "workspacePath": "node_modules/ra-core",
+      "id": "Wu5pFgNkifKlA9en"
+    },
+    {
+      "type": "Directory",
+      "name": "/Users/zhicheng/Sites/try_adonis/react-admin-demo/node_modules/ra-ui-materialui",
+      "parent_id": null,
+      "workspacePath": "node_modules/ra-ui-materialui",
+      "id": "gUf5pT9V8wdkxnGt"
+    }
+  ]
+}
