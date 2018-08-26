@@ -14,7 +14,7 @@
 const Mock = require('mockjs')
 const Factory = use('Factory')
 
-Factory.blueprint('App/Models/Page', (faker) => {
+Factory.blueprint('App/Models/Page', faker => {
   return {
     admin_title: Mock.mock('@sentence(3)'),
 
@@ -23,8 +23,9 @@ Factory.blueprint('App/Models/Page', (faker) => {
     keywords: Mock.mock('@sentence(2)'),
 
     type: Mock.mock('@integer(1, 3)'),
+    status: Mock.mock('@integer(0, 2)'),
 
     start_time: Mock.mock('@datetime()'),
-    end_time: Mock.mock('@datetime()'),
+    end_time: Mock.mock('@datetime()')
   }
 })

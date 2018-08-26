@@ -14,7 +14,7 @@
 */
 
 const Route = use('Route')
-const { PAGE_TYPE_OPTIONS } = use('App/Constants')
+const { PAGE_TYPE_OPTIONS, PAGE_STATUS_OPTIONS } = use('App/Constants')
 
 Route.on('/admin').render('admin')
 
@@ -25,7 +25,7 @@ Route.group(() => {
 
   // 常量接口
   Route.get('/options', () => {
-    return { PAGE_TYPE_OPTIONS }
+    return { PAGE_TYPE_OPTIONS, PAGE_STATUS_OPTIONS }
   })
 
   // 用户相关
@@ -38,6 +38,8 @@ Route.group(() => {
 
   // 页面接口
   Route.get('pages', 'PageController.index').middleware('auth')
-
-
+  Route.delete('pages', 'PageController.destroy').middleware('auth')
+  Route.get('pages/:id', 'PageController.show')
+  Route.put('pages/:id', 'PageController.update').middleware('auth')
+  Route.delete('pages/:id', 'PageController.delete').middleware('auth')
 }).prefix('api')

@@ -3,8 +3,8 @@
 const Schema = use('Schema')
 
 class PageSchema extends Schema {
-  up () {
-    this.create('pages', (table) => {
+  up() {
+    this.create('pages', table => {
       table.increments()
 
       // 页面后台标题
@@ -12,6 +12,7 @@ class PageSchema extends Schema {
 
       // 分类
       table.integer('type', 1)
+      table.integer('status', 1) // 0 未发布， 1 已发布 2 待审核
 
       // TDK
       table.string('title', 100) // 默认和页面后台标题一致
@@ -29,7 +30,7 @@ class PageSchema extends Schema {
     })
   }
 
-  down () {
+  down() {
     this.drop('pages')
   }
 }
