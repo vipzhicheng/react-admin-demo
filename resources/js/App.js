@@ -1,6 +1,15 @@
 import React from 'react'
 import { Admin, Resource } from 'react-admin'
 
+import { createMuiTheme } from '@material-ui/core/styles';
+import indigo from '@material-ui/core/colors/indigo';
+const theme = createMuiTheme({
+  palette: {
+    primary: indigo,
+    secondary: indigo,
+  },
+});
+
 // import jsonServerProvider from 'ra-data-json-server'
 // const dataProvider = jsonServerProvider('http://jsonplaceholder.typicode.com')
 
@@ -13,6 +22,7 @@ import { apiOptionsReducer } from './Reducers/Options'
 
 const App = () => (
   <Admin
+    theme={theme}
     customSagas={[watchFetchOptions]}
     customReducers={{ apiOptions: apiOptionsReducer }}
     authProvider={authProvider}
