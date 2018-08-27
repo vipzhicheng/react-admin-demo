@@ -111,8 +111,8 @@ class PageListComponent extends React.Component {
               </Tooltip>
             )}
           />
-          <EditButton />
           <PreviewButton />
+          <EditButton />
         </CustomizableDatagrid>
       </List>
     )
