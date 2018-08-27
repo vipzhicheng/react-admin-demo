@@ -16,8 +16,8 @@
 const Route = use('Route')
 const { PAGE_TYPE_OPTIONS, PAGE_STATUS_OPTIONS } = use('App/Constants')
 
+Route.get('/', () => 'tbd')
 Route.on('/admin').render('admin')
-
 Route.get('/page/:path', 'PageController.render')
 
 Route.group(() => {
