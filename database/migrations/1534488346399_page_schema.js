@@ -9,6 +9,7 @@ class PageSchema extends Schema {
 
       // 页面后台标题
       table.string('admin_title', 100)
+      table.string('path') // 统一到访/page/段下
 
       // 分类
       table.integer('type', 1)
@@ -24,7 +25,8 @@ class PageSchema extends Schema {
       table.dateTime('end_time')
 
       // data
-      table.string('json')
+      table.jsonb('json')
+      table.text('output')
 
       table.timestamps()
     })

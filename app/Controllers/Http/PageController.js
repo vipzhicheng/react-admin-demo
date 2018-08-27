@@ -1,31 +1,49 @@
 'use strict'
 
 const Page = use('App/Models/Page')
-
+const PageNotFoundException = use('App/Exceptions/PageNotFoundException')
 /**
  * Resourceful controller for interacting with pages
  */
 class PageController {
+  async render({ request, params, view, response }) {
+    const { path } = params
+    const page = await Page.findBy('path', path)
+    if (!page) {
+      throw new PageNotFoundException()
+    }
+    return view.render('page.view', { page })
+  }
+
   /**
    * Show a list of all pages.
    * GET pages
    */
   async index({ request, response, params }) {
     const [offset, limit] = JSON.parse(request.input('range'))
-    return await Page.query().paginate(offset / limit + 1, limit)
+    const [field, order] = JSON.parse(request.input('sort'))
+    return await Page.query()
+      .orderBy(field, order)
+      .paginate(offset / limit + 1, limit)
   }
-
-  /**
-   * Render a form to be used for creating a new page.
-   * GET pages/create
-   */
-  async create({ request, response, view }) {}
 
   /**
    * Create/save a new page.
    * POST pages
    */
-  async store({ request, response }) {}
+  async store({ request, response }) {
+    const page = new Page()
+    const body = request.only([
+      'admin_title',
+      'path',
+      'title',
+      'description',
+      'keywords'
+    ])
+    page.merge(body)
+    await page.save()
+    return page
+  }
 
   /**
    * Display a single page.
@@ -36,12 +54,6 @@ class PageController {
   }
 
   /**
-   * Render a form to update an existing page.
-   * GET pages/:id/edit
-   */
-  async edit({ params, request, response, view }) {}
-
-  /**
    * Update page details.
    * PUT or PATCH pages/:id
    */
@@ -49,6 +61,7 @@ class PageController {
     const page = await Page.find(params.id)
     const body = request.only([
       'admin_title',
+      'path',
       'title',
       'description',
       'keywords'

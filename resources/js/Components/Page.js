@@ -45,7 +45,11 @@ class PageListComponent extends React.Component {
     const filterProps = _.omit(_.omitBy(props, _.isFunction), ['apiOptions'])
     const { PAGE_TYPE_OPTIONS, PAGE_STATUS_OPTIONS } = props.apiOptions
     return (
-      <List {...filterProps} sort={{ order: 'ASC' }} title="页面管理">
+      <List
+        {...filterProps}
+        sort={{ field: 'created_at', order: 'DESC' }}
+        title="页面管理"
+      >
         <CustomizableDatagrid
           defaultColumns={['id', 'admin_title', 'type', 'status', 'created_at']}
         >
@@ -125,6 +129,7 @@ export const PageEdit = props => (
     <SimpleForm>
       <DisabledInput source="id" />
       <TextInput source="admin_title" />
+      <TextInput source="path" />
       <TextInput source="title" />
       <LongTextInput source="keywords" />
       <LongTextInput source="description" />
@@ -136,6 +141,7 @@ export const PageCreate = props => (
   <Create {...props}>
     <SimpleForm>
       <TextInput source="admin_title" />
+      <TextInput source="path" />
       <TextInput source="title" />
       <LongTextInput source="keywords" />
       <LongTextInput source="description" />

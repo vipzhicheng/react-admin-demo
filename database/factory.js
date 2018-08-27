@@ -17,6 +17,7 @@ const Factory = use('Factory')
 Factory.blueprint('App/Models/Page', faker => {
   return {
     admin_title: Mock.mock('@sentence(3)'),
+    path: Mock.mock('@string("lower", 5)'),
 
     title: Mock.mock('@sentence(2)'),
     description: Mock.mock('@paragraph(2)'),

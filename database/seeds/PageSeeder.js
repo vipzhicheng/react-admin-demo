@@ -13,10 +13,9 @@
 const Factory = use('Factory')
 
 class PageSeeder {
-  async run () {
-    await Factory
-      .model('App/Models/Page')
-      .createMany(100)
+  async run() {
+    await use('App/Models/Page').truncate()
+    await Factory.model('App/Models/Page').createMany(100)
   }
 }
 
