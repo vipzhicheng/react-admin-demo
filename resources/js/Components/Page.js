@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom'
 import timeago from 'timeago.js'
 import React from 'react'
 import {
@@ -32,7 +31,6 @@ import PreviewButton from './Common/PreviewButton'
 
 const timeagoInstance = timeago() // set the relative date here.
 
-
 class PageListComponent extends React.Component {
   constructor(props) {
     super(props)
@@ -54,11 +52,22 @@ class PageListComponent extends React.Component {
         title="页面管理"
       >
         <CustomizableDatagrid
-          defaultColumns={['id', 'admin_title', 'path', 'type', 'status', 'created_at']}
+          defaultColumns={[
+            'id',
+            'admin_title',
+            'path',
+            'type',
+            'status',
+            'created_at'
+          ]}
         >
           <TextField source="id" label="活动ID" />
           <TextField source="admin_title" label="活动名称" />
-          <FunctionField source="path" label="活动路径" render={record => `/page/${record.path}`} />
+          <FunctionField
+            source="path"
+            label="活动路径"
+            render={record => `/page/${record.path}`}
+          />
           <FunctionField
             source="type"
             label="活动类型"
