@@ -13,7 +13,8 @@ import {
   SimpleForm,
   TextInput,
   DisabledInput,
-  LongTextInput
+  LongTextInput,
+  SelectField
 } from 'react-admin'
 
 import RichTextInput from 'ra-input-rich-text'
@@ -37,8 +38,8 @@ class PageListComponent extends React.Component {
   }
 
   componentWillMount() {
-    const { dispatch } = this.props
-    dispatch({ type: FETCH_OPTIONS_REQUEST })
+    // const { dispatch } = this.props
+    // dispatch({ type: FETCH_OPTIONS_REQUEST })
   }
 
   render() {
@@ -151,14 +152,41 @@ export const PageEdit = props => (
   </Edit>
 )
 
-export const PageCreate = props => (
-  <Create {...props}>
-    <SimpleForm>
-      <TextInput source="admin_title" />
-      <TextInput source="path" />
-      <TextInput source="title" />
-      <LongTextInput source="keywords" />
-      <LongTextInput source="description" />
-    </SimpleForm>
-  </Create>
-)
+export class PageCreateComponent extends React.Component {
+  constructor(props) {
+    super(props)
+  }
+
+  render() {
+    const { props } = this
+    const { PAGE_TYPE_OPTIONS, PAGE_STATUS_OPTIONS } = props.apiOptions
+
+    const pageTypeChoices = []
+    Object.keys(PAGE_TYPE_OPTIONS).map(key => {
+      pageTypeChoices.push({
+        id: key,
+        name: PAGE_TYPE_OPTIONS[key]
+      })
+    })
+    console.log(pageTypeChoices)
+
+    return (
+      <Create {...props}>
+        <SimpleForm>
+          <TextInput source="admin_title" />
+          <TextInput source="path" />
+          <SelectField source="type" choices={pageTypeChoices} />
+          <TextInput source="title" />
+          <LongTextInput source="keywords" />
+          <LongTextInput source="description" />
+        </SimpleForm>
+      </Create>
+    )
+  }
+}
+
+export const PageCreate = connect(state => {
+  return {
+    apiOptions: state.apiOptions
+  }
+})(PageCreateComponent)
