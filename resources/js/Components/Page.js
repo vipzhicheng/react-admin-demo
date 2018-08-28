@@ -14,7 +14,9 @@ import {
   TextInput,
   DisabledInput,
   LongTextInput,
-  SelectInput
+  SelectInput,
+  DateInput,
+  RadioButtonGroupInput
 } from 'react-admin'
 
 import RichTextInput from 'ra-input-rich-text'
@@ -141,21 +143,27 @@ const PageTitle = ({ record }) => {
 
 export class PageEditComponent extends React.Component {
   constructor(props) {
-    super(props);
+    super(props)
   }
 
   render() {
-    const {
-      props,
-    } = this;
+    const { props } = this
 
     const filterProps = _.omit(_.omitBy(props, _.isFunction), ['apiOptions'])
     const { PAGE_TYPE_OPTIONS, PAGE_STATUS_OPTIONS } = props.apiOptions
     const pageTypeChoices = []
     Object.keys(PAGE_TYPE_OPTIONS).map(key => {
       pageTypeChoices.push({
-        id: key,
+        id: +key,
         name: PAGE_TYPE_OPTIONS[key]
+      })
+    })
+
+    const pageStatusChoices = []
+    Object.keys(PAGE_STATUS_OPTIONS).map(key => {
+      pageStatusChoices.push({
+        id: +key,
+        name: PAGE_STATUS_OPTIONS[key]
       })
     })
 
@@ -163,15 +171,19 @@ export class PageEditComponent extends React.Component {
       <Edit title={<PageTitle />} {...filterProps}>
         <SimpleForm>
           <DisabledInput source="id" />
-          <TextInput source="admin_title" />
+          <TextInput source="admin_title" isRequired />
           <TextInput source="path" />
-          <SelectInput source="type" choices={pageTypeChoices} />
+          <SelectInput source="type" choices={pageTypeChoices} value="1" />
           <TextInput source="title" />
           <LongTextInput source="keywords" />
           <LongTextInput source="description" />
+          <DateInput source="start_time" />
+          <DateInput source="end_time" />
+
+          <RadioButtonGroupInput source="status" choices={pageStatusChoices} />
         </SimpleForm>
       </Edit>
-    );
+    )
   }
 }
 
@@ -198,17 +210,27 @@ export class PageCreateComponent extends React.Component {
         name: PAGE_TYPE_OPTIONS[key]
       })
     })
-    console.log(pageTypeChoices)
+
+    const pageStatusChoices = []
+    Object.keys(PAGE_STATUS_OPTIONS).map(key => {
+      pageStatusChoices.push({
+        id: key,
+        name: PAGE_STATUS_OPTIONS[key]
+      })
+    })
 
     return (
       <Create {...filterProps}>
         <SimpleForm>
-          <TextInput source="admin_title" />
+          <TextInput source="admin_title" isRequired={true} />
           <TextInput source="path" />
           <SelectInput source="type" choices={pageTypeChoices} />
           <TextInput source="title" />
           <LongTextInput source="keywords" />
           <LongTextInput source="description" />
+          <DateInput source="start_time" />
+          <DateInput source="end_time" />
+          <RadioButtonGroupInput source="status" choices={pageStatusChoices} />
         </SimpleForm>
       </Create>
     )

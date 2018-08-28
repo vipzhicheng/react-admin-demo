@@ -38,7 +38,9 @@ class PageController {
       'path',
       'title',
       'description',
-      'keywords'
+      'keywords',
+      'type',
+      'status'
     ])
     page.merge(body)
     await page.save()
@@ -64,7 +66,9 @@ class PageController {
       'path',
       'title',
       'description',
-      'keywords'
+      'keywords',
+      'type',
+      'status'
     ])
     page.merge(body)
     await page.save()
