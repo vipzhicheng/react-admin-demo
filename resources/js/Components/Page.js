@@ -14,7 +14,7 @@ import {
   TextInput,
   DisabledInput,
   LongTextInput,
-  SelectField
+  SelectInput
 } from 'react-admin'
 
 import RichTextInput from 'ra-input-rich-text'
@@ -139,18 +139,47 @@ const PageTitle = ({ record }) => {
   return <span>Post {record ? `"${record.admin_title}"` : ''}</span>
 }
 
-export const PageEdit = props => (
-  <Edit title={<PageTitle />} {...props}>
-    <SimpleForm>
-      <DisabledInput source="id" />
-      <TextInput source="admin_title" />
-      <TextInput source="path" />
-      <TextInput source="title" />
-      <LongTextInput source="keywords" />
-      <LongTextInput source="description" />
-    </SimpleForm>
-  </Edit>
-)
+export class PageEditComponent extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
+  render() {
+    const {
+      props,
+    } = this;
+
+    const filterProps = _.omit(_.omitBy(props, _.isFunction), ['apiOptions'])
+    const { PAGE_TYPE_OPTIONS, PAGE_STATUS_OPTIONS } = props.apiOptions
+    const pageTypeChoices = []
+    Object.keys(PAGE_TYPE_OPTIONS).map(key => {
+      pageTypeChoices.push({
+        id: key,
+        name: PAGE_TYPE_OPTIONS[key]
+      })
+    })
+
+    return (
+      <Edit title={<PageTitle />} {...filterProps}>
+        <SimpleForm>
+          <DisabledInput source="id" />
+          <TextInput source="admin_title" />
+          <TextInput source="path" />
+          <SelectInput source="type" choices={pageTypeChoices} />
+          <TextInput source="title" />
+          <LongTextInput source="keywords" />
+          <LongTextInput source="description" />
+        </SimpleForm>
+      </Edit>
+    );
+  }
+}
+
+export const PageEdit = connect(state => {
+  return {
+    apiOptions: state.apiOptions
+  }
+})(PageEditComponent)
 
 export class PageCreateComponent extends React.Component {
   constructor(props) {
@@ -159,6 +188,7 @@ export class PageCreateComponent extends React.Component {
 
   render() {
     const { props } = this
+    const filterProps = _.omit(_.omitBy(props, _.isFunction), ['apiOptions'])
     const { PAGE_TYPE_OPTIONS, PAGE_STATUS_OPTIONS } = props.apiOptions
 
     const pageTypeChoices = []
@@ -171,11 +201,11 @@ export class PageCreateComponent extends React.Component {
     console.log(pageTypeChoices)
 
     return (
-      <Create {...props}>
+      <Create {...filterProps}>
         <SimpleForm>
           <TextInput source="admin_title" />
           <TextInput source="path" />
-          <SelectField source="type" choices={pageTypeChoices} />
+          <SelectInput source="type" choices={pageTypeChoices} />
           <TextInput source="title" />
           <LongTextInput source="keywords" />
           <LongTextInput source="description" />
