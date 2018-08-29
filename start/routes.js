@@ -18,7 +18,8 @@ const { PAGE_TYPE_OPTIONS, PAGE_STATUS_OPTIONS } = use('App/Constants')
 
 Route.get('/', () => 'tbd')
 Route.on('/admin').render('admin')
-Route.get('/page/:path', 'PageController.render')
+Route.get('/page/:id/edit', 'PageController.edit')
+Route.get('/page/:path', 'PageController.show')
 
 Route.group(() => {
   Route.get('/', () => {
@@ -42,7 +43,9 @@ Route.group(() => {
   Route.get('pages', 'PageController.index').middleware('auth')
   Route.delete('pages', 'PageController.destroy').middleware('auth')
   Route.post('pages', 'PageController.store').middleware('auth')
-  Route.get('pages/:id', 'PageController.show')
+  Route.get('pages/:id', 'PageController.fetch')
   Route.put('pages/:id', 'PageController.update').middleware('auth')
   Route.delete('pages/:id', 'PageController.delete').middleware('auth')
+
+  Route.post('pages/:id/edit/store', 'PageController.editStore').middleware('auth') // 只用于保存编辑器的快照
 }).prefix('api')

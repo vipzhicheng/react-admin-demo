@@ -6,7 +6,23 @@ const PageNotFoundException = use('App/Exceptions/PageNotFoundException')
  * Resourceful controller for interacting with pages
  */
 class PageController {
-  async render({ request, params, view, response }) {
+  async edit({ request, params, view, response }) {
+    const page = await Page.find(params.id)
+    if (!page) {
+      throw new PageNotFoundException()
+    }
+    return view.render('page.edit1', { page })
+  }
+
+  async editStore({ request, params, view, response }) {
+    const page = await Page.find(params.id)
+    const body = request.post()
+    page.json = body
+    await page.save();
+    return true;
+  }
+
+  async show({ request, params, view, response }) {
     const { path } = params
     const page = await Page.findBy('path', path)
     if (!page) {
@@ -53,7 +69,7 @@ class PageController {
    * Display a single page.
    * GET pages/:id
    */
-  async show({ params, request, response, view }) {
+  async fetch({ params, request, response, view }) {
     return await Page.find(params.id)
   }
 
