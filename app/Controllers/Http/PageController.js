@@ -18,8 +18,7 @@ class PageController {
     const page = await Page.find(params.id)
     const body = request.post()
     page.json = body
-    await page.save();
-    return true;
+    return await page.save()
   }
 
   async show({ request, params, view, response }) {
