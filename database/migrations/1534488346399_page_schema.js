@@ -12,8 +12,8 @@ class PageSchema extends Schema {
       table.string('path') // 统一到访/page/段下
 
       // 分类
-      table.integer('type', 1)
-      table.integer('status', 1) // 0 未发布， 1 已发布 2 待审核
+      table.string('type', 1)
+      table.string('status', 1) // 0 未发布， 1 已发布 2 待审核
 
       // TDK
       table.string('title', 100) // 默认和页面后台标题一致

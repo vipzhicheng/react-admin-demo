@@ -5,7 +5,8 @@ import {
   Datagrid,
   TextField,
   FunctionField,
-  EditButton
+  EditButton,
+  CloneButton
 } from 'react-admin'
 import {
   Create,
@@ -125,6 +126,7 @@ class PageListComponent extends React.Component {
           />
           <PreviewButton />
           <EditButton />
+          <CloneButton />
         </CustomizableDatagrid>
       </List>
     )
@@ -154,7 +156,7 @@ export class PageEditComponent extends React.Component {
     const pageTypeChoices = []
     Object.keys(PAGE_TYPE_OPTIONS).map(key => {
       pageTypeChoices.push({
-        id: +key,
+        id: key,
         name: PAGE_TYPE_OPTIONS[key]
       })
     })
@@ -162,7 +164,7 @@ export class PageEditComponent extends React.Component {
     const pageStatusChoices = []
     Object.keys(PAGE_STATUS_OPTIONS).map(key => {
       pageStatusChoices.push({
-        id: +key,
+        id: key,
         name: PAGE_STATUS_OPTIONS[key]
       })
     })
