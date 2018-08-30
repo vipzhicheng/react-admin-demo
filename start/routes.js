@@ -47,5 +47,8 @@ Route.group(() => {
   Route.put('pages/:id', 'PageController.update').middleware('auth')
   Route.delete('pages/:id', 'PageController.delete').middleware('auth')
 
-  Route.post('pages/:id/edit/store', 'PageController.editStore').middleware('auth') // 只用于保存编辑器的快照
+  Route.post('pages/:id/edit/store', 'PageController.editStore').middleware(
+    'auth'
+  ) // 只用于编辑器
+  Route.get('pages/:id/edit/load', 'PageController.editLoad').middleware('auth') // 只用于编辑器
 }).prefix('api')

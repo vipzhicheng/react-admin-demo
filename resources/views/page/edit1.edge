@@ -19,6 +19,9 @@
     <script src="//unpkg.com/grapesjs-lory-slider"></script>
     <script src="//unpkg.com/grapesjs-tabs"></script>
     <script src="//unpkg.com/grapesjs-custom-code"></script>
+    <!-- <script src="//unpkg.com/grapesjs-plugin-ckeditor"></script> -->
+
+    <!-- <script src="//unpkg.com/ckeditor"></script> -->
 
     <style type="text/css">
     body,
@@ -85,6 +88,16 @@
           min-height: 450px;
           margin-bottom: 8px;
         }
+        .gjs-one-bg {
+          background-color: #333;
+        }
+        .gjs-two-color {
+          color: #ccc;
+        }
+
+         .gjs-four-color, .gjs-four-color-h:hover {
+          color: #eee ;
+        }
     </style>
   </head>
   <body>
@@ -99,23 +112,19 @@
         plp+'c5d647/fff/image4.jpg', plp+'f28c33/fff/image5.jpg', plp+'e868a2/fff/image6.jpg', plp+'cc4360/fff/image7.jpg'
       ];
 
-      var page = JSON.parse('{{ page.id }}')
-      console.log(page)
-      var LandingPage = {
-        html: '',
-        css: null,
-        components: null,
-        style: null,
-      };
-
       var editor  = grapesjs.init({
+        // components: LandingPage.components || LandingPage.html,
+        // style: LandingPage.styles || LandingPage.css,
         storageManager: {
+          id: 'gjs-',
           autosave: false,
-          type: 'remote',          // Type of the storage
+          autoload: true,
+          type: 'remote',
+          contentTypeJson: true,
           urlStore: '/api/pages/{{page.id}}/edit/store',
-          components: LandingPage.components || LandingPage.html,
-          style: LandingPage.style || LandingPage.css,
+          urlLoad: '/api/pages/{{page.id}}/edit/load',
         },
+
         height: '100%',
         container : '#gjs',
         fromElement: 1,
@@ -125,8 +134,15 @@
           assets: images
         },
         styleManager: { clearProperties: 1 },
-        plugins: ['gjs-preset-webpage', 'grapesjs-lory-slider', 'grapesjs-tabs', 'grapesjs-custom-code'],
+        plugins: ['gjs-preset-webpage', 'grapesjs-lory-slider', 'grapesjs-tabs', 'grapesjs-custom-code', 'gjs-plugin-ckeditor'],
         pluginsOpts: {
+          // 'gjs-plugin-ckeditor': {
+          //   position: 'center',
+          //   options: {
+          //     language: 'en',
+          //     //skin: 'moono-dark',
+          //   }
+          // },
           'grapesjs-lory-slider': {
             sliderBlock: {
               category: 'Extra'
@@ -497,7 +513,6 @@
       pn.getButton('options', 'sw-visibility').set('active', 1);
 
 
-      // Store and load events
       editor.on('storage:load', function(e) { console.log('Loaded ', e) });
       editor.on('storage:store', function(e) { console.log('Stored ', e) });
 
@@ -537,6 +552,7 @@
         openBlocksBtn && openBlocksBtn.set('active', 1);
 
       });
+
 
     </script>
   </body>
