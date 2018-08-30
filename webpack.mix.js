@@ -15,6 +15,13 @@ mix.setPublicPath('public')
 
 mix.react('resources/js/index.js', '')
 mix.sass('resources/css/index.scss', '')
+mix.copy('node_modules/grapesjs/dist', 'public/assets/grapesjs');
+mix.copy('node_modules/grapesjs-preset-webpage/dist', 'public/assets/grapesjs-preset-webpage');
+mix.copy('node_modules/grapesjs-custom-code/dist', 'public/assets/grapesjs-custom-code');
+mix.copy('node_modules/grapesjs-lory-slider/dist', 'public/assets/grapesjs-lory-slider');
+mix.copy('node_modules/grapesjs-tabs/dist', 'public/assets/grapesjs-tabs');
+mix.copy('node_modules/jquery/dist', 'public/assets/jquery');
+mix.copy('node_modules/toastr/build', 'public/assets/toastr');
 
 // Full API
 // mix.js(src, output);

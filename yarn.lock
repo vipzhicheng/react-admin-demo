@@ -2282,6 +2282,10 @@ core-js@^2.4.0, core-js@^2.5.0, core-js@^2.5.3:
   version "2.5.7"
   resolved "http://registry.npm.taobao.org/core-js/download/core-js-2.5.7.tgz#f972608ff0cead68b841a16a932d0b183791814e"
 
+core-js@~2.3.0:
+  version "2.3.0"
+  resolved "http://registry.npm.taobao.org/core-js/download/core-js-2.3.0.tgz#fab83fbb0b2d8dc85fa636c4b9d34c75420c6d65"
+
 core-util-is@1.0.2, core-util-is@~1.0.0:
   version "1.0.2"
   resolved "http://registry.npm.taobao.org/core-util-is/download/core-util-is-1.0.2.tgz#b5fd54220aa2bc5ab57aab7140c940754503c1a7"
@@ -3135,6 +3139,10 @@ es6-map@^0.1.3:
     es6-symbol "~3.1.1"
     event-emitter "~0.3.5"
 
+es6-promise@~3.0.2:
+  version "3.0.2"
+  resolved "http://registry.npm.taobao.org/es6-promise/download/es6-promise-3.0.2.tgz#010d5858423a5f118979665f46486a95c6ee2bb6"
+
 es6-set@~0.1.5:
   version "0.1.5"
   resolved "http://registry.npm.taobao.org/es6-set/download/es6-set-0.1.5.tgz#d2b3ec5d4d800ced818db538d28974db0a73ccb1"
@@ -3535,6 +3543,10 @@ file-loader@^0.11.2:
   resolved "http://registry.npm.taobao.org/file-loader/download/file-loader-0.11.2.tgz#4ff1df28af38719a6098093b88c82c71d1794a34"
   dependencies:
     loader-utils "^1.0.2"
+
+file-saver@^1.3.2:
+  version "1.3.8"
+  resolved "http://registry.npm.taobao.org/file-saver/download/file-saver-1.3.8.tgz#e68a30c7cb044e2fb362b428469feb291c2e09d8"
 
 file-type@5.2.0, file-type@^5.2.0:
   version "5.2.0"
@@ -4068,6 +4080,61 @@ graceful-fs@^4.0.0, graceful-fs@^4.1.10, graceful-fs@^4.1.11, graceful-fs@^4.1.2
   version "1.0.1"
   resolved "http://registry.npm.taobao.org/graceful-readlink/download/graceful-readlink-1.0.1.tgz#4cafad76bc62f02fa039b2f94e9a3dd3a391a725"
 
+grapesjs-aviary@^0.1.2:
+  version "0.1.2"
+  resolved "http://registry.npm.taobao.org/grapesjs-aviary/download/grapesjs-aviary-0.1.2.tgz#330e7de5ad8ba5fca4dea06adba94372a8d4b487"
+
+grapesjs-blocks-basic@^0.1.7:
+  version "0.1.7"
+  resolved "http://registry.npm.taobao.org/grapesjs-blocks-basic/download/grapesjs-blocks-basic-0.1.7.tgz#1c6b0c8134d159ff6b1091c0589a69fda0d77711"
+
+grapesjs-component-countdown@^0.1.2:
+  version "0.1.3"
+  resolved "http://registry.npm.taobao.org/grapesjs-component-countdown/download/grapesjs-component-countdown-0.1.3.tgz#7df54b2a6c0bdf3275370f974ac9bd732188aae3"
+
+grapesjs-custom-code@0.1.1:
+  version "0.1.1"
+  resolved "http://registry.npm.taobao.org/grapesjs-custom-code/download/grapesjs-custom-code-0.1.1.tgz#679f3a835bbd8e726f4251e3c936d8f06ab10d7e"
+
+grapesjs-lory-slider@0.1.5:
+  version "0.1.5"
+  resolved "http://registry.npm.taobao.org/grapesjs-lory-slider/download/grapesjs-lory-slider-0.1.5.tgz#9dbd42a0d2b10b8d848b9d74275c74e807853549"
+
+grapesjs-navbar@^0.1.5:
+  version "0.1.5"
+  resolved "http://registry.npm.taobao.org/grapesjs-navbar/download/grapesjs-navbar-0.1.5.tgz#62e35eca0f391f94d455e96c206b74b5f495fa6e"
+
+grapesjs-plugin-export@^0.1.5:
+  version "0.1.5"
+  resolved "http://registry.npm.taobao.org/grapesjs-plugin-export/download/grapesjs-plugin-export-0.1.5.tgz#968631d8d22abdd1d05f14fa30ad86105690ce23"
+  dependencies:
+    file-saver "^1.3.2"
+    jszip "^3.0.0"
+
+grapesjs-plugin-filestack@^0.1.1:
+  version "0.1.1"
+  resolved "http://registry.npm.taobao.org/grapesjs-plugin-filestack/download/grapesjs-plugin-filestack-0.1.1.tgz#690d8b532fab6e01d614d1ab288da0086b748972"
+
+grapesjs-plugin-forms@^0.3.5:
+  version "0.3.6"
+  resolved "http://registry.npm.taobao.org/grapesjs-plugin-forms/download/grapesjs-plugin-forms-0.3.6.tgz#c55ee38ad74e2935e1e279deb0bca45ec0b1d301"
+
+grapesjs-preset-webpage@0.1.10:
+  version "0.1.10"
+  resolved "http://registry.npm.taobao.org/grapesjs-preset-webpage/download/grapesjs-preset-webpage-0.1.10.tgz#fe6b01a2e2411cb2fcf8d1bea4bc0539fd72bd42"
+  dependencies:
+    grapesjs-aviary "^0.1.2"
+    grapesjs-blocks-basic "^0.1.7"
+    grapesjs-component-countdown "^0.1.2"
+    grapesjs-navbar "^0.1.5"
+    grapesjs-plugin-export "^0.1.5"
+    grapesjs-plugin-filestack "^0.1.1"
+    grapesjs-plugin-forms "^0.3.5"
+
+grapesjs-tabs@0.1.2:
+  version "0.1.2"
+  resolved "http://registry.npm.taobao.org/grapesjs-tabs/download/grapesjs-tabs-0.1.2.tgz#5519d030ba41ac6591f270664d4491d1ef6728d6"
+
 grapesjs@0.14.27:
   version "0.14.27"
   resolved "http://registry.npm.taobao.org/grapesjs/download/grapesjs-0.14.27.tgz#ca96861cc2f343fbf94e4bff84b1935931320e6b"
@@ -4485,6 +4552,10 @@ img-loader@^2.0.1:
     imagemin-pngquant "^5.0.1"
     imagemin-svgo "^6.0.0"
     loader-utils "^1.1.0"
+
+immediate@~3.0.5:
+  version "3.0.6"
+  resolved "http://registry.npm.taobao.org/immediate/download/immediate-3.0.6.tgz#9db1dbd0faf8de6fbe0f5dd5e56bb606280de69b"
 
 import-cwd@^2.0.0:
   version "2.1.0"
@@ -4993,6 +5064,10 @@ isurl@^1.0.0-alpha5:
     has-to-string-tag-x "^1.2.0"
     is-object "^1.0.1"
 
+jquery@3.3.1, jquery@>=1.12.0:
+  version "3.3.1"
+  resolved "http://registry.npm.taobao.org/jquery/download/jquery-3.3.1.tgz#958ce29e81c9790f31be7792df5d4d95fc57fbca"
+
 js-base64@^2.1.8, js-base64@^2.1.9:
   version "2.4.8"
   resolved "http://registry.npm.taobao.org/js-base64/download/js-base64-2.4.8.tgz#57a9b130888f956834aa40c5b165ba59c758f033"
@@ -5183,6 +5258,16 @@ jss@^9.3.3, jss@^9.7.0:
     symbol-observable "^1.1.0"
     warning "^3.0.0"
 
+jszip@^3.0.0:
+  version "3.1.5"
+  resolved "http://registry.npm.taobao.org/jszip/download/jszip-3.1.5.tgz#e3c2a6c6d706ac6e603314036d43cd40beefdf37"
+  dependencies:
+    core-js "~2.3.0"
+    es6-promise "~3.0.2"
+    lie "~3.1.0"
+    pako "~1.0.2"
+    readable-stream "~2.0.6"
+
 jwa@^1.1.5:
   version "1.1.6"
   resolved "http://registry.npm.taobao.org/jwa/download/jwa-1.1.6.tgz#87240e76c9808dbde18783cf2264ef4929ee50e6"
@@ -5337,6 +5422,12 @@ lcid@^1.0.0:
   resolved "http://registry.npm.taobao.org/lcid/download/lcid-1.0.0.tgz#308accafa0bc483a3867b4b6f2b9506251d1b835"
   dependencies:
     invert-kv "^1.0.0"
+
+lie@~3.1.0:
+  version "3.1.1"
+  resolved "http://registry.npm.taobao.org/lie/download/lie-3.1.1.tgz#9a436b2cc7746ca59de7a41fa469b3efb76bd87e"
+  dependencies:
+    immediate "~3.0.5"
 
 liftoff@2.5.0:
   version "2.5.0"
@@ -6532,7 +6623,7 @@ packet-reader@0.3.1:
   version "0.3.1"
   resolved "http://registry.npm.taobao.org/packet-reader/download/packet-reader-0.3.1.tgz#cd62e60af8d7fea8a705ec4ff990871c46871f27"
 
-pako@~1.0.5:
+pako@~1.0.2, pako@~1.0.5:
   version "1.0.6"
   resolved "http://registry.npm.taobao.org/pako/download/pako-1.0.6.tgz#0101211baa70c4bca4a0f63f2206e97b7dfaf258"
 
@@ -7121,6 +7212,10 @@ pretty-hrtime@^1.0.3:
 private@^0.1.6, private@^0.1.8, private@~0.1.5:
   version "0.1.8"
   resolved "http://registry.npm.taobao.org/private/download/private-0.1.8.tgz#2381edb3689f7a53d653190060fcf822d2f368ff"
+
+process-nextick-args@~1.0.6:
+  version "1.0.7"
+  resolved "http://registry.npm.taobao.org/process-nextick-args/download/process-nextick-args-1.0.7.tgz#150e20b756590ad3f91093f25a4f2ad8bff30ba3"
 
 process-nextick-args@~2.0.0:
   version "2.0.0"
@@ -7777,6 +7872,17 @@ readable-stream@~1.1.9:
     inherits "~2.0.1"
     isarray "0.0.1"
     string_decoder "~0.10.x"
+
+readable-stream@~2.0.6:
+  version "2.0.6"
+  resolved "http://registry.npm.taobao.org/readable-stream/download/readable-stream-2.0.6.tgz#8f90341e68a53ccc928788dacfcd11b36eb9b78e"
+  dependencies:
+    core-util-is "~1.0.0"
+    inherits "~2.0.1"
+    isarray "~1.0.0"
+    process-nextick-args "~1.0.6"
+    string_decoder "~0.10.x"
+    util-deprecate "~1.0.1"
 
 readdirp@^2.0.0:
   version "2.1.0"
@@ -9101,6 +9207,12 @@ to-regex@^3.0.1, to-regex@^3.0.2:
     extend-shallow "^3.0.2"
     regex-not "^1.0.2"
     safe-regex "^1.1.0"
+
+toastr@2.1.4:
+  version "2.1.4"
+  resolved "http://registry.npm.taobao.org/toastr/download/toastr-2.1.4.tgz#8b43be64fb9d0c414871446f2db8e8ca4e95f181"
+  dependencies:
+    jquery ">=1.12.0"
 
 toggle-array@^1.0.1:
   version "1.0.1"

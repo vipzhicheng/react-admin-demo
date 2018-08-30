@@ -2,11 +2,11 @@ import React from 'react'
 import { Admin, Resource } from 'react-admin'
 
 import { createMuiTheme } from '@material-ui/core/styles'
-import indigo from '@material-ui/core/colors/indigo'
+import grey from '@material-ui/core/colors/indigo'
 const theme = createMuiTheme({
   palette: {
-    primary: indigo,
-    secondary: indigo
+    primary: grey,
+    secondary: grey
   }
 })
 

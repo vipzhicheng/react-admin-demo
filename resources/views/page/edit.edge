@@ -5,21 +5,20 @@
     <meta charset="utf-8">
     <title>{{ page.admin_title }} - 活动编辑器</title>
     <meta content="Best Free Open Source Responsive Websites Builder" name="description">
-    <link rel="stylesheet" href="//unpkg.com/toastr/build/toastr.min.css">
-    <link rel="stylesheet" href="//unpkg.com/grapesjs/dist/css/grapes.min.css">
-    <link rel="stylesheet" href="//unpkg.com/grapesjs-preset-webpage/dist/grapesjs-preset-webpage.min.css">
+    <link rel="stylesheet" href="/assets/toastr/toastr.min.css">
+    <link rel="stylesheet" href="/assets/grapesjs/css/grapes.min.css">
+    <link rel="stylesheet" href="/assets/grapesjs-preset-webpage/grapesjs-preset-webpage.min.css">
     <link rel="stylesheet" href="//unpkg.com/grapesjs-plugin-filestack/dist/grapesjs-plugin-filestack.css">
 
     <script src="//static.filestackapi.com/v3/filestack.js"></script>
     <!-- <script src="js/aviary.js"></script> old //feather.aviary.com/imaging/v3/editor.js -->
 
 
-    <script src="//unpkg.com/grapesjs"></script>
-    <script src="//unpkg.com/grapesjs-preset-webpage"></script>
-    <script src="//unpkg.com/grapesjs-lory-slider"></script>
-    <script src="//unpkg.com/grapesjs-tabs"></script>
-    <script src="//unpkg.com/grapesjs-custom-code"></script>
-    <script src="//unpkg.com/@truenorthtechnology/grapesjs-code-editor"></script>
+    <script src="/assets/grapesjs/grapes.min.js"></script>
+    <script src="/assets/grapesjs-preset-webpage/grapesjs-preset-webpage.min.js"></script>
+    <script src="/assets/grapesjs-custom-code/grapesjs-custom-code.min.js"></script>
+    <script src="/assets/grapesjs-lory-slider/grapesjs-lory-slider.min.js"></script>
+    <script src="/assets/grapesjs-tabs/grapesjs-tabs.min.js"></script>
 
     <!-- <script src="//unpkg.com/grapesjs-plugin-ckeditor"></script> -->
 
@@ -107,8 +106,8 @@
 
     </div>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-    <script src="//unpkg.com/toastr"></script>
+    <script src="https://cdn.staticfile.org/jquery/1.9.1/jquery.min.js"></script>
+    <script src="/assets/toastr/toastr.min.js"></script>
     <script type="text/javascript">
       var plp = '//placehold.it/350x250/';
       var images = [
@@ -128,14 +127,6 @@
           urlStore: '/api/pages/{{page.id}}/edit/store',
           urlLoad: '/api/pages/{{page.id}}/edit/load',
         },
-
-        commands: {
-          defaults: [
-            window['@truenorthtechnology/grapesjs-code-editor'].codeCommandFactory(),
-          ],
-        },
-
-        panels: window['@truenorthtechnology/grapesjs-code-editor'].panels,
 
         height: '100%',
         container : '#gjs',
@@ -507,7 +498,6 @@
         }
         origWarn(msg);
       };
-
 
       // Add and beautify tooltips
       [['sw-visibility', 'Show Borders'], ['preview', 'Preview'], ['fullscreen', 'Fullscreen'],
