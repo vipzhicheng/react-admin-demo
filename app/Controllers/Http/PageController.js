@@ -30,6 +30,7 @@ class PageController {
     if (!page) {
       throw new PageNotFoundException()
     }
+    console.log(page)
     return view.render('page.view', { page })
   }
 
