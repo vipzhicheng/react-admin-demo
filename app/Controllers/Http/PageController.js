@@ -9,7 +9,7 @@ class PageController {
     if (!page) {
       throw new PageNotFoundException()
     }
-    return view.render('page.edit1', { page })
+    return view.render('page.edit', { page })
   }
 
   async editStore({ request, params, view, response }) {

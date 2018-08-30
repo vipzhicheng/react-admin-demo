@@ -32,6 +32,7 @@ import { connect } from 'react-redux'
 import _ from 'lodash'
 import { FETCH_OPTIONS_REQUEST } from '../Actions/Options'
 import PreviewButton from './Common/PreviewButton'
+import EditorButton from './Common/EditorButton'
 
 const timeagoInstance = timeago() // set the relative date here.
 
@@ -52,26 +53,21 @@ class PageListComponent extends React.Component {
     return (
       <List
         {...filterProps}
-        sort={{ field: 'created_at', order: 'DESC' }}
+        sort={{ field: 'updated_at', order: 'DESC' }}
         title="页面管理"
       >
         <CustomizableDatagrid
           defaultColumns={[
             'id',
             'admin_title',
-            'path',
             'type',
             'status',
-            'created_at'
+            'created_at',
+            'updated_at'
           ]}
         >
           <TextField source="id" label="活动ID" />
           <TextField source="admin_title" label="活动名称" />
-          <FunctionField
-            source="path"
-            label="活动路径"
-            render={record => `/page/${record.path}`}
-          />
           <FunctionField
             source="type"
             label="活动类型"
@@ -125,6 +121,7 @@ class PageListComponent extends React.Component {
             )}
           />
           <PreviewButton />
+          <EditorButton />
           <EditButton />
           <CloneButton />
         </CustomizableDatagrid>

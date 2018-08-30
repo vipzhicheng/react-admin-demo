@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import PreviewIcon from '@material-ui/icons/LocalParking'
+import PreviewIcon from '@material-ui/icons/Visibility'
 
 export { default as PageIcon } from '@material-ui/icons/Book'
 

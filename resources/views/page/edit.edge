@@ -19,8 +19,35 @@
     <script src="//unpkg.com/grapesjs-lory-slider"></script>
     <script src="//unpkg.com/grapesjs-tabs"></script>
     <script src="//unpkg.com/grapesjs-custom-code"></script>
+    <script src="//unpkg.com/@truenorthtechnology/grapesjs-code-editor"></script>
+
+    <!-- <script src="//unpkg.com/grapesjs-plugin-ckeditor"></script> -->
+
+    <!-- <script src="//unpkg.com/ckeditor"></script> -->
 
     <style type="text/css">
+    body,
+      html {
+        height: 100%;
+        margin: 0;
+        overflow: hidden;
+      }
+
+      #toast-container {
+        font-size: 13px;
+        font-weight: lighter;
+      }
+
+      #toast-container > div {
+        opacity: 0.95;
+      }
+
+      #toast-container > div,
+      #toast-container > div:hover {
+        box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
+        font-family: Helvetica, sans-serif;
+      }
+
         [data-tooltip]::after {
            background: rgba(51, 51, 51, 0.9);
          }
@@ -63,10 +90,20 @@
           min-height: 450px;
           margin-bottom: 8px;
         }
+        .gjs-one-bg {
+          background-color: #333;
+        }
+        .gjs-two-color {
+          color: #ccc;
+        }
+
+         .gjs-four-color, .gjs-four-color-h:hover {
+          color: #eee ;
+        }
     </style>
   </head>
   <body>
-    <div id="gjs" style="height:0px; overflow:hidden">
+    <div id="gjs" style="">
 
     </div>
 
@@ -78,6 +115,25 @@
       ];
 
       var editor  = grapesjs.init({
+        // components: LandingPage.components || LandingPage.html,
+        // style: LandingPage.styles || LandingPage.css,
+        storageManager: {
+          id: 'gjs-',
+          autosave: false,
+          autoload: true,
+          type: 'remote',
+          contentTypeJson: true,
+          urlStore: '/api/pages/{{page.id}}/edit/store',
+          urlLoad: '/api/pages/{{page.id}}/edit/load',
+        },
+
+        commands: {
+          defaults: [
+            window['@truenorthtechnology/grapesjs-code-editor'].codeCommandFactory(),
+          ],
+        },
+
+        panels: window['@truenorthtechnology/grapesjs-code-editor'].panels,
 
         height: '100%',
         container : '#gjs',
@@ -90,6 +146,13 @@
         styleManager: { clearProperties: 1 },
         plugins: ['gjs-preset-webpage', 'grapesjs-lory-slider', 'grapesjs-tabs', 'grapesjs-custom-code'],
         pluginsOpts: {
+          // 'gjs-plugin-ckeditor': {
+          //   position: 'center',
+          //   options: {
+          //     language: 'en',
+          //     //skin: 'moono-dark',
+          //   }
+          // },
           'grapesjs-lory-slider': {
             sliderBlock: {
               category: 'Extra'
@@ -410,13 +473,19 @@
 
       var pn = editor.Panels;
       var modal = editor.Modal;
-      editor.Commands.add('canvas-clear', function() {
-        if(confirm('Areeee you sure to clean the canvas?')) {
-          var comps = editor.DomComponents.clear();
-          setTimeout(function(){ localStorage.clear()}, 0)
+      editor.Commands.add('canvas-clear', function(e) {
+        if(confirm('确定要清空画布嘛？')) {
+          // var comps = editor.DomComponents.clear();
+          e.runCommand('core:canvas-clear')
         }
       });
 
+      editor.Commands.add('save', function(e) {
+        if(confirm(' 确定要保存页面嘛？')) {
+          // var comps = editor.DomComponents.clear();
+          e.runCommand('core:canvas-clear')
+        }
+      });
 
       // Simple warn notifier
       var origWarn = console.warn;
@@ -461,7 +530,6 @@
       pn.getButton('options', 'sw-visibility').set('active', 1);
 
 
-      // Store and load events
       editor.on('storage:load', function(e) { console.log('Loaded ', e) });
       editor.on('storage:store', function(e) { console.log('Stored ', e) });
 
@@ -501,6 +569,7 @@
         openBlocksBtn && openBlocksBtn.set('active', 1);
 
       });
+
 
     </script>
   </body>
