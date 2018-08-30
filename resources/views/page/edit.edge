@@ -12,7 +12,7 @@
 
     <script src="//static.filestackapi.com/v3/filestack.js"></script>
     <!-- <script src="js/aviary.js"></script> old //feather.aviary.com/imaging/v3/editor.js -->
-    <script src="//unpkg.com/toastr"></script>
+
 
     <script src="//unpkg.com/grapesjs"></script>
     <script src="//unpkg.com/grapesjs-preset-webpage"></script>
@@ -107,6 +107,8 @@
 
     </div>
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="//unpkg.com/toastr"></script>
     <script type="text/javascript">
       var plp = '//placehold.it/350x250/';
       var images = [
@@ -478,7 +480,7 @@
         id: 'myNewButton',
         className: 'fa fa-save',
         command: function(editor) {
-          editor.store(res => console.log('Saved'));
+          editor.store(res => toastr.info('保存成功'));
         },
         attributes: { title: 'Some title'},
         active: false,
@@ -486,13 +488,6 @@
 
       editor.Commands.add('canvas-clear', function(e) {
         if(confirm('确定要清空画布嘛？')) {
-          // var comps = editor.DomComponents.clear();
-          e.runCommand('core:canvas-clear')
-        }
-      });
-
-      editor.Commands.add('save', function(e) {
-        if(confirm(' 确定要保存页面嘛？')) {
           // var comps = editor.DomComponents.clear();
           e.runCommand('core:canvas-clear')
         }
@@ -583,5 +578,6 @@
 
 
     </script>
+
   </body>
 </html>

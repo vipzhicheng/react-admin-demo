@@ -30,6 +30,7 @@
     "@adonisjs/lucid": "^5.0.4",
     "@adonisjs/session": "^1.0.25",
     "@adonisjs/shield": "^1.0.6",
+    "grapesjs": "0.14.27",
     "lodash": "^4.17.10",
     "mockjs": "^1.0.1-beta3",
     "pg": "7.4.3",

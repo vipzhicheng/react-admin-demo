@@ -4,7 +4,13 @@ const Page = use('App/Models/Page')
 const PageNotFoundException = use('App/Exceptions/PageNotFoundException')
 
 class PageController {
-  async edit({ request, params, view, response }) {
+  async edit({ request, params, view, response, auth }) {
+    try {
+      await auth.check()
+    } catch (error) {
+      response.redirect('/admin#/login')
+    }
+
     const page = await Page.find(params.id)
     if (!page) {
       throw new PageNotFoundException()
