@@ -3,7 +3,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>活动编辑器</title>
+    <title>{{ page.admin_title }} - 活动编辑器</title>
     <meta content="Best Free Open Source Responsive Websites Builder" name="description">
     <link rel="stylesheet" href="//unpkg.com/toastr/build/toastr.min.css">
     <link rel="stylesheet" href="//unpkg.com/grapesjs/dist/css/grapes.min.css">
@@ -473,6 +473,17 @@
 
       var pn = editor.Panels;
       var modal = editor.Modal;
+
+      var saveButton = pn.addButton('options', {
+        id: 'myNewButton',
+        className: 'fa fa-save',
+        command: function(editor) {
+          editor.store(res => console.log('Saved'));
+        },
+        attributes: { title: 'Some title'},
+        active: false,
+      })
+
       editor.Commands.add('canvas-clear', function(e) {
         if(confirm('确定要清空画布嘛？')) {
           // var comps = editor.DomComponents.clear();
