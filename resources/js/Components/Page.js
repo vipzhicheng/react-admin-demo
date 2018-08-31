@@ -5,8 +5,8 @@ import {
   Datagrid,
   TextField,
   FunctionField,
-  EditButton,
-  CloneButton
+  EditButton
+  // CloneButton
 } from 'react-admin'
 import {
   Create,
@@ -33,6 +33,7 @@ import _ from 'lodash'
 import { FETCH_OPTIONS_REQUEST } from '../Actions/Options'
 import PreviewButton from './Common/PreviewButton'
 import EditorButton from './Common/EditorButton'
+import CloneButton from './Common/CloneButton'
 
 const timeagoInstance = timeago() // set the relative date here.
 
