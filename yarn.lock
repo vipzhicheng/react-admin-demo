@@ -106,6 +106,14 @@
     youch "^2.0.8"
     youch-terminal "^1.0.0"
 
+"@adonisjs/lucid-slugify@^1.0.3":
+  version "1.0.3"
+  resolved "http://registry.npm.taobao.org/@adonisjs/lucid-slugify/download/@adonisjs/lucid-slugify-1.0.3.tgz#952f9253efc73522972959102c8096c3592d581d"
+  dependencies:
+    "@adonisjs/generic-exceptions" "^2.0.1"
+    "@slynova/slug" "^1.1.2"
+    debug "^3.1.0"
+
 "@adonisjs/lucid@^5.0.4":
   version "5.0.4"
   resolved "http://registry.npm.taobao.org/@adonisjs/lucid/download/@adonisjs/lucid-5.0.4.tgz#beff10b352fb03fcfaeefdc8b7cb9be9fe9e2772"
@@ -204,6 +212,13 @@
   resolved "http://registry.npm.taobao.org/@material-ui/icons/download/@material-ui/icons-1.1.0.tgz#4d025df7b0ba6ace8d6710079ed76013a4d26595"
   dependencies:
     recompose "^0.26.0 || ^0.27.0"
+
+"@slynova/slug@^1.1.2":
+  version "1.1.2"
+  resolved "http://registry.npm.taobao.org/@slynova/slug/download/@slynova/slug-1.1.2.tgz#c6289781da191b3ea386d678843cb7a7db7844e8"
+  dependencies:
+    charmap "^1.1.6"
+    lodash.kebabcase "^4.1.1"
 
 "@types/jquery@^2.0.40":
   version "2.0.49"
@@ -1870,6 +1885,12 @@ charenc@~0.0.1:
   version "0.0.2"
   resolved "http://registry.npm.taobao.org/charenc/download/charenc-0.0.2.tgz#c0a1d2f3a7092e03774bfa83f14c0fc5790a8667"
 
+charmap@^1.1.6:
+  version "1.1.6"
+  resolved "http://registry.npm.taobao.org/charmap/download/charmap-1.1.6.tgz#c81f41fb7870523feb268e4a4451b6abb67131cb"
+  dependencies:
+    es6-object-assign "^1.1.0"
+
 choices-separator@^2.0.0:
   version "2.0.0"
   resolved "http://registry.npm.taobao.org/choices-separator/download/choices-separator-2.0.0.tgz#92fd1763182d79033f5c5c51d0ba352e5567c696"
@@ -3138,6 +3159,10 @@ es6-map@^0.1.3:
     es6-set "~0.1.5"
     es6-symbol "~3.1.1"
     event-emitter "~0.3.5"
+
+es6-object-assign@^1.1.0:
+  version "1.1.0"
+  resolved "http://registry.npm.taobao.org/es6-object-assign/download/es6-object-assign-1.1.0.tgz#c2c3582656247c39ea107cb1e6652b6f9f24523c"
 
 es6-promise@~3.0.2:
   version "3.0.2"
@@ -5622,6 +5647,10 @@ lodash.isplainobject@^4.0.6:
 lodash.isstring@^4.0.1:
   version "4.0.1"
   resolved "http://registry.npm.taobao.org/lodash.isstring/download/lodash.isstring-4.0.1.tgz#d527dfb5456eca7cc9bb95d5daeaf88ba54a5451"
+
+lodash.kebabcase@^4.1.1:
+  version "4.1.1"
+  resolved "http://registry.npm.taobao.org/lodash.kebabcase/download/lodash.kebabcase-4.1.1.tgz#8489b1cb0d29ff88195cceca448ff6d6cc295c36"
 
 lodash.keys@^3.0.0:
   version "3.1.2"
@@ -8374,13 +8403,9 @@ semver-truncate@^1.0.0:
   version "5.5.0"
   resolved "http://registry.npm.taobao.org/semver/download/semver-5.5.0.tgz#dc4bbc7a6ca9d916dee5d43516f0092b58f7b8ab"
 
-semver@4.3.2:
+semver@4.3.2, semver@^4.0.3:
   version "4.3.2"
   resolved "http://registry.npm.taobao.org/semver/download/semver-4.3.2.tgz#c7a07158a80bedd052355b770d82d6640f803be7"
-
-semver@^4.0.3:
-  version "4.3.6"
-  resolved "http://registry.npm.taobao.org/semver/download/semver-4.3.6.tgz#300bc6e0e86374f7ba61068b5b1ecd57fc6532da"
 
 semver@~5.3.0:
   version "5.3.0"

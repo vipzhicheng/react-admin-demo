@@ -19,7 +19,7 @@ const { PAGE_TYPE_OPTIONS, PAGE_STATUS_OPTIONS } = use('App/Constants')
 Route.get('/', () => 'tbd')
 Route.on('/admin').render('admin')
 Route.get('/page/:id/edit', 'PageController.edit')
-Route.get('/page/:path', 'PageController.show')
+Route.get('/page/:slug', 'PageController.show')
 
 Route.group(() => {
   Route.get('/', () => {

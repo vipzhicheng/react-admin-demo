@@ -172,6 +172,7 @@ export class PageEditComponent extends React.Component {
           <DisabledInput source="id" />
           <TextInput source="admin_title" isRequired />
           <TextInput source="path" />
+          <DisabledInput source="slug" />
           <SelectInput source="type" choices={pageTypeChoices} value="1" />
           <TextInput source="title" />
           <LongTextInput source="keywords" />

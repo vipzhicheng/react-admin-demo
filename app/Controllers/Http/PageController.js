@@ -31,8 +31,8 @@ class PageController {
   }
 
   async show({ request, params, view, response }) {
-    const { path } = params
-    const page = await Page.findBy('path', path)
+    const { slug } = params
+    const page = await Page.findBy('slug', slug)
     if (!page) {
       throw new PageNotFoundException()
     }
@@ -59,7 +59,8 @@ class PageController {
       'type',
       'status',
       'start_time',
-      'end_time'
+      'end_time',
+      'json'
     ])
     page.merge(body)
     await page.save()

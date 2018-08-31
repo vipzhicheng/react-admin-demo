@@ -5,7 +5,7 @@ import PreviewIcon from '@material-ui/icons/Visibility'
 export { default as PageIcon } from '@material-ui/icons/Book'
 
 const PreviewButton = ({ record = {} }) => (
-  <a href={`/page/${record.path}`} target="_blank" title="Preview">
+  <a href={`/page/${record.slug}`} target="_blank" title="Preview">
     <PreviewIcon />
   </a>
 )
