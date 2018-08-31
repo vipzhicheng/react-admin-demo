@@ -2,7 +2,9 @@ import React from 'react'
 import { Button, Link } from 'react-admin';
 import ContentClone from '@material-ui/icons/Forward';
 
-const CloneButton = ({ record }) => (
+const CloneButton = ({
+  record = {},
+  ...rest }) => (
     <Button
         component={Link}
         to={{
@@ -13,6 +15,7 @@ const CloneButton = ({ record }) => (
             }) },
         }}
         label="Clone"
+        {...rest}
     >
         <ContentClone />
     </Button>
