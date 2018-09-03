@@ -43,9 +43,24 @@ class PageController {
   async index({ request, response, params }) {
     const [offset, limit] = JSON.parse(request.input('range'))
     const [field, order] = JSON.parse(request.input('sort'))
-    return await Page.query()
-      .orderBy(field, order)
-      .paginate(offset / limit + 1, limit)
+    const { status, type, admin_title } = JSON.parse(request.input('filter'))
+
+    let query = Page.query()
+
+    if (type) {
+      query = query.where('type', type)
+    }
+
+    if (status) {
+      query = query.where('status', status)
+    }
+
+    if (admin_title) {
+      query = query.where('admin_title', 'like', `%${admin_title}%`)
+    }
+    query = query.orderBy(field, order).paginate(offset / limit + 1, limit)
+
+    return await query
   }
 
   async store({ request, response }) {

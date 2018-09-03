@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types'
 import timeago from 'timeago.js'
 import React from 'react'
 import {
@@ -5,7 +6,8 @@ import {
   Datagrid,
   TextField,
   FunctionField,
-  EditButton
+  EditButton,
+  Filter
   // CloneButton
 } from 'react-admin'
 import {
@@ -37,6 +39,36 @@ import CloneButton from './Common/CloneButton'
 
 const timeagoInstance = timeago() // set the relative date here.
 
+class PageFilter extends React.Component {
+  constructor(props) {
+    super(props)
+  }
+
+  render() {
+    const { props } = this
+    const { pageTypeChoices, pageStatusChoices } = props
+
+    return (
+      <Filter {...props}>
+        <TextInput
+          label="Search"
+          source="admin_title"
+          defaultValue=""
+          alwaysOn
+          resettable
+        />
+        <SelectInput source="type" choices={pageTypeChoices} />
+        <SelectInput source="status" choices={pageStatusChoices} />
+      </Filter>
+    )
+  }
+}
+
+PageFilter.propTypes = {
+  pageTypeChoices: PropTypes.object.isRequired,
+  pageStatusChoices: PropTypes.object.isRequired
+}
+
 class PageListComponent extends React.Component {
   constructor(props) {
     super(props)
@@ -51,11 +83,34 @@ class PageListComponent extends React.Component {
     const { props } = this
     const filterProps = _.omit(_.omitBy(props, _.isFunction), ['apiOptions'])
     const { PAGE_TYPE_OPTIONS, PAGE_STATUS_OPTIONS } = props.apiOptions
+
+    const pageTypeChoices = []
+    Object.keys(PAGE_TYPE_OPTIONS).map(key => {
+      pageTypeChoices.push({
+        id: key,
+        name: PAGE_TYPE_OPTIONS[key]
+      })
+    })
+
+    const pageStatusChoices = []
+    Object.keys(PAGE_STATUS_OPTIONS).map(key => {
+      pageStatusChoices.push({
+        id: key,
+        name: PAGE_STATUS_OPTIONS[key]
+      })
+    })
+
     return (
       <List
         {...filterProps}
         sort={{ field: 'updated_at', order: 'DESC' }}
         title="页面管理"
+        filters={
+          <PageFilter
+            pageTypeChoices={pageTypeChoices}
+            pageStatusChoices={pageStatusChoices}
+          />
+        }
       >
         <CustomizableDatagrid
           defaultColumns={[

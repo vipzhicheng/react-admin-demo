@@ -524,6 +524,8 @@
 
       // Show borders by default
       pn.getButton('options', 'sw-visibility').set('active', 1);
+      pn.getButton('options', 'gjs-open-import-webpage').set('className', 'fa fa-code')
+      pn.getButton('options', 'export-template').set('className', 'fa fa-download')
 
       // For debug
       // editor.on('storage:load', function(e) { console.log('Loaded ', e) });
@@ -533,9 +535,6 @@
       // Do stuff on load
       editor.on('load', function() {
         var $ = grapesjs.$;
-
-        var logoPanel = document.querySelector('.gjs-pn-commands');
-
 
         // Load and show settings and style manager
         var openTmBtn = pn.getButton('views', 'open-tm');
