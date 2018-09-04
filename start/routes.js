@@ -14,12 +14,16 @@
 */
 
 const Route = use('Route')
-const { PAGE_TYPE_OPTIONS, PAGE_STATUS_OPTIONS } = use('App/Constants')
+const { PAGE_TYPE_OPTIONS, PAGE_STATUS_OPTIONS, TEMPLATE_STATUS_OPTIONS } = use(
+  'App/Constants'
+)
 
 Route.get('/', () => 'tbd')
 Route.on('/admin').render('admin')
 Route.get('/page/:id/edit', 'PageController.edit')
 Route.get('/page/:slug', 'PageController.show')
+Route.get('/template/:id/edit', 'TemplateController.edit')
+Route.get('/template/:id', 'TemplateController.show')
 
 Route.group(() => {
   Route.get('/', () => {
@@ -28,7 +32,7 @@ Route.group(() => {
 
   // 常量接口
   Route.get('/options', () => {
-    return { PAGE_TYPE_OPTIONS, PAGE_STATUS_OPTIONS }
+    return { PAGE_TYPE_OPTIONS, PAGE_STATUS_OPTIONS, TEMPLATE_STATUS_OPTIONS }
   })
 
   // 用户相关
@@ -51,4 +55,21 @@ Route.group(() => {
     'auth'
   ) // 只用于编辑器
   Route.get('pages/:id/edit/load', 'PageController.editLoad').middleware('auth') // 只用于编辑器
+
+  // 模板接口
+  Route.get('templates', 'TemplateController.index').middleware('auth')
+  Route.delete('templates', 'TemplateController.destroy').middleware('auth')
+  Route.post('templates', 'TemplateController.store').middleware('auth')
+  Route.get('templates/:id', 'TemplateController.fetch')
+  Route.put('templates/:id', 'TemplateController.update').middleware('auth')
+  Route.delete('templates/:id', 'TemplateController.delete').middleware('auth')
+
+  Route.post(
+    'templates/:id/edit/store',
+    'TemplateController.editStore'
+  ).middleware('auth') // 只用于编辑器
+  Route.get(
+    'templates/:id/edit/load',
+    'TemplateController.editLoad'
+  ).middleware('auth') // 只用于编辑器
 }).prefix('api')

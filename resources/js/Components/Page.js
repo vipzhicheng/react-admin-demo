@@ -36,9 +36,9 @@ import CustomizableDatagrid from 'ra-customizable-datagrid'
 import { connect } from 'react-redux'
 import _ from 'lodash'
 import { FETCH_OPTIONS_REQUEST } from '../Actions/Options'
-import PreviewButton from './Common/PreviewButton'
-import EditorButton from './Common/EditorButton'
-import CloneButton from './Common/CloneButton'
+import PreviewButton from './Page/PreviewButton'
+import EditorButton from './Page/EditorButton'
+import CloneButton from './Page/CloneButton'
 
 const timeagoInstance = timeago() // set the relative date here.
 
@@ -55,14 +55,17 @@ class PageFilter extends React.Component {
     return (
       <Filter {...filterProps}>
         <TextInput
-          label="Search"
+          label="活动名称"
           source="admin_title"
           defaultValue=""
-          alwaysOn
           resettable
         />
-        <SelectInput source="type" choices={pageTypeChoices} />
-        <SelectInput source="status" choices={pageStatusChoices} />
+        <SelectInput label="活动类型" source="type" choices={pageTypeChoices} />
+        <SelectInput
+          label="活动状态"
+          source="status"
+          choices={pageStatusChoices}
+        />
       </Filter>
     )
   }
@@ -197,7 +200,7 @@ export const PageList = connect(state => {
 })(PageListComponent)
 
 const PageTitle = ({ record }) => {
-  return <span>Post {record ? `"${record.admin_title}"` : ''}</span>
+  return <span>Page {record ? `"${record.admin_title}"` : ''}</span>
 }
 
 export class PageEditComponent extends React.Component {

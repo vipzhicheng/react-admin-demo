@@ -20,5 +20,16 @@ module.exports = {
     '0': '未发布',
     '1': '已发布',
     '2': '待审核'
+  },
+
+  TEMPLATE_STATUS: {
+    PENDING: '0',
+    PUBLISHED: '1',
+    NEED_REVIEW: '2'
+  },
+
+  TEMPLATE_STATUS_OPTIONS: {
+    '0': '未发布',
+    '1': '已发布'
   }
 }
