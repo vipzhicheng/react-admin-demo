@@ -82,8 +82,8 @@ class PageListComponent extends React.Component {
   }
 
   componentWillMount() {
-    // const { dispatch } = this.props
-    // dispatch({ type: FETCH_OPTIONS_REQUEST })
+    const { dispatch, apiOptions } = this.props
+    dispatch({ type: FETCH_OPTIONS_REQUEST })
   }
 
   render() {
@@ -92,20 +92,24 @@ class PageListComponent extends React.Component {
     const { PAGE_TYPE_OPTIONS, PAGE_STATUS_OPTIONS } = props.apiOptions
 
     const pageTypeChoices = []
-    Object.keys(PAGE_TYPE_OPTIONS).map(key => {
-      pageTypeChoices.push({
-        id: key,
-        name: PAGE_TYPE_OPTIONS[key]
+    if (PAGE_TYPE_OPTIONS) {
+      Object.keys(PAGE_TYPE_OPTIONS).map(key => {
+        pageTypeChoices.push({
+          id: key,
+          name: PAGE_TYPE_OPTIONS[key]
+        })
       })
-    })
+    }
 
     const pageStatusChoices = []
-    Object.keys(PAGE_STATUS_OPTIONS).map(key => {
-      pageStatusChoices.push({
-        id: key,
-        name: PAGE_STATUS_OPTIONS[key]
+    if (PAGE_STATUS_OPTIONS) {
+      Object.keys(PAGE_STATUS_OPTIONS).map(key => {
+        pageStatusChoices.push({
+          id: key,
+          name: PAGE_STATUS_OPTIONS[key]
+        })
       })
-    })
+    }
 
     return (
       <List
@@ -214,20 +218,24 @@ export class PageEditComponent extends React.Component {
     const filterProps = _.omit(_.omitBy(props, _.isFunction), ['apiOptions'])
     const { PAGE_TYPE_OPTIONS, PAGE_STATUS_OPTIONS } = props.apiOptions
     const pageTypeChoices = []
-    Object.keys(PAGE_TYPE_OPTIONS).map(key => {
-      pageTypeChoices.push({
-        id: key,
-        name: PAGE_TYPE_OPTIONS[key]
+    if (PAGE_TYPE_OPTIONS) {
+      Object.keys(PAGE_TYPE_OPTIONS).map(key => {
+        pageTypeChoices.push({
+          id: key,
+          name: PAGE_TYPE_OPTIONS[key]
+        })
       })
-    })
+    }
 
     const pageStatusChoices = []
-    Object.keys(PAGE_STATUS_OPTIONS).map(key => {
-      pageStatusChoices.push({
-        id: key,
-        name: PAGE_STATUS_OPTIONS[key]
+    if (PAGE_STATUS_OPTIONS) {
+      Object.keys(PAGE_STATUS_OPTIONS).map(key => {
+        pageStatusChoices.push({
+          id: key,
+          name: PAGE_STATUS_OPTIONS[key]
+        })
       })
-    })
+    }
 
     return (
       <Edit title={<PageTitle />} {...filterProps}>
