@@ -27,7 +27,13 @@ Factory.blueprint('App/Models/Page', faker => {
     status: `${Mock.mock('@integer(0, 2)')}`,
 
     start_time: Mock.mock('@datetime()'),
-    end_time: Mock.mock('@datetime()')
+    end_time: Mock.mock('@datetime()'),
+
+    enable_meiqia: `${Mock.mock('@integer(0, 1)')}`,
+    enable_sensor_analytics: `${Mock.mock('@integer(0, 1)')}`,
+    enable_baidu_analytics: `${Mock.mock('@integer(0, 1)')}`,
+    enable_growingio_analytics: `${Mock.mock('@integer(0, 1)')}`,
+    enable_cps: `${Mock.mock('@integer(0, 1)')}`
   }
   return row
 })

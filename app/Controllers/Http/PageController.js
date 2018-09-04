@@ -75,8 +75,20 @@ class PageController {
       'status',
       'start_time',
       'end_time',
-      'json'
+      'json',
+      'enable_meiqia',
+      'enable_sensor_analytics',
+      'enable_baidu_analytics',
+      'enable_growingio_analytics',
+      'enable_cps'
     ])
+
+    body.enable_meiqia = body.enable_meiqia ? 1 : 0
+    body.enable_sensor_analytics = body.enable_sensor_analytics ? 1 : 0
+    body.enable_baidu_analytics = body.enable_baidu_analytics ? 1 : 0
+    body.enable_growingio_analytics = body.enable_growingio_analytics ? 1 : 0
+    body.enable_cps = body.enable_cps ? 1 : 0
+
     page.merge(body)
     await page.save()
     return page
@@ -97,8 +109,24 @@ class PageController {
       'type',
       'status',
       'start_time',
-      'end_time'
+      'end_time',
+      'enable_meiqia',
+      'enable_sensor_analytics',
+      'enable_baidu_analytics',
+      'enable_growingio_analytics',
+      'enable_cps'
     ])
+
+    console.log(body)
+
+    body.enable_meiqia = body.enable_meiqia ? 1 : 0
+    body.enable_sensor_analytics = body.enable_sensor_analytics ? 1 : 0
+    body.enable_baidu_analytics = body.enable_baidu_analytics ? 1 : 0
+    body.enable_growingio_analytics = body.enable_growingio_analytics ? 1 : 0
+    body.enable_cps = body.enable_cps ? 1 : 0
+
+    console.log(body)
+
     page.merge(body)
     await page.save()
     return page

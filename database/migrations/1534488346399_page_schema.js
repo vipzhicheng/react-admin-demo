@@ -29,6 +29,13 @@ class PageSchema extends Schema {
       table.jsonb('json')
       table.text('output')
 
+      // Switches
+      table.integer('enable_meiqia', 1) // 美洽
+      table.integer('enable_sensor_analytics', 1) // 神策打点
+      table.integer('enable_baidu_analytics', 1) // 百度统计
+      table.integer('enable_growingio_analytics', 1) // 百度统计
+      table.integer('enable_cps', 1) // 百度统计
+
       table.timestamps()
     })
   }

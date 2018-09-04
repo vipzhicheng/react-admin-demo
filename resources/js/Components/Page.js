@@ -19,7 +19,10 @@ import {
   LongTextInput,
   SelectInput,
   DateInput,
-  RadioButtonGroupInput
+  RadioButtonGroupInput,
+  BooleanInput,
+  TabbedForm,
+  FormTab
 } from 'react-admin'
 
 import RichTextInput from 'ra-input-rich-text'
@@ -46,10 +49,11 @@ class PageFilter extends React.Component {
 
   render() {
     const { props } = this
+    const filterProps = _.omit(props, ['pageTypeChoices', 'pageStatusChoices'])
     const { pageTypeChoices, pageStatusChoices } = props
 
     return (
-      <Filter {...props}>
+      <Filter {...filterProps}>
         <TextInput
           label="Search"
           source="admin_title"
@@ -65,8 +69,8 @@ class PageFilter extends React.Component {
 }
 
 PageFilter.propTypes = {
-  pageTypeChoices: PropTypes.object.isRequired,
-  pageStatusChoices: PropTypes.object.isRequired
+  pageTypeChoices: PropTypes.array.isRequired,
+  pageStatusChoices: PropTypes.array.isRequired
 }
 
 class PageListComponent extends React.Component {
@@ -224,20 +228,34 @@ export class PageEditComponent extends React.Component {
 
     return (
       <Edit title={<PageTitle />} {...filterProps}>
-        <SimpleForm>
-          <DisabledInput source="id" />
-          <TextInput source="admin_title" isRequired />
-          <TextInput source="path" />
-          <DisabledInput source="slug" />
-          <SelectInput source="type" choices={pageTypeChoices} value="1" />
-          <TextInput source="title" />
-          <LongTextInput source="keywords" />
-          <LongTextInput source="description" />
-          <DateInput source="start_time" />
-          <DateInput source="end_time" />
+        <TabbedForm redirect="list">
+          <FormTab label="基本信息">
+            <DisabledInput source="id" />
+            <TextInput source="admin_title" isRequired />
+            <TextInput source="path" />
+            <DisabledInput source="slug" />
+            <SelectInput source="type" choices={pageTypeChoices} value="1" />
+            <DateInput source="start_time" />
+            <DateInput source="end_time" />
 
-          <RadioButtonGroupInput source="status" choices={pageStatusChoices} />
-        </SimpleForm>
+            <RadioButtonGroupInput
+              source="status"
+              choices={pageStatusChoices}
+            />
+          </FormTab>
+          <FormTab label="SEO">
+            <TextInput source="title" />
+            <LongTextInput source="keywords" />
+            <LongTextInput source="description" />
+          </FormTab>
+          <FormTab label="开关">
+            <BooleanInput source="enable_meiqia" />
+            <BooleanInput source="enable_sensor_analytics" />
+            <BooleanInput source="enable_baidu_analytics" />
+            <BooleanInput source="enable_growingio_analytics" />
+            <BooleanInput source="enable_cps" />
+          </FormTab>
+        </TabbedForm>
       </Edit>
     )
   }
@@ -249,6 +267,9 @@ export const PageEdit = connect(state => {
   }
 })(PageEditComponent)
 
+const redirect = (basePath, id, data) => {
+  return '/pages'
+}
 export class PageCreateComponent extends React.Component {
   constructor(props) {
     super(props)
@@ -277,17 +298,31 @@ export class PageCreateComponent extends React.Component {
 
     return (
       <Create {...filterProps}>
-        <SimpleForm>
-          <TextInput source="admin_title" isRequired={true} />
-          <TextInput source="path" />
-          <SelectInput source="type" choices={pageTypeChoices} />
-          <TextInput source="title" />
-          <LongTextInput source="keywords" />
-          <LongTextInput source="description" />
-          <DateInput source="start_time" />
-          <DateInput source="end_time" />
-          <RadioButtonGroupInput source="status" choices={pageStatusChoices} />
-        </SimpleForm>
+        <TabbedForm redirect={redirect}>
+          <FormTab label="基本信息">
+            <TextInput source="admin_title" isRequired={true} />
+            <TextInput source="path" />
+            <SelectInput source="type" choices={pageTypeChoices} />
+            <DateInput source="start_time" />
+            <DateInput source="end_time" />
+            <RadioButtonGroupInput
+              source="status"
+              choices={pageStatusChoices}
+            />
+          </FormTab>
+          <FormTab label="SEO">
+            <TextInput source="title" />
+            <LongTextInput source="keywords" />
+            <LongTextInput source="description" />
+          </FormTab>
+          <FormTab label="开关">
+            <BooleanInput source="enable_meiqia" />
+            <BooleanInput source="enable_sensor_analytics" />
+            <BooleanInput source="enable_baidu_analytics" />
+            <BooleanInput source="enable_growingio_analytics" />
+            <BooleanInput source="enable_cps" />
+          </FormTab>
+        </TabbedForm>
       </Create>
     )
   }

@@ -108,6 +108,7 @@ export default (type, resource, params) => {
   return fetchUtils.fetchJson(url, options).then(response => {
     switch (type) {
       case GET_LIST:
+        response.json.total = Number(response.json.total)
       case GET_MANY_REFERENCE:
         return response.json
       case CREATE:
