@@ -1,10 +1,12 @@
 'use strict'
 
 const Page = use('App/Models/Page')
+const Template = use('App/Models/Template')
 const PageNotFoundException = use('App/Exceptions/PageNotFoundException')
 
 class PageController {
   async edit({ request, params, view, response, auth }) {
+    const debug = request.input('debug')
     try {
       await auth.check()
     } catch (error) {
@@ -15,7 +17,16 @@ class PageController {
     if (!page) {
       throw new PageNotFoundException()
     }
-    return view.render('page.edit', { page })
+
+    if (page.template_id) {
+      page.template = await Template.find(page.template_id)
+    }
+
+    if (typeof debug !== 'undefined') {
+      return page
+    } else {
+      return view.render('page.edit', { page })
+    }
   }
 
   async editStore({ request, params, view, response }) {
@@ -27,6 +38,15 @@ class PageController {
 
   async editLoad({ request, params, view, response }) {
     const page = await Page.find(params.id)
+
+    if (page.template_id) {
+      page.template = await Template.find(page.template_id)
+
+      if (!page.json && page.template.json) {
+        page.json = page.template.json
+      }
+    }
+
     return page.json
   }
 
@@ -36,7 +56,11 @@ class PageController {
     if (!page) {
       throw new PageNotFoundException()
     }
-    console.log(page)
+
+    if (page.template_id) {
+      page.template = await Template.find(page.template_id)
+    }
+
     return view.render('page.view', { page })
   }
 
@@ -76,6 +100,7 @@ class PageController {
       'start_time',
       'end_time',
       'json',
+      'template_id',
       'enable_meiqia',
       'enable_sensor_analytics',
       'enable_baidu_analytics',
@@ -110,6 +135,7 @@ class PageController {
       'status',
       'start_time',
       'end_time',
+      'template_id',
       'enable_meiqia',
       'enable_sensor_analytics',
       'enable_baidu_analytics',

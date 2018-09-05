@@ -27,6 +27,7 @@ class PageSchema extends Schema {
 
       // data
       table.jsonb('json')
+      table.integer('template_id')
 
       // Switches
       table.integer('enable_meiqia', 1) // 美洽

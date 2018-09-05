@@ -21,6 +21,7 @@ import {
   DateInput,
   RadioButtonGroupInput,
   BooleanInput,
+  ReferenceInput,
   TabbedForm,
   FormTab
 } from 'react-admin'
@@ -245,7 +246,14 @@ export class PageEditComponent extends React.Component {
             <TextInput source="admin_title" isRequired />
             <TextInput source="path" />
             <DisabledInput source="slug" />
-            <SelectInput source="type" choices={pageTypeChoices} value="1" />
+            <SelectInput source="type" choices={pageTypeChoices} />
+            <ReferenceInput
+              label="Template"
+              source="template_id"
+              reference="templates"
+            >
+              <SelectInput optionText="name" />
+            </ReferenceInput>
             <DateInput source="start_time" />
             <DateInput source="end_time" />
 
@@ -314,6 +322,13 @@ export class PageCreateComponent extends React.Component {
             <TextInput source="admin_title" isRequired={true} />
             <TextInput source="path" />
             <SelectInput source="type" choices={pageTypeChoices} />
+            <ReferenceInput
+              label="Template"
+              source="template_id"
+              reference="templates"
+            >
+              <SelectInput optionText="name" />
+            </ReferenceInput>
             <DateInput source="start_time" />
             <DateInput source="end_time" />
             <RadioButtonGroupInput

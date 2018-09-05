@@ -7,6 +7,7 @@ const TemplateNotFoundException = use(
 
 class TemplateController {
   async edit({ request, params, view, response, auth }) {
+    const debug = request.input('debug')
     try {
       await auth.check()
     } catch (error) {
@@ -17,7 +18,12 @@ class TemplateController {
     if (!template) {
       throw new TemplateNotFoundException()
     }
-    return view.render('template.edit', { template })
+
+    if (typeof debug !== 'undefined') {
+      return page
+    } else {
+      return view.render('template.edit', { template })
+    }
   }
 
   async editStore({ request, params, view, response }) {
