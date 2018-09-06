@@ -16,12 +16,7 @@ const theme = createMuiTheme({
 import dataProvider from './Providers/DataProvider'
 import authProvider from './Providers/AuthProvider'
 import { PageList, PageCreate, PageEdit, PageIcon } from './Components/Page'
-import {
-  TemplateList,
-  TemplateCreate,
-  TemplateEdit,
-  TemplateIcon
-} from './Components/Template'
+import { TemplateList, TemplateCreate, TemplateEdit, TemplateIcon } from './Components/Template'
 
 import { watchFetchOptions } from './Sagas/Options'
 import { apiOptionsReducer } from './Reducers/Options'
@@ -66,6 +61,30 @@ class App extends React.Component {
           name="templates"
           list={TemplateList}
           options={{ label: '模板管理' }}
+          create={TemplateCreate}
+          edit={TemplateEdit}
+          icon={TemplateIcon}
+        />
+        <Resource
+          name="medias"
+          list={TemplateList}
+          options={{ label: '媒体管理' }}
+          create={TemplateCreate}
+          edit={TemplateEdit}
+          icon={TemplateIcon}
+        />
+        <Resource
+          name="users"
+          list={TemplateList}
+          options={{ label: '用户管理' }}
+          create={TemplateCreate}
+          edit={TemplateEdit}
+          icon={TemplateIcon}
+        />
+        <Resource
+          name="configs"
+          list={TemplateList}
+          options={{ label: '系统设置' }}
           create={TemplateCreate}
           edit={TemplateEdit}
           icon={TemplateIcon}

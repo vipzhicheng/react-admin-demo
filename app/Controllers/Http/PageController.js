@@ -3,6 +3,9 @@
 const Page = use('App/Models/Page')
 const Template = use('App/Models/Template')
 const PageNotFoundException = use('App/Exceptions/PageNotFoundException')
+const Helpers = use('Helpers')
+const fs = require('fs')
+const path = require('path')
 
 class PageController {
   async edit({ request, params, view, response, auth }) {
@@ -48,6 +51,55 @@ class PageController {
     }
 
     return page.json
+  }
+
+  async upload({ request, params, response }) {
+    const page = await Page.find(params.id)
+    const removeFile = Helpers.promisify(fs.unlink)
+    if (!page) {
+      throw new PageNotFoundException()
+    }
+
+    const files = request.file('files', {
+      types: ['image'],
+      size: '2mb'
+    })
+
+    await files.moveAll(Helpers.publicPath(`uploads/pages/${page.id}`))
+
+    if (!files.movedAll()) {
+      const movedFiles = files.movedList()
+
+      await Promise.all(
+        movedFiles.map(file => {
+          return removeFile(path.join(Helpers.publicPath(`uploads/pages/${page.id}`), file.fileName))
+        })
+      )
+
+      return files.errors()
+    }
+
+    const uploadedFiles = files.movedList().map(file => {
+      return path.join(`/uploads/pages/${page.id}`, file.fileName)
+      // return removeFile(path.join(file._location, file._fileName))
+    })
+
+    return { data: uploadedFiles }
+    // console.log(files.movedList())
+
+    // const profilePic = request.file('files', {
+    //   types: ['image'],
+    //   size: '2mb'
+    // })
+
+    // await profilePic.move(Helpers.tmpPath('uploads'), {
+    //   name: 'custom-name.jpg'
+    // })
+
+    // if (!profilePic.moved()) {
+    //   return profilePic.error()
+    // }
+    // return 'File moved'
   }
 
   async show({ request, params, view, response }) {
