@@ -1,10 +1,21 @@
 import React from 'react'
-import { Button, Link } from 'react-admin'
-import ContentClone from '@material-ui/icons/Forward'
+import { Link } from 'react-router-dom'
+import PropTypes from 'prop-types'
+import classNames from 'classnames'
+import { withStyles } from '@material-ui/core/styles'
 
-const CloneButton = ({ record = {}, ...rest }) => (
-  <Button
-    component={Link}
+import CloneIcon from '@material-ui/icons/PhotoLibrary'
+
+const styles = theme => ({
+  link: {
+    textDecoration: 'none',
+    color: theme.palette.primary.main,
+    paddingRight: '5px'
+  }
+})
+
+const EditButton = ({ record = {}, classes }) => (
+  <Link
     to={{
       pathname: '/templates/create',
       state: {
@@ -14,11 +25,16 @@ const CloneButton = ({ record = {}, ...rest }) => (
         })
       }
     }}
-    label="Clone"
-    {...rest}
+    className={classNames(classes.link)}
+    title="Clone"
   >
-    <ContentClone />
-  </Button>
+    <CloneIcon />
+  </Link>
 )
 
-export default CloneButton
+EditButton.propTypes = {
+  label: PropTypes.string,
+  record: PropTypes.object
+}
+
+export default withStyles(styles)(EditButton)

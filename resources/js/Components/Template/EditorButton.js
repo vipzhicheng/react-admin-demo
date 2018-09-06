@@ -1,11 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import EditorIcon from '@material-ui/icons/Settings'
-
-export { default as PageIcon } from '@material-ui/icons/Book'
+import EditorIcon from '@material-ui/icons/Palette'
 
 const EditorButton = ({ record = {} }) => (
-  <a href={`/template/${record.id}/edit`} target="_blank" title="Preview">
+  <a href={`/template/${record.id}/edit`} target="_blank" title="Editor">
     <EditorIcon />
   </a>
 )

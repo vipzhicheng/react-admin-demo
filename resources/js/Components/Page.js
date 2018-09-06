@@ -6,7 +6,6 @@ import {
   Datagrid,
   TextField,
   FunctionField,
-  EditButton,
   Filter
   // CloneButton
 } from 'react-admin'
@@ -28,8 +27,9 @@ import {
 
 import RichTextInput from 'ra-input-rich-text'
 
-export { default as PageIcon } from '@material-ui/icons/Book'
+export { default as PageIcon } from '@material-ui/icons/Description'
 
+import { withStyles } from '@material-ui/core/styles'
 import Tooltip from '@material-ui/core/Tooltip'
 import Button from '@material-ui/core/Button'
 
@@ -40,6 +40,7 @@ import { FETCH_OPTIONS_REQUEST } from '../Actions/Options'
 import PreviewButton from './Page/PreviewButton'
 import EditorButton from './Page/EditorButton'
 import CloneButton from './Page/CloneButton'
+import EditButton from './Page/EditButton'
 
 const timeagoInstance = timeago() // set the relative date here.
 
@@ -55,18 +56,9 @@ class PageFilter extends React.Component {
 
     return (
       <Filter {...filterProps}>
-        <TextInput
-          label="活动名称"
-          source="admin_title"
-          defaultValue=""
-          resettable
-        />
+        <TextInput label="活动名称" source="admin_title" defaultValue="" resettable />
         <SelectInput label="活动类型" source="type" choices={pageTypeChoices} />
-        <SelectInput
-          label="活动状态"
-          source="status"
-          choices={pageStatusChoices}
-        />
+        <SelectInput label="活动状态" source="status" choices={pageStatusChoices} />
       </Filter>
     )
   }
@@ -77,6 +69,11 @@ PageFilter.propTypes = {
   pageStatusChoices: PropTypes.array.isRequired
 }
 
+const styles = {
+  rowCell: {
+    padding: '0 3px'
+  }
+}
 class PageListComponent extends React.Component {
   constructor(props) {
     super(props)
@@ -117,43 +114,22 @@ class PageListComponent extends React.Component {
         {...filterProps}
         sort={{ field: 'updated_at', order: 'DESC' }}
         title="页面管理"
-        filters={
-          <PageFilter
-            pageTypeChoices={pageTypeChoices}
-            pageStatusChoices={pageStatusChoices}
-          />
-        }
+        filters={<PageFilter pageTypeChoices={pageTypeChoices} pageStatusChoices={pageStatusChoices} />}
       >
         <CustomizableDatagrid
-          defaultColumns={[
-            'id',
-            'admin_title',
-            'type',
-            'status',
-            'created_at',
-            'updated_at'
-          ]}
+          defaultColumns={['id', 'admin_title', 'type', 'status', 'created_at', 'updated_at']}
+          classes={{ rowCell: props.classes.rowCell }}
         >
           <TextField source="id" label="活动ID" />
           <TextField source="admin_title" label="活动名称" />
-          <FunctionField
-            source="type"
-            label="活动类型"
-            render={record => PAGE_TYPE_OPTIONS[record.type]}
-          />
-          <FunctionField
-            source="status"
-            label="活动状态"
-            render={record => PAGE_STATUS_OPTIONS[record.status]}
-          />
+          <FunctionField source="type" label="活动类型" render={record => PAGE_TYPE_OPTIONS[record.type]} />
+          <FunctionField source="status" label="活动状态" render={record => PAGE_STATUS_OPTIONS[record.status]} />
           <FunctionField
             source="start_time"
             label="活动开始时间"
             render={record => (
               <Tooltip title={record.start_time} placement="right-end">
-                <span>
-                  {timeagoInstance.format(record.start_time, 'zh_CN')}
-                </span>
+                <span>{timeagoInstance.format(record.start_time, 'zh_CN')}</span>
               </Tooltip>
             )}
           />
@@ -171,9 +147,7 @@ class PageListComponent extends React.Component {
             label="活动创建时间"
             render={record => (
               <Tooltip title={record.created_at} placement="right-end">
-                <span>
-                  {timeagoInstance.format(record.created_at, 'zh_CN')}
-                </span>
+                <span>{timeagoInstance.format(record.created_at, 'zh_CN')}</span>
               </Tooltip>
             )}
           />
@@ -182,15 +156,13 @@ class PageListComponent extends React.Component {
             label="最后更新时间"
             render={record => (
               <Tooltip title={record.updated_at} placement="right-end">
-                <span>
-                  {timeagoInstance.format(record.updated_at, 'zh_CN')}
-                </span>
+                <span>{timeagoInstance.format(record.updated_at, 'zh_CN')}</span>
               </Tooltip>
             )}
           />
           <PreviewButton />
           <EditorButton />
-          <EditButton />
+          <EditButton label="" />
           <CloneButton />
         </CustomizableDatagrid>
       </List>
@@ -198,11 +170,13 @@ class PageListComponent extends React.Component {
   }
 }
 
-export const PageList = connect(state => {
-  return {
-    apiOptions: state.apiOptions
-  }
-})(PageListComponent)
+export const PageList = withStyles(styles)(
+  connect(state => {
+    return {
+      apiOptions: state.apiOptions
+    }
+  })(PageListComponent)
+)
 
 const PageTitle = ({ record }) => {
   return <span>Page {record ? `"${record.admin_title}"` : ''}</span>
@@ -247,20 +221,13 @@ export class PageEditComponent extends React.Component {
             <TextInput source="path" />
             <DisabledInput source="slug" />
             <SelectInput source="type" choices={pageTypeChoices} />
-            <ReferenceInput
-              label="Template"
-              source="template_id"
-              reference="templates"
-            >
+            <ReferenceInput label="Template" source="template_id" reference="templates">
               <SelectInput optionText="name" />
             </ReferenceInput>
             <DateInput source="start_time" />
             <DateInput source="end_time" />
 
-            <RadioButtonGroupInput
-              source="status"
-              choices={pageStatusChoices}
-            />
+            <RadioButtonGroupInput source="status" choices={pageStatusChoices} />
           </FormTab>
           <FormTab label="SEO">
             <TextInput source="title" />
@@ -322,19 +289,12 @@ export class PageCreateComponent extends React.Component {
             <TextInput source="admin_title" isRequired={true} />
             <TextInput source="path" />
             <SelectInput source="type" choices={pageTypeChoices} />
-            <ReferenceInput
-              label="Template"
-              source="template_id"
-              reference="templates"
-            >
+            <ReferenceInput label="Template" source="template_id" reference="templates">
               <SelectInput optionText="name" />
             </ReferenceInput>
             <DateInput source="start_time" />
             <DateInput source="end_time" />
-            <RadioButtonGroupInput
-              source="status"
-              choices={pageStatusChoices}
-            />
+            <RadioButtonGroupInput source="status" choices={pageStatusChoices} />
           </FormTab>
           <FormTab label="SEO">
             <TextInput source="title" />

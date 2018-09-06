@@ -21,6 +21,10 @@ import { TemplateList, TemplateCreate, TemplateEdit, TemplateIcon } from './Comp
 import { watchFetchOptions } from './Sagas/Options'
 import { apiOptionsReducer } from './Reducers/Options'
 
+import { default as UserIcon } from '@material-ui/icons/SupervisorAccount'
+import { default as MediaIcon } from '@material-ui/icons/Image'
+import { default as ConfigIcon } from '@material-ui/icons/Settings'
+
 class App extends React.Component {
   constructor(props) {
     super(props)
@@ -71,7 +75,7 @@ class App extends React.Component {
           options={{ label: '媒体管理' }}
           create={TemplateCreate}
           edit={TemplateEdit}
-          icon={TemplateIcon}
+          icon={MediaIcon}
         />
         <Resource
           name="users"
@@ -79,7 +83,7 @@ class App extends React.Component {
           options={{ label: '用户管理' }}
           create={TemplateCreate}
           edit={TemplateEdit}
-          icon={TemplateIcon}
+          icon={UserIcon}
         />
         <Resource
           name="configs"
@@ -87,7 +91,7 @@ class App extends React.Component {
           options={{ label: '系统设置' }}
           create={TemplateCreate}
           edit={TemplateEdit}
-          icon={TemplateIcon}
+          icon={ConfigIcon}
         />
         <Resource name="posts" options={{ label: '文章' }} />
       </Admin>
