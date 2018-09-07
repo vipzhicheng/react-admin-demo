@@ -72,7 +72,7 @@ class App extends React.Component {
         <Resource
           name="medias"
           list={TemplateList}
-          options={{ label: '媒体管理' }}
+          options={{ label: '素材管理' }}
           create={TemplateCreate}
           edit={TemplateEdit}
           icon={MediaIcon}

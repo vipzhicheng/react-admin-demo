@@ -2,6 +2,7 @@
 
 const Page = use('App/Models/Page')
 const Template = use('App/Models/Template')
+const Media = use('App/Models/Media')
 const PageNotFoundException = use('App/Exceptions/PageNotFoundException')
 const Helpers = use('Helpers')
 const fs = require('fs')
@@ -80,6 +81,16 @@ class PageController {
     }
 
     const uploadedFiles = files.movedList().map(file => {
+      console.log(file)
+      await Media.create({
+        pageId: page.id,
+        clientName: file.clientName,
+        extname: file.extname,
+        fileName: file.fileName,
+        size: file.size,
+        type: file.type,
+        subtype: file.subtype,
+      })
       return path.join(`/uploads/pages/${page.id}`, file.fileName)
       // return removeFile(path.join(file._location, file._fileName))
     })
