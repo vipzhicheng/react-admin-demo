@@ -9,7 +9,7 @@ class MediaSchema extends Schema {
       table.string('client_name')
       table.string('extname')
       table.string('file_name')
-      table.string('size')
+      table.integer('size')
       table.string('type')
       table.string('subtype')
       table.string('page_id')

@@ -26,6 +26,8 @@ class PageController {
       page.template = await Template.find(page.template_id)
     }
 
+    page.mediaLoaded = await page.media().fetch()
+
     if (typeof debug !== 'undefined') {
       return page
     } else {
@@ -50,6 +52,10 @@ class PageController {
         page.json = page.template.json
       }
     }
+
+    delete page.json['gjs-assets']
+
+    console.log(page.json)
 
     return page.json
   }
@@ -79,21 +85,23 @@ class PageController {
 
       return files.errors()
     }
-
-    const uploadedFiles = files.movedList().map(file => {
-      console.log(file)
-      await Media.create({
-        pageId: page.id,
-        clientName: file.clientName,
+    const uploadedFiles = []
+    const uploadedData = []
+    files.movedList().map(async file => {
+      uploadedData.push({
+        page_id: page.id,
+        client_name: file.clientName,
         extname: file.extname,
-        fileName: file.fileName,
+        file_name: file.fileName,
         size: file.size,
         type: file.type,
-        subtype: file.subtype,
+        subtype: file.subtype
       })
-      return path.join(`/uploads/pages/${page.id}`, file.fileName)
-      // return removeFile(path.join(file._location, file._fileName))
+
+      uploadedFiles.push(path.join(`/uploads/pages/${page.id}`, file.fileName))
     })
+
+    await Media.createMany(uploadedData)
 
     return { data: uploadedFiles }
     // console.log(files.movedList())

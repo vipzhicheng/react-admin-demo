@@ -12,6 +12,10 @@ class Page extends Model {
       disableUpdates: false
     })
   }
+
+  media() {
+    return this.hasMany('App/Models/Media')
+  }
 }
 
 module.exports = Page
