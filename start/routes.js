@@ -14,7 +14,7 @@
 */
 
 const Route = use('Route')
-const { PAGE_TYPE_OPTIONS, PAGE_STATUS_OPTIONS, TEMPLATE_STATUS_OPTIONS } = use('App/Constants')
+const { PAGE_TYPE_OPTIONS, PAGE_STATUS_OPTIONS, TEMPLATE_STATUS_OPTIONS, USER_STATUS_OPTIONS } = use('App/Constants')
 
 Route.get('/', () => 'tbd')
 Route.on('/admin').render('admin')
@@ -30,7 +30,7 @@ Route.group(() => {
 
   // 常量接口
   Route.get('/options', () => {
-    return { PAGE_TYPE_OPTIONS, PAGE_STATUS_OPTIONS, TEMPLATE_STATUS_OPTIONS }
+    return { PAGE_TYPE_OPTIONS, PAGE_STATUS_OPTIONS, TEMPLATE_STATUS_OPTIONS, USER_STATUS_OPTIONS }
   })
 
   // 用户相关

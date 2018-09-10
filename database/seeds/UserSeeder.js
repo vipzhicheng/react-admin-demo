@@ -11,10 +11,14 @@
 */
 
 const Factory = use('Factory')
+const User = use('App/Models/User')
+const Database = use('Database')
 
 class UserSeeder {
   async run() {
-    await use('App/Models/User').truncate()
+    // await use('App/Models/Token').truncate()
+    // await use('App/Models/User').truncate()
+    Database.table('users').truncate()
     await User.create({
       username: 'admin',
       email: 'admin@admin.com',

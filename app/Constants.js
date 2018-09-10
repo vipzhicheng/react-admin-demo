@@ -38,7 +38,7 @@ module.exports = {
     NORMAL: '1'
   },
 
-  PAGE_STATUS_OPTIONS: {
+  USER_STATUS_OPTIONS: {
     '0': '冻结',
     '1': '正常'
   }

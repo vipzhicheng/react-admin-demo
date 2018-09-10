@@ -66,7 +66,7 @@ class UserListComponent extends React.Component {
     }
 
     return (
-      <List {...filterProps} sort={{ field: 'updated_at', order: 'DESC' }} title="页面管理" filters={<UserFilter />}>
+      <List {...filterProps} sort={{ field: 'updated_at', order: 'DESC' }} title="用户管理" filters={<UserFilter />}>
         <Datagrid>
           <TextField source="id" label="用户ID" />
           <TextField source="username" label="用户名称" />
