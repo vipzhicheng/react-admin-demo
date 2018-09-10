@@ -47,8 +47,8 @@ Factory.blueprint('App/Models/Template', faker => {
   return row
 })
 
+const password = Hash.make(Mock.mock('@sentence(1)'))
 Factory.blueprint('App/Models/User', faker => {
-  const password = Hash.make(Mock.mock('@sentence(1)'))
   const row = {
     username: Mock.mock('@sentence(1)'),
     email: Mock.mock('@email'),

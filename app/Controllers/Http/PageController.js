@@ -89,7 +89,8 @@ class PageController {
     const uploadedData = []
     files.movedList().map(async file => {
       uploadedData.push({
-        page_id: page.id,
+        reference_id: page.id,
+        reference_type: 'page',
         client_name: file.clientName,
         extname: file.extname,
         file_name: file.fileName,

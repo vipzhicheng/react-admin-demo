@@ -10,7 +10,20 @@ import {
   // CloneButton
 } from 'react-admin'
 
-import { TextInput } from 'react-admin'
+import {
+  Create,
+  Edit,
+  SimpleForm,
+  TextInput,
+  DisabledInput,
+  LongTextInput,
+  SelectInput,
+  DateInput,
+  RadioButtonGroupInput,
+  BooleanInput,
+  ReferenceInput,
+  FormTab
+} from 'react-admin'
 
 import { withStyles } from '@material-ui/core/styles'
 import Tooltip from '@material-ui/core/Tooltip'
@@ -66,7 +79,7 @@ class UserListComponent extends React.Component {
     }
 
     return (
-      <List {...filterProps} sort={{ field: 'updated_at', order: 'DESC' }} title="用户管理" filters={<UserFilter />}>
+      <List {...filterProps} sort={{ field: 'id', order: 'ASC' }} title="用户管理" filters={<UserFilter />}>
         <Datagrid>
           <TextField source="id" label="用户ID" />
           <TextField source="username" label="用户名称" />
@@ -101,3 +114,87 @@ export const UserList = connect(state => {
     apiOptions: state.apiOptions
   }
 })(UserListComponent)
+
+const UserTitle = ({ record }) => {
+  return <span>User {record ? `"${record.username}"` : ''}</span>
+}
+
+export class UserEditComponent extends React.Component {
+  constructor(props) {
+    super(props)
+  }
+
+  render() {
+    const { props } = this
+
+    const filterProps = _.omit(_.omitBy(props, _.isFunction), ['apiOptions'])
+    const { USER_STATUS_OPTIONS } = props.apiOptions
+
+    const userStatusChoices = []
+    if (USER_STATUS_OPTIONS) {
+      Object.keys(USER_STATUS_OPTIONS).map(key => {
+        userStatusChoices.push({
+          id: key,
+          name: USER_STATUS_OPTIONS[key]
+        })
+      })
+    }
+
+    return (
+      <Edit title={<UserTitle />} {...filterProps}>
+        <SimpleForm redirect="list">
+          <DisabledInput source="id" />
+          <DisabledInput source="username" />
+          <TextInput source="email" type="email" isRequired={true} />
+          <RadioButtonGroupInput source="status" choices={userStatusChoices} />
+        </SimpleForm>
+      </Edit>
+    )
+  }
+}
+
+export const UserEdit = connect(state => {
+  return {
+    apiOptions: state.apiOptions
+  }
+})(UserEditComponent)
+
+const redirect = (basePath, id, data) => {
+  return '/users'
+}
+export class UserCreateComponent extends React.Component {
+  constructor(props) {
+    super(props)
+  }
+
+  render() {
+    const { props } = this
+    const filterProps = _.omit(_.omitBy(props, _.isFunction), ['apiOptions'])
+    const { USER_STATUS_OPTIONS } = props.apiOptions
+
+    const userStatusChoices = []
+    Object.keys(USER_STATUS_OPTIONS).map(key => {
+      userStatusChoices.push({
+        id: key,
+        name: USER_STATUS_OPTIONS[key]
+      })
+    })
+
+    return (
+      <Create {...filterProps}>
+        <SimpleForm redirect={redirect}>
+          <TextInput source="username" isRequired={true} />
+          <TextInput source="email" type="email" isRequired={true} />
+          <TextInput source="password" type="password" isRequired={true} />
+          <RadioButtonGroupInput source="status" choices={userStatusChoices} />
+        </SimpleForm>
+      </Create>
+    )
+  }
+}
+
+export const UserCreate = connect(state => {
+  return {
+    apiOptions: state.apiOptions
+  }
+})(UserCreateComponent)

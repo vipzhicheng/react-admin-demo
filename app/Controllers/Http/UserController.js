@@ -1,6 +1,7 @@
 'use strict'
 
 const User = use('App/Models/User')
+const Hash = use('Hash')
 
 class UserController {
   async login({ request, response, auth }) {
@@ -38,6 +39,28 @@ class UserController {
     query = query.orderBy(field, order).paginate(offset / limit + 1, limit)
 
     return await query
+  }
+
+  async store({ request, response }) {
+    const user = new User()
+    const body = request.only(['username', 'email', 'password', 'status'])
+    body.password = await Hash.make(body.password)
+    user.merge(body)
+    await user.save()
+    return user
+  }
+
+  async update({ params, request, response }) {
+    const user = await User.find(params.id)
+    const body = request.only(['email', 'status'])
+
+    user.merge(body)
+    await user.save()
+    return user
+  }
+
+  async fetch({ params, request, response, view }) {
+    return await User.find(params.id)
   }
 }
 
