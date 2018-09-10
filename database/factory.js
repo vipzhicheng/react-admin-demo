@@ -13,6 +13,7 @@
 
 const Mock = require('mockjs')
 const Factory = use('Factory')
+const Hash = use('Hash')
 
 Factory.blueprint('App/Models/Page', faker => {
   const row = {
@@ -41,6 +42,16 @@ Factory.blueprint('App/Models/Page', faker => {
 Factory.blueprint('App/Models/Template', faker => {
   const row = {
     name: Mock.mock('@sentence(3)'),
+    status: `${Mock.mock('@integer(0, 1)')}`
+  }
+  return row
+})
+
+Factory.blueprint('App/Models/User', faker => {
+  const row = {
+    username: Mock.mock('@sentence(1)'),
+    email: Mock.mock('@email'),
+    password: await Hash.make(Mock.mock('@sentence(1)')),
     status: `${Mock.mock('@integer(0, 1)')}`
   }
   return row

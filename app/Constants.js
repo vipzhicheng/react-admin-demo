@@ -31,5 +31,15 @@ module.exports = {
   TEMPLATE_STATUS_OPTIONS: {
     '0': '未发布',
     '1': '已发布'
+  },
+
+  USER_STATUS: {
+    BLOCKED: '0',
+    NORMAL: '1'
+  },
+
+  PAGE_STATUS_OPTIONS: {
+    '0': '冻结',
+    '1': '正常'
   }
 }

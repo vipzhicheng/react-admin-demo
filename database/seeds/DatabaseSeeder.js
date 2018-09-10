@@ -10,21 +10,8 @@
 |
 */
 
-const Factory = use('Factory')
-const User = use('App/Models/User')
-const Hash = use('Hash')
-
 class DatabaseSeeder {
-  async run() {
-    // const password = await Hash.make('admin')
-    // console.log(password)
-    // await User.truncate()
-    await User.create({
-      username: 'admin',
-      email: 'admin@admin.com',
-      password: 'admin'
-    })
-  }
+  async run() {}
 }
 
 module.exports = DatabaseSeeder

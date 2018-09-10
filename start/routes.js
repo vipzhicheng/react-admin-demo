@@ -37,6 +37,7 @@ Route.group(() => {
   Route.post('user/login', 'UserController.login')
   Route.get('user/check', 'UserController.check')
   Route.get('user/logout', 'UserController.logout')
+  Route.get('users', 'UserController.index').middleware('auth')
 
   // 演示接口
   Route.get('posts', 'PostController.index').middleware('auth')

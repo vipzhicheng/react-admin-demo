@@ -17,6 +17,7 @@ import dataProvider from './Providers/DataProvider'
 import authProvider from './Providers/AuthProvider'
 import { PageList, PageCreate, PageEdit, PageIcon } from './Components/Page'
 import { TemplateList, TemplateCreate, TemplateEdit, TemplateIcon } from './Components/Template'
+import { UserList } from './Components/User'
 
 import { watchFetchOptions } from './Sagas/Options'
 import { apiOptionsReducer } from './Reducers/Options'
@@ -79,7 +80,7 @@ class App extends React.Component {
         />
         <Resource
           name="users"
-          list={TemplateList}
+          list={UserList}
           options={{ label: '用户管理' }}
           create={TemplateCreate}
           edit={TemplateEdit}
