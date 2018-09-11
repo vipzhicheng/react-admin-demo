@@ -44,7 +44,6 @@ class UserController {
   async store({ request, response }) {
     const user = new User()
     const body = request.only(['username', 'email', 'password', 'status'])
-    body.password = await Hash.make(body.password)
     user.merge(body)
     await user.save()
     return user
