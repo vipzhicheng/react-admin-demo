@@ -6,7 +6,9 @@ import {
   Datagrid,
   TextField,
   FunctionField,
-  Filter
+  Filter,
+  CardActions,
+  ListButton
   // CloneButton
 } from 'react-admin'
 
@@ -79,7 +81,13 @@ class UserListComponent extends React.Component {
     }
 
     return (
-      <List {...filterProps} sort={{ field: 'id', order: 'ASC' }} title="用户管理" filters={<UserFilter />}>
+      <List
+        {...filterProps}
+        sort={{ field: 'id', order: 'ASC' }}
+        title="用户管理"
+        filters={<UserFilter />}
+        bulkActions={false}
+      >
         <Datagrid>
           <TextField source="id" label="用户ID" />
           <TextField source="username" label="用户名称" />
@@ -115,6 +123,11 @@ export const UserList = connect(state => {
   }
 })(UserListComponent)
 
+const UserEditActions = ({ basePath, data, resource }) => (
+  <CardActions>
+    <ListButton basePath="/users" />
+  </CardActions>
+)
 const UserTitle = ({ record }) => {
   return <span>User {record ? `"${record.username}"` : ''}</span>
 }
@@ -141,7 +154,7 @@ export class UserEditComponent extends React.Component {
     }
 
     return (
-      <Edit title={<UserTitle />} {...filterProps}>
+      <Edit actions={<UserEditActions />} title={<UserTitle />} {...filterProps}>
         <SimpleForm redirect="list">
           <DisabledInput source="id" />
           <DisabledInput source="username" />
