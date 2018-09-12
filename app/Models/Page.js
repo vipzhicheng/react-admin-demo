@@ -14,7 +14,7 @@ class Page extends Model {
   }
 
   media() {
-    return this.hasMany('App/Models/Media')
+    return this.hasMany('App/Models/Media', 'id', 'reference_id')
   }
 }
 

@@ -26,7 +26,10 @@ class PageController {
       page.template = await Template.find(page.template_id)
     }
 
-    page.mediaLoaded = await page.media().fetch()
+    page.mediaLoaded = await page
+      .media()
+      .where('reference_type', 'page')
+      .fetch()
 
     if (typeof debug !== 'undefined') {
       return page
@@ -53,11 +56,11 @@ class PageController {
       }
     }
 
-    delete page.json['gjs-assets']
+    if (page.json) {
+      delete page.json['gjs-assets']
+    }
 
-    console.log(page.json)
-
-    return page.json
+    return page.json || {}
   }
 
   async upload({ request, params, response }) {
@@ -232,6 +235,12 @@ class PageController {
 
   async delete({ params, request, response }) {
     const page = await Page.find(params.id)
+
+    // TODO: also delete attachments
+    await page
+      .media()
+      .where('reference_type', 'page')
+      .delete()
     await page.delete()
     return page
   }
@@ -241,6 +250,16 @@ class PageController {
     const deletedPages = await Page.query()
       .whereIn('id', id)
       .fetch()
+
+    // TODO: also delete attachments
+    await Promise.all(
+      deletedPages.rows.map(page => {
+        return page
+          .media()
+          .where('reference_type', 'page')
+          .delete()
+      })
+    )
 
     await Page.query()
       .whereIn('id', id)
