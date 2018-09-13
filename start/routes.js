@@ -39,7 +39,9 @@ Route.group(() => {
   Route.get('user/logout', 'UserController.logout')
   Route.get('users', 'UserController.index').middleware('auth')
   Route.post('users', 'UserController.store').middleware('auth')
-  Route.put('users/:id', 'UserController.update').middleware('auth')
+  Route.put('users/:id', 'UserController.update')
+    .middleware('auth')
+    .validator('SaveUser')
   Route.get('users/:id', 'UserController.fetch')
 
   // 演示接口

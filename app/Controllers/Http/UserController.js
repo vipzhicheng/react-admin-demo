@@ -2,6 +2,8 @@
 
 const User = use('App/Models/User')
 const Hash = use('Hash')
+const { validate } = use('Validator')
+const ValidationException = use('App/Exceptions/ValidationException')
 
 class UserController {
   async login({ request, response, auth }) {
@@ -50,8 +52,24 @@ class UserController {
   }
 
   async update({ params, request, response }) {
+    // const rules = {
+    //   email: `required|email|unique:users,email,id,${params.id}`,
+    //   password: 'required'
+    // }
+
+    // const validation = await validate(request.all(), rules)
+
+    // if (validation.fails()) {
+    //   throw new ValidationException(validation.messages())
+    // }
+
     const user = await User.find(params.id)
-    const body = request.only(['email', 'status'])
+    const body = request.only(['email', 'status', 'password'])
+
+    const isSame = await Hash.verify(body.password, user.password)
+    if (isSame) {
+      throw new ValidationException()
+    }
 
     user.merge(body)
     await user.save()

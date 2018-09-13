@@ -159,6 +159,7 @@ export class UserEditComponent extends React.Component {
           <DisabledInput source="id" />
           <DisabledInput source="username" />
           <TextInput source="email" type="email" isRequired={true} />
+          <TextInput source="password" type="password" isRequired={true} />
           <RadioButtonGroupInput source="status" choices={userStatusChoices} />
         </SimpleForm>
       </Edit>
