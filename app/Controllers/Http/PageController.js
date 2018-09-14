@@ -108,21 +108,6 @@ class PageController {
     await Media.createMany(uploadedData)
 
     return { data: uploadedFiles }
-    // console.log(files.movedList())
-
-    // const profilePic = request.file('files', {
-    //   types: ['image'],
-    //   size: '2mb'
-    // })
-
-    // await profilePic.move(Helpers.tmpPath('uploads'), {
-    //   name: 'custom-name.jpg'
-    // })
-
-    // if (!profilePic.moved()) {
-    //   return profilePic.error()
-    // }
-    // return 'File moved'
   }
 
   async show({ request, params, view, response }) {
@@ -236,11 +221,25 @@ class PageController {
   async delete({ params, request, response }) {
     const page = await Page.find(params.id)
 
-    // TODO: also delete attachments
+    // remove related attachments first
+    const media = await page
+      .media()
+      .where('reference_type', 'page')
+      .fetch()
+    media.toJSON().forEach(m => {
+      const filePath = Helpers.publicPath(`uploads/pages/${page.id}/${m.file_name}`)
+      fs.unlinkSync(filePath)
+    })
+
+    fs.rmdir(Helpers.publicPath(`uploads/pages/${page.id}`))
+
+    // remove related media data
     await page
       .media()
       .where('reference_type', 'page')
       .delete()
+
+    // delete the page
     await page.delete()
     return page
   }
@@ -251,15 +250,24 @@ class PageController {
       .whereIn('id', id)
       .fetch()
 
-    // TODO: also delete attachments
-    await Promise.all(
-      deletedPages.rows.map(page => {
-        return page
-          .media()
-          .where('reference_type', 'page')
-          .delete()
+    for (let i = 0; i < deletedPages.rows.length; i++) {
+      const page = deletedPages.rows[i]
+      const media = await page
+        .media()
+        .where('reference_type', 'page')
+        .fetch()
+      media.toJSON().forEach(m => {
+        const filePath = Helpers.publicPath(`uploads/pages/${page.id}/${m.file_name}`)
+        fs.unlinkSync(filePath)
       })
-    )
+
+      fs.rmdir(Helpers.publicPath(`uploads/pages/${page.id}`))
+
+      await page
+        .media()
+        .where('reference_type', 'page')
+        .delete()
+    }
 
     await Page.query()
       .whereIn('id', id)
