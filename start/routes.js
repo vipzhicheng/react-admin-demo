@@ -69,4 +69,6 @@ Route.group(() => {
 
   Route.post('templates/:id/edit/store', 'TemplateController.editStore').middleware('auth') // 只用于编辑器
   Route.get('templates/:id/edit/load', 'TemplateController.editLoad').middleware('auth') // 只用于编辑器
+
+  Route.get('media', 'MediaController.index').middleware('auth')
 }).prefix('api')

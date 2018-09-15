@@ -1,57 +1,58 @@
 'use strict'
 
+const Media = use('App/Models/Media')
+
 /**
  * Resourceful controller for interacting with media
  */
 class MediaController {
-  /**
-   * Show a list of all media.
-   * GET media
-   */
-  async index ({ request, response, view }) {
+  async index({ request, response, params }) {
+    const [offset, limit] = JSON.parse(request.input('range'))
+    const [field, order] = JSON.parse(request.input('sort'))
+    const { status, type, admin_title } = JSON.parse(request.input('filter'))
+
+    let query = Media.query()
+
+    query = query.orderBy(field, order).paginate(offset / limit + 1, limit)
+
+    return await query
   }
 
   /**
    * Render a form to be used for creating a new media.
    * GET media/create
    */
-  async create ({ request, response, view }) {
-  }
+  async create({ request, response, view }) {}
 
   /**
    * Create/save a new media.
    * POST media
    */
-  async store ({ request, response }) {
-  }
+  async store({ request, response }) {}
 
   /**
    * Display a single media.
    * GET media/:id
    */
-  async show ({ params, request, response, view }) {
-  }
+  async show({ params, request, response, view }) {}
 
   /**
    * Render a form to update an existing media.
    * GET media/:id/edit
    */
-  async edit ({ params, request, response, view }) {
-  }
+  async edit({ params, request, response, view }) {}
 
   /**
    * Update media details.
    * PUT or PATCH media/:id
    */
-  async update ({ params, request, response }) {
-  }
+  async update({ params, request, response }) {}
 
   /**
    * Delete a media with id.
    * DELETE media/:id
    */
-  async destroy ({ params, request, response }) {
-  }
+  async destroy({ params, request, response }) {}
 }
 
 module.exports = MediaController

@@ -95,6 +95,7 @@ class App extends React.Component {
           icon={ConfigIcon}
         />
         <Resource name="posts" options={{ label: '文章' }} />
+        <Resource name="media" options={{ label: '素材' }} />
       </Admin>
     )
   }

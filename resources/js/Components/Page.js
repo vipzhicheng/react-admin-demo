@@ -6,9 +6,12 @@ import {
   Datagrid,
   TextField,
   FunctionField,
-  Filter
+  Filter,
+  ReferenceManyField
   // CloneButton
 } from 'react-admin'
+import GridList from './Page/GridList'
+
 import {
   Create,
   Edit,
@@ -32,6 +35,8 @@ export { default as PageIcon } from '@material-ui/icons/Description'
 import { withStyles } from '@material-ui/core/styles'
 import Tooltip from '@material-ui/core/Tooltip'
 import Button from '@material-ui/core/Button'
+import Card from '@material-ui/core/Card'
+import CardMedia from '@material-ui/core/CardMedia'
 
 import CustomizableDatagrid from 'ra-customizable-datagrid'
 import { connect } from 'react-redux'
@@ -221,12 +226,12 @@ export class PageEditComponent extends React.Component {
             <TextInput source="path" />
             <DisabledInput source="slug" />
             <SelectInput source="type" choices={pageTypeChoices} />
-            <ReferenceInput label="Template" source="template_id" reference="templates">
-              <SelectInput optionText="name" />
+            <ReferenceInput label="Template" source="template_id" reference="pages" filter={{ is_template: 1 }}>
+              <SelectInput optionText="admin_title" />
             </ReferenceInput>
             <DateInput source="start_time" />
             <DateInput source="end_time" />
-
+            <BooleanInput source="is_template" />
             <RadioButtonGroupInput source="status" choices={pageStatusChoices} />
           </FormTab>
           <FormTab label="SEO">
@@ -240,6 +245,19 @@ export class PageEditComponent extends React.Component {
             <BooleanInput source="enable_baidu_analytics" />
             <BooleanInput source="enable_growingio_analytics" />
             <BooleanInput source="enable_cps" />
+          </FormTab>
+          <FormTab label="素材">
+            <ReferenceManyField
+              addLabel={false}
+              reference="media"
+              target="reference_id"
+              sort={{ field: 'created_at', order: 'DESC' }}
+              filter={{ reference_type: 'page' }}
+            >
+              <List {...filterProps} style={{ width: '100%' }}>
+                <GridList />
+              </List>
+            </ReferenceManyField>
           </FormTab>
         </TabbedForm>
       </Edit>
@@ -289,11 +307,12 @@ export class PageCreateComponent extends React.Component {
             <TextInput source="admin_title" isRequired={true} />
             <TextInput source="path" />
             <SelectInput source="type" choices={pageTypeChoices} />
-            <ReferenceInput label="Template" source="template_id" reference="templates">
-              <SelectInput optionText="name" />
+            <ReferenceInput label="Template" source="template_id" reference="pages" filter={{ is_template: 1 }}>
+              <SelectInput optionText="admin_title" />
             </ReferenceInput>
             <DateInput source="start_time" />
             <DateInput source="end_time" />
+            <BooleanInput source="is_template" />
             <RadioButtonGroupInput source="status" choices={pageStatusChoices} />
           </FormTab>
           <FormTab label="SEO">

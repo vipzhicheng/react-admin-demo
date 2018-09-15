@@ -23,7 +23,7 @@ class PageController {
     }
 
     if (page.template_id) {
-      page.template = await Template.find(page.template_id)
+      page.template = await Page.find(page.template_id)
     }
 
     page.mediaLoaded = await page
@@ -49,7 +49,7 @@ class PageController {
     const page = await Page.find(params.id)
 
     if (page.template_id) {
-      page.template = await Template.find(page.template_id)
+      page.template = await Page.find(page.template_id)
 
       if (!page.json && page.template.json) {
         page.json = page.template.json
@@ -118,7 +118,11 @@ class PageController {
     }
 
     if (page.template_id) {
-      page.template = await Template.find(page.template_id)
+      page.template = await Page.find(page.template_id)
+
+      if (!page.json && page.template.json) {
+        page.json = page.template.json
+      }
     }
 
     return view.render('page.view', { page })
@@ -157,6 +161,7 @@ class PageController {
       'keywords',
       'type',
       'status',
+      'is_template',
       'start_time',
       'end_time',
       'json',
@@ -193,6 +198,7 @@ class PageController {
       'keywords',
       'type',
       'status',
+      'is_template',
       'start_time',
       'end_time',
       'template_id',

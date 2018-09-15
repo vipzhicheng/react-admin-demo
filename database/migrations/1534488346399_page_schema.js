@@ -15,6 +15,7 @@ class PageSchema extends Schema {
       // 分类
       table.string('type', 1)
       table.string('status', 1) // 0 未发布， 1 已发布 2 待审核
+      table.string('is_template', 1) // 0 不是 1 是
 
       // TDK
       table.string('title', 100) // 默认和页面后台标题一致

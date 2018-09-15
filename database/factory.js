@@ -26,6 +26,7 @@ Factory.blueprint('App/Models/Page', faker => {
 
     type: `${Mock.mock('@integer(1, 3)')}`,
     status: `${Mock.mock('@integer(0, 2)')}`,
+    is_template: `${Mock.mock('@integer(0, 1)')}`,
 
     start_time: Mock.mock('@datetime()'),
     end_time: Mock.mock('@datetime()'),
