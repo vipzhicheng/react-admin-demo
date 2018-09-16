@@ -40,14 +40,6 @@ Factory.blueprint('App/Models/Page', faker => {
   return row
 })
 
-Factory.blueprint('App/Models/Template', faker => {
-  const row = {
-    name: Mock.mock('@sentence(3)'),
-    status: `${Mock.mock('@integer(0, 1)')}`
-  }
-  return row
-})
-
 const password = Hash.make(Mock.mock('@sentence(1)'))
 Factory.blueprint('App/Models/User', faker => {
   const row = {

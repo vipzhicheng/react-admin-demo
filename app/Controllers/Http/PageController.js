@@ -1,7 +1,6 @@
 'use strict'
 
 const Page = use('App/Models/Page')
-const Template = use('App/Models/Template')
 const Media = use('App/Models/Media')
 const PageNotFoundException = use('App/Exceptions/PageNotFoundException')
 const Helpers = use('Helpers')
