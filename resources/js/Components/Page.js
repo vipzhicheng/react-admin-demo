@@ -7,7 +7,13 @@ import {
   TextField,
   FunctionField,
   Filter,
-  ReferenceManyField
+  ReferenceManyField,
+  CreateButton,
+  DeleteButton,
+  RefreshButton,
+  ListButton,
+  CloneButton as CloneButtonOrigin,
+  CardActions
   // CloneButton
 } from 'react-admin'
 import GridList from './Page/GridList'
@@ -117,7 +123,7 @@ class PageListComponent extends React.Component {
     return (
       <List
         {...filterProps}
-        sort={{ field: 'updated_at', order: 'DESC' }}
+        sort={{ field: 'id', order: 'DESC' }}
         title="页面管理"
         filters={<PageFilter pageTypeChoices={pageTypeChoices} pageStatusChoices={pageStatusChoices} />}
       >
@@ -187,6 +193,22 @@ const PageTitle = ({ record }) => {
   return <span>Page {record ? `"${record.admin_title}"` : ''}</span>
 }
 
+const PageEditActions = ({ basePath, data, resource }) => (
+  <CardActions>
+    <PreviewButton basePath={basePath} record={data} />
+    <EditorButton basePath={basePath} record={data} />
+    <ListButton />
+    <DeleteButton resource={resource} basePath={basePath} record={data} />
+    <RefreshButton />
+  </CardActions>
+)
+
+const PageEditMediaActions = ({ basePath, data, resource }) => (
+  <CardActions>
+    <CreateButton />
+  </CardActions>
+)
+
 export class PageEditComponent extends React.Component {
   constructor(props) {
     super(props)
@@ -218,7 +240,7 @@ export class PageEditComponent extends React.Component {
     }
 
     return (
-      <Edit title={<PageTitle />} {...filterProps}>
+      <Edit actions={<PageEditActions />} title={<PageTitle />} {...filterProps}>
         <TabbedForm redirect="list">
           <FormTab label="基本信息">
             <DisabledInput source="id" />
@@ -254,7 +276,7 @@ export class PageEditComponent extends React.Component {
               sort={{ field: 'created_at', order: 'DESC' }}
               filter={{ reference_type: 'page' }}
             >
-              <List {...filterProps} style={{ width: '100%' }}>
+              <List actions={<PageEditMediaActions />} perPage={50} {...filterProps} style={{ width: '100%' }}>
                 <GridList />
               </List>
             </ReferenceManyField>
