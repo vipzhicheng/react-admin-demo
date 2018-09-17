@@ -13,7 +13,7 @@ import { linkToRecord } from 'ra-core'
 
 const styles = {
   root: {
-    margin: '-2px'
+    marginTop: '10px'
   },
   gridList: {
     width: '100%',

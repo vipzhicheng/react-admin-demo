@@ -17,6 +17,7 @@ import dataProvider from './Providers/DataProvider'
 import authProvider from './Providers/AuthProvider'
 import { PageList, PageCreate, PageEdit, PageIcon } from './Components/Page'
 import { UserList, UserCreate, UserEdit } from './Components/User'
+import { MediaList } from './Components/Media'
 
 import { watchFetchOptions } from './Sagas/Options'
 import { apiOptionsReducer } from './Reducers/Options'
@@ -61,6 +62,7 @@ class App extends React.Component {
           edit={PageEdit}
           icon={PageIcon}
         />
+        <Resource name="media" list={MediaList} options={{ label: '素材管理' }} icon={MediaIcon} />
         <Resource
           name="users"
           list={UserList}
@@ -78,7 +80,6 @@ class App extends React.Component {
           icon={ConfigIcon}
         />
         <Resource name="posts" options={{ label: '文章' }} />
-        <Resource name="media" options={{ label: '素材' }} />
       </Admin>
     )
   }

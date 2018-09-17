@@ -16,7 +16,7 @@ import {
   CardActions
   // CloneButton
 } from 'react-admin'
-import GridList from './Page/GridList'
+import GridList from './Media/GridList'
 
 import {
   Create,
@@ -275,10 +275,9 @@ export class PageEditComponent extends React.Component {
               target="reference_id"
               sort={{ field: 'created_at', order: 'DESC' }}
               filter={{ reference_type: 'page' }}
+              perPage={50}
             >
-              <List actions={<PageEditMediaActions />} perPage={50} {...filterProps} style={{ width: '100%' }}>
-                <GridList />
-              </List>
+              <GridList />
             </ReferenceManyField>
           </FormTab>
         </TabbedForm>

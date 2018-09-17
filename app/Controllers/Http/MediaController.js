@@ -9,9 +9,13 @@ class MediaController {
   async index({ request, response, params }) {
     const [offset, limit] = JSON.parse(request.input('range'))
     const [field, order] = JSON.parse(request.input('sort'))
-    const { status, type, admin_title } = JSON.parse(request.input('filter'))
+    const { reference_id } = JSON.parse(request.input('filter'))
 
     let query = Media.query()
+
+    if (reference_id) {
+      query = query.where('reference_id', reference_id)
+    }
 
     query = query.orderBy(field, order).paginate(offset / limit + 1, limit)
 
