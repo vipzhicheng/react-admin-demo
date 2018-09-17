@@ -43,15 +43,14 @@ class MediaListComponent extends React.Component {
 
   render() {
     const { props } = this
+    const filterProps = _.omit(_.omitBy(props, _.isFunction), ['apiOptions'])
 
     return (
-      <List {...props} sort={{ field: 'id', order: 'ASC' }} perPage={50}>
+      <List {...filterProps} sort={{ field: 'id', order: 'DESC' }} perPage={50}>
         <GridList />
       </List>
     )
   }
 }
 
-export const MediaList = connect(state => {
-  return {}
-})(MediaListComponent)
+export const MediaList = connect(false)(MediaListComponent)

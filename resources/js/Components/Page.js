@@ -1,3 +1,4 @@
+import compose from 'recompose/compose'
 import PropTypes from 'prop-types'
 import timeago from 'timeago.js'
 import React from 'react'
@@ -80,11 +81,7 @@ PageFilter.propTypes = {
   pageStatusChoices: PropTypes.array.isRequired
 }
 
-const styles = {
-  rowCell: {
-    padding: '0 3px'
-  }
-}
+const styles = {}
 class PageListComponent extends React.Component {
   constructor(props) {
     super(props)
@@ -127,10 +124,7 @@ class PageListComponent extends React.Component {
         title="页面管理"
         filters={<PageFilter pageTypeChoices={pageTypeChoices} pageStatusChoices={pageStatusChoices} />}
       >
-        <CustomizableDatagrid
-          defaultColumns={['id', 'admin_title', 'type', 'status', 'created_at', 'updated_at']}
-          classes={{ rowCell: props.classes.rowCell }}
-        >
+        <CustomizableDatagrid defaultColumns={['id', 'admin_title', 'type', 'status', 'created_at', 'updated_at']}>
           <TextField source="id" label="活动ID" />
           <TextField source="admin_title" label="活动名称" />
           <FunctionField source="type" label="活动类型" render={record => PAGE_TYPE_OPTIONS[record.type]} />
@@ -239,6 +233,8 @@ export class PageEditComponent extends React.Component {
       })
     }
 
+    const { classes } = props
+
     return (
       <Edit actions={<PageEditActions />} title={<PageTitle />} {...filterProps}>
         <TabbedForm redirect="list">
@@ -277,7 +273,7 @@ export class PageEditComponent extends React.Component {
               filter={{ reference_type: 'page' }}
               perPage={50}
             >
-              <GridList />
+              <GridList classes={{ root: classes.root }} />
             </ReferenceManyField>
           </FormTab>
         </TabbedForm>
@@ -286,11 +282,20 @@ export class PageEditComponent extends React.Component {
   }
 }
 
-export const PageEdit = connect(state => {
-  return {
-    apiOptions: state.apiOptions
+const editStyles = {
+  root: {
+    marginTop: '1em'
   }
-})(PageEditComponent)
+}
+const enhance = compose(withStyles(editStyles))
+
+export const PageEdit = enhance(
+  connect(state => {
+    return {
+      apiOptions: state.apiOptions
+    }
+  })(PageEditComponent)
+)
 
 const redirect = (basePath, id, data) => {
   return '/pages'

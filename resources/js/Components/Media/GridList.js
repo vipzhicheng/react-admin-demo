@@ -10,10 +10,12 @@ import ContentCreate from '@material-ui/icons/Create'
 import { Link } from 'react-router-dom'
 import { NumberField } from 'react-admin'
 import { linkToRecord } from 'ra-core'
+import Viewer from 'react-viewer'
+import 'react-viewer/dist/index.css'
 
 const styles = {
   root: {
-    marginTop: '10px'
+    // marginTop: '10px'
   },
   gridList: {
     width: '100%',
@@ -39,26 +41,68 @@ const getColsForWidth = width => {
   return 6
 }
 
-const GridList = ({ classes, ids, data, basePath, width }) => (
-  <div className={classes.root}>
-    <MuiGridList cellHeight={180} cols={getColsForWidth(width)} className={classes.gridList}>
-      {ids.map(id => (
-        <GridListTile key={id}>
-          <img src={`/uploads/pages/${data[id].reference_id}/${data[id].file_name}`} alt="" />
-          <GridListTileBar
-            className={classes.tileBar}
-            title={data[id].file_name}
-            actionIcon={
-              <IconButton to={linkToRecord(basePath, data[id].id)} className={classes.link} component={Link}>
-                <ContentCreate />
-              </IconButton>
-            }
-          />
-        </GridListTile>
-      ))}
-    </MuiGridList>
-  </div>
-)
+class GridList extends React.Component {
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      visible: false,
+      activeIndex: 0,
+      mode: 'modal'
+    }
+  }
+
+  render() {
+    const { classes, ids, data, basePath, width } = this.props
+    const images = ids.map(id => {
+      return {
+        src: `/uploads/pages/${data[id].reference_id}/${data[id].file_name}`,
+        alt: `${data[id].file_name}`,
+        downloadUrl: `/uploads/pages/${data[id].reference_id}/${data[id].file_name}`
+      }
+    })
+    return (
+      <div className={classes.root}>
+        <MuiGridList cellHeight={180} cols={getColsForWidth(width)} className={classes.gridList}>
+          {ids.map((id, index) => (
+            <GridListTile key={id}>
+              <img
+                src={`/uploads/pages/${data[id].reference_id}/${data[id].file_name}`}
+                alt={`${data[id].file_name}`}
+                onClick={() => {
+                  this.setState({
+                    visible: true,
+                    activeIndex: index
+                  })
+                }}
+              />
+              <GridListTileBar
+                className={classes.tileBar}
+                title={data[id].file_name}
+                actionIcon={
+                  <IconButton to={linkToRecord(basePath, data[id].id)} className={classes.link} component={Link}>
+                    <ContentCreate />
+                  </IconButton>
+                }
+              />
+            </GridListTile>
+          ))}
+        </MuiGridList>
+
+        <Viewer
+          visible={this.state.visible}
+          onClose={() => {
+            this.setState({ visible: false })
+          }}
+          images={images}
+          activeIndex={this.state.activeIndex}
+          container={null}
+          downloadable
+        />
+      </div>
+    )
+  }
+}
 
 const enhance = compose(
   withWidth(),

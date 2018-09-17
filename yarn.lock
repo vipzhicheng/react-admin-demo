@@ -7838,6 +7838,12 @@ react-transition-group@^2.2.1:
     prop-types "^15.6.2"
     react-lifecycles-compat "^3.0.4"
 
+react-viewer@^2.6.0:
+  version "2.6.0"
+  resolved "http://registry.npm.taobao.org/react-viewer/download/react-viewer-2.6.0.tgz#65d7b40e7c94d4f9eb97147ca752f11ecf7b5c36"
+  dependencies:
+    classnames "^2.2.5"
+
 react@^16.4.2:
   version "16.4.2"
   resolved "http://registry.npm.taobao.org/react/download/react-16.4.2.tgz#2cd90154e3a9d9dd8da2991149fdca3c260e129f"
