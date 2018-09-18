@@ -9,12 +9,16 @@ class MediaController {
   async index({ request, response, params }) {
     const [offset, limit] = JSON.parse(request.input('range'))
     const [field, order] = JSON.parse(request.input('sort'))
-    const { reference_id } = JSON.parse(request.input('filter'))
+    const { reference_id, file_name } = JSON.parse(request.input('filter'))
 
     let query = Media.query()
 
     if (reference_id) {
       query = query.where('reference_id', reference_id)
+    }
+
+    if (file_name) {
+      query = query.where('file_name', 'like', `%${file_name}%`)
     }
 
     query = query.orderBy(field, order).paginate(offset / limit + 1, limit)

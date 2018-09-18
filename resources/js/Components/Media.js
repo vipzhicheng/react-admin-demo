@@ -34,7 +34,11 @@ import Tooltip from '@material-ui/core/Tooltip'
 import { connect } from 'react-redux'
 import _ from 'lodash'
 
-const timeagoInstance = timeago() // set the relative date here.
+export const MediaFilter = props => (
+  <Filter {...props}>
+    <TextInput label="文件名" source="file_name" />
+  </Filter>
+)
 
 class MediaListComponent extends React.Component {
   constructor(props) {
@@ -46,7 +50,7 @@ class MediaListComponent extends React.Component {
     const filterProps = _.omit(_.omitBy(props, _.isFunction), ['apiOptions'])
 
     return (
-      <List {...filterProps} sort={{ field: 'id', order: 'DESC' }} perPage={50}>
+      <List {...filterProps} sort={{ field: 'id', order: 'DESC' }} perPage={50} filters={<MediaFilter />}>
         <GridList />
       </List>
     )
