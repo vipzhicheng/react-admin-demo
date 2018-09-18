@@ -8,7 +8,8 @@ import {
   FunctionField,
   Filter,
   CardActions,
-  ListButton
+  ListButton,
+  CreateButton
   // CloneButton
 } from 'react-admin'
 
@@ -40,6 +41,23 @@ export const MediaFilter = props => (
   </Filter>
 )
 
+const MediaActions = ({
+  basePath,
+  currentSort,
+  displayedFilters,
+  exporter,
+  filters,
+  filterValues,
+  onUnselectItems,
+  resource,
+  selectedIds,
+  showFilter
+}) => (
+  <CardActions>
+    <CreateButton basePath={basePath} />
+  </CardActions>
+)
+
 class MediaListComponent extends React.Component {
   constructor(props) {
     super(props)
@@ -50,7 +68,13 @@ class MediaListComponent extends React.Component {
     const filterProps = _.omit(_.omitBy(props, _.isFunction), ['apiOptions'])
 
     return (
-      <List {...filterProps} sort={{ field: 'id', order: 'DESC' }} perPage={50} filters={<MediaFilter />}>
+      <List
+        {...filterProps}
+        sort={{ field: 'id', order: 'DESC' }}
+        perPage={50}
+        filters={<MediaFilter />}
+        actions={<MediaActions />}
+      >
         <GridList />
       </List>
     )
