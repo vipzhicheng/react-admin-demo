@@ -5,6 +5,7 @@ import {
   List,
   Datagrid,
   TextField,
+  ImageField,
   FunctionField,
   Filter,
   CardActions,
@@ -17,8 +18,11 @@ import {
   Create,
   Edit,
   SimpleForm,
+  AutocompleteInput,
   TextInput,
   DisabledInput,
+  FileInput,
+  ImageInput,
   LongTextInput,
   SelectInput,
   DateInput,
@@ -82,3 +86,37 @@ class MediaListComponent extends React.Component {
 }
 
 export const MediaList = connect(false)(MediaListComponent)
+
+const redirect = (basePath, id, data) => {
+  return '/pages'
+}
+export class MediaCreateComponent extends React.Component {
+  constructor(props) {
+    super(props)
+  }
+
+  render() {
+    const { props } = this
+    const filterProps = _.omit(_.omitBy(props, _.isFunction), ['apiOptions'])
+    return (
+      <Create {...filterProps}>
+        <SimpleForm redirect={redirect}>
+          <ReferenceInput label="Page" source="reference_id" reference="pages">
+            <SelectInput optionText="admin_title" />
+          </ReferenceInput>
+          <ImageInput
+            source="files"
+            label="Related images"
+            placeholder={<p>Drop images here</p>}
+            accept="image/*"
+            multiple
+          >
+            <ImageField source="src" title="title" />
+          </ImageInput>
+        </SimpleForm>
+      </Create>
+    )
+  }
+}
+
+export const MediaCreate = connect(undefined)(MediaCreateComponent)
