@@ -100,7 +100,7 @@ export class MediaCreateComponent extends React.Component {
     const filterProps = _.omit(_.omitBy(props, _.isFunction), ['apiOptions'])
     return (
       <Create {...filterProps}>
-        <SimpleForm redirect={redirect}>
+        <SimpleForm redirect={redirect} encType="multipart/form-data">
           <ReferenceInput label="Page" source="reference_id" reference="pages">
             <SelectInput optionText="admin_title" />
           </ReferenceInput>

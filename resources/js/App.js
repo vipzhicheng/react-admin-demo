@@ -13,6 +13,7 @@ const theme = createMuiTheme({
 // import jsonServerProvider from 'ra-data-json-server'
 // const dataProvider = jsonServerProvider('http://jsonplaceholder.typicode.com')
 
+import addUploadFeature from './Providers/addUploadFeature'
 import dataProvider from './Providers/DataProvider'
 import authProvider from './Providers/AuthProvider'
 import { PageList, PageCreate, PageEdit, PageIcon } from './Components/Page'
@@ -50,7 +51,7 @@ class App extends React.Component {
         customSagas={[watchFetchOptions]}
         customReducers={{ apiOptions: apiOptionsReducer }}
         authProvider={authProvider}
-        dataProvider={dataProvider}
+        dataProvider={addUploadFeature(dataProvider)}
         title="活动管理系统"
         initialState={{ apiOptions: this.state.apiOptions }}
       >
