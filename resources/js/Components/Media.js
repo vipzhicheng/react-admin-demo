@@ -88,7 +88,7 @@ class MediaListComponent extends React.Component {
 export const MediaList = connect(false)(MediaListComponent)
 
 const redirect = (basePath, id, data) => {
-  return '/pages'
+  return `/pages/${data.reference_id}/3`
 }
 export class MediaCreateComponent extends React.Component {
   constructor(props) {

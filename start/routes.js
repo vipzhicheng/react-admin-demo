@@ -58,4 +58,5 @@ Route.group(() => {
   Route.post('pages/:id/upload/assets', 'PageController.upload').middleware('auth')
 
   Route.get('media', 'MediaController.index').middleware('auth')
+  Route.post('media', 'MediaController.store').middleware('auth')
 }).prefix('api')

@@ -24,14 +24,19 @@ const apiUrl = '/api'
  * @param {Object} payload Request parameters. Depends on the request type
  * @returns {Promise} the Promise for a data response
  */
-export default (type, resource, params) => {
+export default (type, resource, params, options = {}) => {
   let url = ''
   let query = ''
-  const options = {
-    headers: new Headers({
-      Accept: 'application/json'
-    })
-  }
+  options = Object.assign(
+    {},
+    {
+      headers: new Headers({
+        Accept: 'application/json'
+      })
+    },
+    options
+  )
+
   switch (type) {
     case GET_LIST: {
       const { page, perPage } = params.pagination
@@ -50,12 +55,12 @@ export default (type, resource, params) => {
     case CREATE:
       url = `${apiUrl}/${resource}`
       options.method = 'POST'
-      options.body = JSON.stringify(params.data)
+      options.body = options.body ? options.body : JSON.stringify(params.data)
       break
     case UPDATE:
       url = `${apiUrl}/${resource}/${params.id}`
       options.method = 'PUT'
-      options.body = JSON.stringify(params.data)
+      options.body = options.body ? options.body : JSON.stringify(params.data)
       break
     case UPDATE_MANY:
       query = {
@@ -109,6 +114,7 @@ export default (type, resource, params) => {
     switch (type) {
       case GET_LIST:
         response.json.total = Number(response.json.total)
+      case GET_MANY:
       case GET_MANY_REFERENCE:
         return response.json
       case CREATE:

@@ -189,11 +189,8 @@ const PageTitle = ({ record }) => {
 
 const PageEditActions = ({ basePath, data, resource }) => (
   <CardActions>
-    <PreviewButton basePath={basePath} record={data} />
-    <EditorButton basePath={basePath} record={data} />
-    <ListButton />
-    <DeleteButton resource={resource} basePath={basePath} record={data} />
-    <RefreshButton />
+    <PreviewButton basePath={basePath} record={data} label="Preview" />
+    <EditorButton basePath={basePath} record={data} label="Editor" />
   </CardActions>
 )
 

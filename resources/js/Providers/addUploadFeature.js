@@ -12,6 +12,14 @@ const convertFileToBase64 = file =>
     reader.onerror = reject
   })
 
+// new Promise((resolve, reject) => {
+//   const reader = new FileReader()
+//   reader.readAsArrayBuffer(file.rawFile)
+
+//   reader.onload = () => resolve({ binary: reader.result, title: file.title })
+//   reader.onerror = reject
+// })
+
 /**
  * For posts update only, convert uploaded image in base 64 and attach it to
  * the `picture` sent property, with `src` and `title` attributes.
@@ -20,28 +28,30 @@ const addUploadFeature = requestHandler => (type, resource, params) => {
   if ((type === 'CREATE' || type === 'UPDATE') && resource === 'media') {
     if (params.data.files && params.data.files.length) {
       // only freshly dropped pictures are instance of File
-      const formerPictures = params.data.files.filter(p => !(p.rawFile instanceof File))
+      // const formerPictures = params.data.files.filter(p => !(p.rawFile instanceof File))
       const newPictures = params.data.files.filter(p => p.rawFile instanceof File)
 
-      console.log('formerPictures', formerPictures)
-      console.log('newPictures', newPictures)
-
-      return Promise.all(newPictures.map(convertFileToBase64))
-        .then(base64Pictures =>
-          base64Pictures.map(picture64 => ({
-            src: picture64.src,
-            title: picture64.title
-          }))
-        )
-        .then(transformedNewPictures =>
-          requestHandler(type, resource, {
-            ...params,
-            data: {
-              ...params.data,
-              files: [...transformedNewPictures, ...formerPictures]
-            }
+      const form = new FormData()
+      for (let key in params.data) {
+        if (key !== 'files') {
+          form.append(key, params.data[key])
+        } else {
+          newPictures.map(file => {
+            console.log(file)
+            form.append('files[]', file.rawFile)
           })
-        )
+        }
+      }
+      return requestHandler(
+        type,
+        resource,
+        {
+          ...params
+        },
+        {
+          body: form
+        }
+      )
     }
   }
   // for other request types and reources, fall back to the defautl request handler

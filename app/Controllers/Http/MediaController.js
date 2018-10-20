@@ -1,6 +1,11 @@
 'use strict'
 
 const Media = use('App/Models/Media')
+const Page = use('App/Models/Page')
+const PageNotFoundException = use('App/Exceptions/PageNotFoundException')
+const Helpers = use('Helpers')
+const fs = require('fs')
+const path = require('path')
 
 /**
  * Resourceful controller for interacting with media
@@ -36,7 +41,54 @@ class MediaController {
    * Create/save a new media.
    * POST media
    */
-  async store({ request, response }) {}
+  async store({ request, response }) {
+    const reference_id = request.input('reference_id')
+    const page = await Page.find(reference_id)
+    const removeFile = Helpers.promisify(fs.unlink)
+    if (!page) {
+      throw new PageNotFoundException()
+    }
+
+    const files = request.file('files', {
+      types: ['image'],
+      size: '2mb'
+    })
+
+    await files.moveAll(Helpers.publicPath(`uploads/pages/${page.id}`))
+
+    if (!files.movedAll()) {
+      const movedFiles = files.movedList()
+
+      await Promise.all(
+        movedFiles.map(file => {
+          return removeFile(path.join(Helpers.publicPath(`uploads/pages/${page.id}`), file.fileName))
+        })
+      )
+
+      return files.errors()
+    }
+    const uploadedFiles = []
+    const uploadedData = []
+    files.movedList().map(async file => {
+      uploadedData.push({
+        reference_id: page.id,
+        reference_type: 'page',
+        client_name: file.clientName,
+        extname: file.extname,
+        file_name: file.fileName,
+        size: file.size,
+        type: file.type,
+        subtype: file.subtype
+      })
+
+      uploadedFiles.push(path.join(`/uploads/pages/${page.id}`, file.fileName))
+    })
+
+    const media = await Media.createMany(uploadedData)
+    console.log(media)
+
+    return { id: media[0].id }
+  }
 
   /**
    * Display a single media.

@@ -47,7 +47,7 @@ class UserFilter extends React.Component {
 
     return (
       <Filter {...filterProps}>
-        <TextInput label="用户名称" source="username" defaultValue="" resettable />
+        <TextInput label="用户名称" source="username" defaultValue="" resettable alwaysOn />
       </Filter>
     )
   }
@@ -154,7 +154,7 @@ export class UserEditComponent extends React.Component {
     }
 
     return (
-      <Edit actions={<UserEditActions />} title={<UserTitle />} {...filterProps}>
+      <Edit title={<UserTitle />} {...filterProps}>
         <SimpleForm redirect="list">
           <DisabledInput source="id" />
           <DisabledInput source="username" />

@@ -1297,7 +1297,7 @@ babel-register@^6.26.0:
     mkdirp "^0.5.1"
     source-map-support "^0.4.15"
 
-babel-runtime@^6.18.0, babel-runtime@^6.22.0, babel-runtime@^6.26.0, babel-runtime@~6.26.0:
+babel-runtime@^6.18.0, babel-runtime@^6.22.0, babel-runtime@^6.26.0:
   version "6.26.0"
   resolved "http://registry.npm.taobao.org/babel-runtime/download/babel-runtime-6.26.0.tgz#965c7058668e82b55d7bfe04ff2337bc8b5647fe"
   dependencies:
@@ -2598,6 +2598,10 @@ dashdash@^1.12.0:
   resolved "http://registry.npm.taobao.org/dashdash/download/dashdash-1.14.1.tgz#853cfa0f7cbe2fed5de20326b8dd581035f6e2f0"
   dependencies:
     assert-plus "^1.0.0"
+
+date-fns@^1.29.0:
+  version "1.29.0"
+  resolved "http://registry.npm.taobao.org/date-fns/download/date-fns-1.29.0.tgz#12e609cdcb935127311d04d33334e2960a2a54e6"
 
 date-now@^0.1.4:
   version "0.1.4"
@@ -4168,9 +4172,9 @@ grapesjs-tabs@0.1.2:
   version "0.1.2"
   resolved "http://registry.npm.taobao.org/grapesjs-tabs/download/grapesjs-tabs-0.1.2.tgz#5519d030ba41ac6591f270664d4491d1ef6728d6"
 
-grapesjs@0.14.27:
-  version "0.14.27"
-  resolved "http://registry.npm.taobao.org/grapesjs/download/grapesjs-0.14.27.tgz#ca96861cc2f343fbf94e4bff84b1935931320e6b"
+grapesjs@^0.14.33:
+  version "0.14.33"
+  resolved "http://registry.npm.taobao.org/grapesjs/download/grapesjs-0.14.33.tgz#a3f11f69d9725cc5a05282c66b7d9a91545af976"
   dependencies:
     backbone "^1.3.3"
     backbone-undo "^0.2.5"
@@ -5664,7 +5668,7 @@ lodash.kebabcase@^4.1.1:
   version "4.1.1"
   resolved "http://registry.npm.taobao.org/lodash.kebabcase/download/lodash.kebabcase-4.1.1.tgz#8489b1cb0d29ff88195cceca448ff6d6cc295c36"
 
-lodash.keys@^3.0.0:
+lodash.keys@^3.0.0, lodash.keys@^3.1.2:
   version "3.1.2"
   resolved "http://registry.npm.taobao.org/lodash.keys/download/lodash.keys-3.1.2.tgz#4dbc0472b156be50a0b286855d1bd0b0c656098a"
   dependencies:
@@ -5823,6 +5827,13 @@ map-visit@^1.0.0:
   resolved "http://registry.npm.taobao.org/map-visit/download/map-visit-1.0.0.tgz#ecdca8f13144e660f1b5bd41f12f3479d98dfb8f"
   dependencies:
     object-visit "^1.0.0"
+
+material-ui-chip-input@^1.0.0-beta.6:
+  version "1.0.0-beta.8"
+  resolved "http://registry.npm.taobao.org/material-ui-chip-input/download/material-ui-chip-input-1.0.0-beta.8.tgz#1752aea40a0de723d39b3255d8df6622c61456a0"
+  dependencies:
+    classnames "^2.2.5"
+    prop-types "^15.6.1"
 
 math-expression-evaluator@^1.2.14:
   version "1.2.17"
@@ -7564,18 +7575,18 @@ quill@~1.3.6:
     parchment "^1.1.4"
     quill-delta "^3.6.2"
 
-ra-core@^2.2.0:
-  version "2.2.0"
-  resolved "http://registry.npm.taobao.org/ra-core/download/ra-core-2.2.0.tgz#305a4890124651dd5dd492224b034a61a0cd2e38"
+ra-core@^2.4.0:
+  version "2.4.0"
+  resolved "http://registry.npm.taobao.org/ra-core/download/ra-core-2.4.0.tgz#7ddc44b62c595650225b2508ac12ff8a9fa68d62"
   dependencies:
-    babel-runtime "~6.26.0"
     classnames "~2.2.5"
+    date-fns "^1.29.0"
     inflection "~1.12.0"
     lodash "~4.17.5"
     node-polyglot "2.2.2"
     prop-types "~15.6.1"
     query-string "~5.1.1"
-    ra-language-english "^2.2.0"
+    ra-language-english "^2.3.0"
     react-redux "~5.0.7"
     react-router "~4.2.0"
     react-router-dom "~4.2.2"
@@ -7585,7 +7596,6 @@ ra-core@^2.2.0:
     redux-form "~7.4.0"
     redux-saga "~0.16.0"
     reselect "~3.0.0"
-    warning "~3.0.0"
 
 ra-customizable-datagrid@^1.1.0:
   version "1.1.0"
@@ -7606,13 +7616,13 @@ ra-input-rich-text@^2.2.1:
     prop-types "~15.6.1"
     quill "~1.3.6"
 
-ra-language-english@^2.2.0:
-  version "2.2.0"
-  resolved "http://registry.npm.taobao.org/ra-language-english/download/ra-language-english-2.2.0.tgz#ec8e24170f8f39f87d9974110f66329bdfcb9ea6"
+ra-language-english@^2.3.0:
+  version "2.3.0"
+  resolved "http://registry.npm.taobao.org/ra-language-english/download/ra-language-english-2.3.0.tgz#d25247bd148a57b02ff0480a66388220ee72ef16"
 
-ra-ui-materialui@^2.2.0:
-  version "2.2.0"
-  resolved "http://registry.npm.taobao.org/ra-ui-materialui/download/ra-ui-materialui-2.2.0.tgz#20d8c77f11ed2c001fe7a7552e6f2a60928c0e50"
+ra-ui-materialui@^2.4.0:
+  version "2.4.0"
+  resolved "http://registry.npm.taobao.org/ra-ui-materialui/download/ra-ui-materialui-2.4.0.tgz#190de953573d12ddef4b89a5b35c679186182296"
   dependencies:
     "@material-ui/core" "^1.4.0"
     "@material-ui/icons" "^1.0.0"
@@ -7620,11 +7630,13 @@ ra-ui-materialui@^2.2.0:
     classnames "~2.2.5"
     inflection "~1.12.0"
     lodash "~4.17.5"
+    material-ui-chip-input "^1.0.0-beta.6"
     papaparse "^4.1.4"
     prop-types "~15.6.1"
-    ra-core "^2.2.0"
-    react-autosuggest "^9.3.2"
+    ra-core "^2.4.0"
+    react-autosuggest "^9.4.2"
     react-dropzone "~4.0.1"
+    react-headroom "^2.2.4"
     react-redux "~5.0.7"
     react-router-dom "~4.2.2"
     react-transition-group "^2.2.1"
@@ -7639,6 +7651,12 @@ radio-symbol@^2.0.0:
     ansi-gray "^0.1.1"
     ansi-green "^0.1.1"
     is-windows "^1.0.1"
+
+raf@^3.3.0:
+  version "3.4.0"
+  resolved "http://registry.npm.taobao.org/raf/download/raf-3.4.0.tgz#a28876881b4bc2ca9117d4138163ddb80f781575"
+  dependencies:
+    performance-now "^2.1.0"
 
 random-bytes@~1.0.0:
   version "1.0.0"
@@ -7696,23 +7714,23 @@ rc@^1.1.2, rc@^1.2.7:
     minimist "^1.2.0"
     strip-json-comments "~2.0.1"
 
-react-admin@^2.2.0:
-  version "2.2.0"
-  resolved "http://registry.npm.taobao.org/react-admin/download/react-admin-2.2.0.tgz#9b8e56bcf1c5065f6d8b98b97561129bb5e6fa1f"
+react-admin@^2.2.0, react-admin@^2.4.0:
+  version "2.4.0"
+  resolved "http://registry.npm.taobao.org/react-admin/download/react-admin-2.4.0.tgz#bdc2afaedb27043b2200bee7b5ca59308c75d534"
   dependencies:
-    ra-core "^2.2.0"
-    ra-language-english "^2.2.0"
-    ra-ui-materialui "^2.2.0"
+    ra-core "^2.4.0"
+    ra-language-english "^2.3.0"
+    ra-ui-materialui "^2.4.0"
 
-react-autosuggest@^9.3.2:
-  version "9.3.4"
-  resolved "http://registry.npm.taobao.org/react-autosuggest/download/react-autosuggest-9.3.4.tgz#e47ff800081b2f7c678165bfb7cc84b07f462336"
+react-autosuggest@^9.4.2:
+  version "9.4.2"
+  resolved "http://registry.npm.taobao.org/react-autosuggest/download/react-autosuggest-9.4.2.tgz#18cc0bebeebda3d24328e3da301f061a444ae223"
   dependencies:
     prop-types "^15.5.10"
-    react-autowhatever "^10.1.0"
+    react-autowhatever "^10.1.2"
     shallow-equal "^1.0.0"
 
-react-autowhatever@^10.1.0:
+react-autowhatever@^10.1.2:
   version "10.1.2"
   resolved "http://registry.npm.taobao.org/react-autowhatever/download/react-autowhatever-10.1.2.tgz#200ffc41373b2189e3f6140ac7bdb82363a79fd3"
   dependencies:
@@ -7743,6 +7761,14 @@ react-event-listener@^0.6.2:
     "@babel/runtime" "7.0.0-beta.42"
     prop-types "^15.6.0"
     warning "^4.0.1"
+
+react-headroom@^2.2.4:
+  version "2.2.4"
+  resolved "http://registry.npm.taobao.org/react-headroom/download/react-headroom-2.2.4.tgz#e931bf5f91d0ea2c2fbf0f156a2b82d7db6cbe3b"
+  dependencies:
+    prop-types "^15.5.8"
+    raf "^3.3.0"
+    shallowequal "^0.2.2"
 
 react-jss@^8.1.0:
   version "8.6.1"
@@ -8564,6 +8590,12 @@ shallow-clone@^3.0.0:
 shallow-equal@^1.0.0:
   version "1.0.0"
   resolved "http://registry.npm.taobao.org/shallow-equal/download/shallow-equal-1.0.0.tgz#508d1838b3de590ab8757b011b25e430900945f7"
+
+shallowequal@^0.2.2:
+  version "0.2.2"
+  resolved "http://registry.npm.taobao.org/shallowequal/download/shallowequal-0.2.2.tgz#1e32fd5bcab6ad688a4812cb0cc04efc75c7014e"
+  dependencies:
+    lodash.keys "^3.1.2"
 
 shebang-command@^1.2.0:
   version "1.2.0"
@@ -9709,7 +9741,7 @@ warning-symbol@^0.1.0:
   version "0.1.0"
   resolved "http://registry.npm.taobao.org/warning-symbol/download/warning-symbol-0.1.0.tgz#bb31dd11b7a0f9d67ab2ed95f457b65825bbad21"
 
-warning@^3.0.0, warning@~3.0.0:
+warning@^3.0.0:
   version "3.0.0"
   resolved "http://registry.npm.taobao.org/warning/download/warning-3.0.0.tgz#32e5377cb572de4ab04753bdf8821c01ed605b7c"
   dependencies:

@@ -128,9 +128,11 @@ class PageController {
   }
 
   async index({ request, response, params }) {
-    const [offset, limit] = JSON.parse(request.input('range'))
-    const [field, order] = JSON.parse(request.input('sort'))
-    const { status, type, admin_title } = JSON.parse(request.input('filter'))
+    // console.log(request.input('filter'))
+    // return 'test'
+    const [offset, limit] = request.input('range') ? JSON.parse(request.input('range')) : []
+    const [field, order] = request.input('sort') ? JSON.parse(request.input('sort')) : ['id', 'DESC']
+    const { status, type, admin_title, id } = request.input('filter') ? JSON.parse(request.input('filter')) : {}
 
     let query = Page.query()
 
@@ -140,6 +142,10 @@ class PageController {
 
     if (status) {
       query = query.where('status', status)
+    }
+
+    if (id) {
+      query = query.whereIn('id', id)
     }
 
     if (admin_title) {
