@@ -85,16 +85,22 @@ class MediaController {
     })
 
     const media = await Media.createMany(uploadedData)
-    console.log(media)
 
     return { id: media[0].id }
   }
 
-  /**
-   * Display a single media.
-   * GET media/:id
-   */
-  async show({ params, request, response, view }) {}
+  async fetch({ params, request, response, view }) {
+    const media = await Media.find(params.id)
+    media.files = [
+      {
+        src: `/uploads/pages/${media.reference_id}/${media.file_name}`,
+        title: media.file_name
+      }
+    ]
+
+    media.reference_id = Number(media.reference_id)
+    return media
+  }
 
   /**
    * Render a form to update an existing media.
@@ -106,7 +112,14 @@ class MediaController {
    * Update media details.
    * PUT or PATCH media/:id
    */
-  async update({ params, request, response }) {}
+  async update({ params, request, response }) {
+    const media = await Media.find(params.id)
+    const body = request.only(['reference_id'])
+
+    media.merge(body)
+    await media.save()
+    return media
+  }
 
   /**
    * Delete a media with id.

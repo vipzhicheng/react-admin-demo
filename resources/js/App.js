@@ -18,7 +18,7 @@ import dataProvider from './Providers/DataProvider'
 import authProvider from './Providers/AuthProvider'
 import { PageList, PageCreate, PageEdit, PageIcon } from './Components/Page'
 import { UserList, UserCreate, UserEdit } from './Components/User'
-import { MediaList, MediaCreate } from './Components/Media'
+import { MediaList, MediaCreate, MediaEdit } from './Components/Media'
 
 import { watchFetchOptions } from './Sagas/Options'
 import { apiOptionsReducer } from './Reducers/Options'
@@ -63,7 +63,14 @@ class App extends React.Component {
           edit={PageEdit}
           icon={PageIcon}
         />
-        <Resource name="media" list={MediaList} create={MediaCreate} options={{ label: '素材管理' }} icon={MediaIcon} />
+        <Resource
+          name="media"
+          list={MediaList}
+          options={{ label: '素材管理' }}
+          create={MediaCreate}
+          edit={MediaEdit}
+          icon={MediaIcon}
+        />
         <Resource
           name="users"
           list={UserList}

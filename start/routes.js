@@ -59,4 +59,6 @@ Route.group(() => {
 
   Route.get('media', 'MediaController.index').middleware('auth')
   Route.post('media', 'MediaController.store').middleware('auth')
+  Route.put('media/:id', 'MediaController.update').middleware('auth')
+  Route.get('media/:id', 'MediaController.fetch')
 }).prefix('api')

@@ -120,3 +120,38 @@ export class MediaCreateComponent extends React.Component {
 }
 
 export const MediaCreate = connect(undefined)(MediaCreateComponent)
+
+const optionRenderer = choice => {
+  return `${choice.admin_title}`
+}
+// Edit
+export class MediaEditComponent extends React.Component {
+  constructor(props) {
+    super(props)
+  }
+
+  render() {
+    const { props } = this
+    const filterProps = _.omit(_.omitBy(props, _.isFunction), ['apiOptions'])
+    return (
+      <Edit {...filterProps}>
+        <SimpleForm redirect={redirect} encType="multipart/form-data" saving={false}>
+          <ReferenceInput label="Page" source="reference_id" reference="pages">
+            <SelectInput optionText={optionRenderer} />
+          </ReferenceInput>
+          <ImageInput
+            source="files"
+            label="Related images"
+            placeholder={<p>Drop images here</p>}
+            accept="image/*"
+            options={{ disabled: true, disableClick: true }}
+          >
+            <ImageField source="src" title="title" />
+          </ImageInput>
+        </SimpleForm>
+      </Edit>
+    )
+  }
+}
+
+export const MediaEdit = connect(undefined)(MediaEditComponent)
