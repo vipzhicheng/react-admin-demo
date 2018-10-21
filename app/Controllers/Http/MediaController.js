@@ -114,10 +114,6 @@ class MediaController {
    */
   async update({ params, request, response }) {
     const media = await Media.find(params.id)
-    const body = request.only(['reference_id'])
-
-    media.merge(body)
-    await media.save()
     return media
   }
 
@@ -126,6 +122,17 @@ class MediaController {
    * DELETE media/:id
    */
   async destroy({ params, request, response }) {}
+
+  async delete({ params, request, response }) {
+    const media = await Media.find(params.id)
+    const filePath = Helpers.publicPath(`uploads/pages/${media.reference_id}/${media.file_name}`)
+    if (fs.existsSync(filePath)) {
+      fs.unlinkSync(filePath)
+    }
+
+    await media.delete()
+    return media
+  }
 }
 
 module.exports = MediaController

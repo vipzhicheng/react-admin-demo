@@ -135,7 +135,7 @@ export class MediaEditComponent extends React.Component {
     const filterProps = _.omit(_.omitBy(props, _.isFunction), ['apiOptions'])
     return (
       <Edit {...filterProps}>
-        <SimpleForm redirect={redirect} encType="multipart/form-data" saving={false}>
+        <SimpleForm redirect={redirect} encType="multipart/form-data">
           <ReferenceInput label="Page" source="reference_id" reference="pages">
             <SelectInput optionText={optionRenderer} />
           </ReferenceInput>

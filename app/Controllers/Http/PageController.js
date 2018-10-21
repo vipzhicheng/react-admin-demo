@@ -239,7 +239,9 @@ class PageController {
       .fetch()
     media.toJSON().forEach(m => {
       const filePath = Helpers.publicPath(`uploads/pages/${page.id}/${m.file_name}`)
-      fs.unlinkSync(filePath)
+      if (fs.existsSync(filePath)) {
+        fs.unlinkSync(filePath)
+      }
     })
 
     fs.rmdir(Helpers.publicPath(`uploads/pages/${page.id}`))
