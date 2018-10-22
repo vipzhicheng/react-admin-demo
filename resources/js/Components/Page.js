@@ -68,7 +68,7 @@ class PageFilter extends React.Component {
 
     return (
       <Filter {...filterProps}>
-        <TextInput label="活动名称" source="admin_title" defaultValue="" resettable />
+        <TextInput label="活动名称" source="admin_title" defaultValue="" resettable alwaysOn />
         <SelectInput label="活动类型" source="type" choices={pageTypeChoices} />
         <SelectInput label="活动状态" source="status" choices={pageStatusChoices} />
       </Filter>
