@@ -4,27 +4,31 @@
         "name": "/Users/zhicheng/Sites/try_adonis/react-admin-demo/node_modules/react-admin",
         "parent_id": null,
         "workspacePath": "node_modules/react-admin",
-        "id": "s3jNWZ5QdxIcGabY"
+        "id": "s3jNWZ5QdxIcGabY",
+        "workspaceRoot": "/Users/zhicheng/Sites/try_adonis/react-admin-demo"
     },
     {
         "type": "Directory",
         "name": "/Users/zhicheng/Sites/try_adonis/react-admin-demo/node_modules/ra-core",
         "parent_id": null,
         "workspacePath": "node_modules/ra-core",
-        "id": "Wu5pFgNkifKlA9en"
+        "id": "Wu5pFgNkifKlA9en",
+        "workspaceRoot": "/Users/zhicheng/Sites/try_adonis/react-admin-demo"
     },
     {
         "type": "Directory",
         "name": "/Users/zhicheng/Sites/try_adonis/react-admin-demo/node_modules/ra-ui-materialui",
         "parent_id": null,
         "workspacePath": "node_modules/ra-ui-materialui",
-        "id": "gUf5pT9V8wdkxnGt"
+        "id": "gUf5pT9V8wdkxnGt",
+        "workspaceRoot": "/Users/zhicheng/Sites/try_adonis/react-admin-demo"
     },
     {
         "type": "Directory",
         "name": "/Users/zhicheng/Sites/try_adonis/react-admin-demo/node_modules/@material-ui",
         "parent_id": null,
         "workspacePath": "node_modules/@material-ui",
-        "id": "iyU3XzkMRhDo8jTu"
+        "id": "iyU3XzkMRhDo8jTu",
+        "workspaceRoot": "/Users/zhicheng/Sites/try_adonis/react-admin-demo"
     }
 ]

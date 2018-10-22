@@ -10,7 +10,8 @@ import {
   Filter,
   CardActions,
   ListButton,
-  CreateButton
+  CreateButton,
+  DeleteButton
   // CloneButton
 } from 'react-admin'
 
@@ -76,6 +77,7 @@ class MediaListComponent extends React.Component {
         {...filterProps}
         sort={{ field: 'id', order: 'DESC' }}
         perPage={50}
+        title="素材管理"
         filters={<MediaFilter />}
         actions={<MediaActions />}
       >
@@ -124,6 +126,17 @@ export const MediaCreate = connect(undefined)(MediaCreateComponent)
 const optionRenderer = choice => {
   return `${choice.admin_title}`
 }
+const RenderPageTitle = ({ choices }) => {
+  return `Page: ${choices[0].admin_title}`
+}
+
+const RenderMediaFiles = ({ record }) => {
+  return record.files
+    ? record.files.map(file => {
+        return <img width={400} src={file.src} alt={file.title} />
+      })
+    : ''
+}
 // Edit
 export class MediaEditComponent extends React.Component {
   constructor(props) {
@@ -135,19 +148,12 @@ export class MediaEditComponent extends React.Component {
     const filterProps = _.omit(_.omitBy(props, _.isFunction), ['apiOptions'])
     return (
       <Edit {...filterProps}>
-        <SimpleForm redirect={redirect} encType="multipart/form-data">
+        <SimpleForm redirect={redirect} encType="multipart/form-data" toolbar={false}>
           <ReferenceInput label="Page" source="reference_id" reference="pages">
-            <SelectInput optionText={optionRenderer} />
+            <RenderPageTitle />
           </ReferenceInput>
-          <ImageInput
-            source="files"
-            label="Related images"
-            placeholder={<p>Drop images here</p>}
-            accept="image/*"
-            options={{ disabled: true, disableClick: true }}
-          >
-            <ImageField source="src" title="title" />
-          </ImageInput>
+          <RenderMediaFiles source="files" />
+          <DeleteButton />
         </SimpleForm>
       </Edit>
     )
