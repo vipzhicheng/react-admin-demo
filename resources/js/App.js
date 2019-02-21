@@ -1,6 +1,14 @@
 import React from 'react'
 import { Admin, Resource } from 'react-admin'
 
+import chineseMessages from 'ra-language-chinese'
+import domainChineseMessages from './Locales/cn'
+const messages = {
+  cn: { ...chineseMessages, ...domainChineseMessages }
+}
+
+const i18nProvider = locale => messages[locale]
+
 import { createMuiTheme } from '@material-ui/core/styles'
 import grey from '@material-ui/core/colors/indigo'
 const theme = createMuiTheme({
@@ -12,10 +20,10 @@ const theme = createMuiTheme({
 
 // import jsonServerProvider from 'ra-data-json-server'
 // const dataProvider = jsonServerProvider('http://jsonplaceholder.typicode.com')
-
 import addUploadFeature from './Providers/addUploadFeature'
 import dataProvider from './Providers/DataProvider'
 import authProvider from './Providers/AuthProvider'
+
 import { PageList, PageCreate, PageEdit, PageIcon } from './Components/Page'
 import { UserList, UserCreate, UserEdit } from './Components/User'
 import { MediaList, MediaCreate, MediaEdit } from './Components/Media'
