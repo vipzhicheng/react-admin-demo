@@ -247,8 +247,8 @@ export class PageEditComponent extends React.Component {
           </FormTab>
           <FormTab label="SEO">
             <TextInput source="title" />
-            <RichTextInput source="keywords" />
-            <RichTextInput source="description" />
+            <TextInput multiline source="keywords" />
+            <TextInput multiline source="description" />
           </FormTab>
           <FormTab label="开关">
             <BooleanInput source="enable_meiqia" />
@@ -336,8 +336,8 @@ export class PageCreateComponent extends React.Component {
           </FormTab>
           <FormTab label="SEO">
             <TextInput source="title" />
-            <RichTextInput source="keywords" />
-            <RichTextInput source="description" />
+            <TextInput multiline source="keywords" />
+            <TextInput multiline source="description" />
           </FormTab>
           <FormTab label="开关">
             <BooleanInput source="enable_meiqia" />

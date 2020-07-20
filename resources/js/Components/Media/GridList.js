@@ -54,17 +54,17 @@ class GridList extends React.Component {
 
   render() {
     const { classes, ids, data, basePath, width } = this.props
-    const images = ids.map(id => {
+    const images = ids ? ids.map(id => {
       return {
         src: `/uploads/pages/${data[id].reference_id}/${data[id].file_name}`,
         alt: `${data[id].file_name}`,
         downloadUrl: `/uploads/pages/${data[id].reference_id}/${data[id].file_name}`
       }
-    })
+    }) : []
     return (
       <div className={classes.root}>
         <MuiGridList cellHeight={180} cols={getColsForWidth(width)} className={classes.gridList}>
-          {ids.map((id, index) => (
+          {ids ? ids.map((id, index) => (
             <GridListTile key={id}>
               <img
                 src={`/uploads/pages/${data[id].reference_id}/${data[id].file_name}`}
@@ -86,7 +86,7 @@ class GridList extends React.Component {
                 }
               />
             </GridListTile>
-          ))}
+          )) : []}
         </MuiGridList>
 
         <Viewer
