@@ -11,7 +11,7 @@ import { Link } from 'react-router-dom'
 import { NumberField } from 'react-admin'
 import { linkToRecord } from 'ra-core'
 import Viewer from 'react-viewer'
-import 'react-viewer/dist/index.css'
+// import 'react-viewer/dist/index.css'
 
 const styles = {
   root: {

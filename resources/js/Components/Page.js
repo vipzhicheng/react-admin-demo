@@ -1,6 +1,6 @@
 import compose from 'recompose/compose'
 import PropTypes from 'prop-types'
-import timeago from 'timeago.js'
+import { format } from 'timeago.js'
 import React from 'react'
 import {
   List,
@@ -24,8 +24,6 @@ import {
   Edit,
   SimpleForm,
   TextInput,
-  DisabledInput,
-  LongTextInput,
   SelectInput,
   DateInput,
   RadioButtonGroupInput,
@@ -35,7 +33,7 @@ import {
   FormTab
 } from 'react-admin'
 
-import RichTextInput from 'ra-input-rich-text'
+import RichTextInput from 'ra-input-rich-text';
 
 export { default as PageIcon } from '@material-ui/icons/Description'
 
@@ -53,8 +51,6 @@ import PreviewButton from './Page/PreviewButton'
 import EditorButton from './Page/EditorButton'
 import CloneButton from './Page/CloneButton'
 import EditButton from './Page/EditButton'
-
-const timeagoInstance = timeago() // set the relative date here.
 
 class PageFilter extends React.Component {
   constructor(props) {
@@ -134,7 +130,7 @@ class PageListComponent extends React.Component {
             label="活动开始时间"
             render={record => (
               <Tooltip title={record.start_time} placement="right-end">
-                <span>{timeagoInstance.format(record.start_time, 'zh_CN')}</span>
+                <span>{format(record.start_time, 'zh_CN')}</span>
               </Tooltip>
             )}
           />
@@ -143,7 +139,7 @@ class PageListComponent extends React.Component {
             label="活动结束时间"
             render={record => (
               <Tooltip title={record.end_time} placement="right-end">
-                <span>{timeagoInstance.format(record.end_time, 'zh_CN')}</span>
+                <span>{format(record.end_time, 'zh_CN')}</span>
               </Tooltip>
             )}
           />
@@ -152,7 +148,7 @@ class PageListComponent extends React.Component {
             label="活动创建时间"
             render={record => (
               <Tooltip title={record.created_at} placement="right-end">
-                <span>{timeagoInstance.format(record.created_at, 'zh_CN')}</span>
+                <span>{format(record.created_at, 'zh_CN')}</span>
               </Tooltip>
             )}
           />
@@ -161,7 +157,7 @@ class PageListComponent extends React.Component {
             label="最后更新时间"
             render={record => (
               <Tooltip title={record.updated_at} placement="right-end">
-                <span>{timeagoInstance.format(record.updated_at, 'zh_CN')}</span>
+                <span>{format(record.updated_at, 'zh_CN')}</span>
               </Tooltip>
             )}
           />
@@ -236,10 +232,10 @@ export class PageEditComponent extends React.Component {
       <Edit actions={<PageEditActions />} title={<PageTitle />} {...filterProps}>
         <TabbedForm redirect="list">
           <FormTab label="基本信息">
-            <DisabledInput source="id" />
+            <TextInput disabled source="id" />
             <TextInput source="admin_title" isRequired />
             <TextInput source="path" />
-            <DisabledInput source="slug" />
+            <TextInput disabled source="slug" />
             <SelectInput source="type" choices={pageTypeChoices} />
             <ReferenceInput label="Template" source="template_id" reference="pages" filter={{ is_template: 1 }}>
               <SelectInput optionText="admin_title" />
@@ -251,8 +247,8 @@ export class PageEditComponent extends React.Component {
           </FormTab>
           <FormTab label="SEO">
             <TextInput source="title" />
-            <LongTextInput source="keywords" />
-            <LongTextInput source="description" />
+            <RichTextInput source="keywords" />
+            <RichTextInput source="description" />
           </FormTab>
           <FormTab label="开关">
             <BooleanInput source="enable_meiqia" />
@@ -340,8 +336,8 @@ export class PageCreateComponent extends React.Component {
           </FormTab>
           <FormTab label="SEO">
             <TextInput source="title" />
-            <LongTextInput source="keywords" />
-            <LongTextInput source="description" />
+            <RichTextInput source="keywords" />
+            <RichTextInput source="description" />
           </FormTab>
           <FormTab label="开关">
             <BooleanInput source="enable_meiqia" />

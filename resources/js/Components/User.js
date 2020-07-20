@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types'
-import timeago from 'timeago.js'
+import { format } from 'timeago.js'
 import React from 'react'
 import {
   List,
@@ -17,8 +17,6 @@ import {
   Edit,
   SimpleForm,
   TextInput,
-  DisabledInput,
-  LongTextInput,
   SelectInput,
   DateInput,
   RadioButtonGroupInput,
@@ -33,8 +31,6 @@ import { connect } from 'react-redux'
 import _ from 'lodash'
 import { FETCH_OPTIONS_REQUEST } from '../Actions/Options'
 import EditButton from './User/EditButton'
-
-const timeagoInstance = timeago() // set the relative date here.
 
 class UserFilter extends React.Component {
   constructor(props) {
@@ -97,7 +93,7 @@ class UserListComponent extends React.Component {
             label="用户创建时间"
             render={record => (
               <Tooltip title={record.created_at} placement="right-end">
-                <span>{timeagoInstance.format(record.created_at, 'zh_CN')}</span>
+                <span>{format(record.created_at, 'zh_CN')}</span>
               </Tooltip>
             )}
           />
@@ -106,7 +102,7 @@ class UserListComponent extends React.Component {
             label="最后更新时间"
             render={record => (
               <Tooltip title={record.updated_at} placement="right-end">
-                <span>{timeagoInstance.format(record.updated_at, 'zh_CN')}</span>
+                <span>{format(record.updated_at, 'zh_CN')}</span>
               </Tooltip>
             )}
           />
@@ -156,8 +152,8 @@ export class UserEditComponent extends React.Component {
     return (
       <Edit title={<UserTitle />} {...filterProps}>
         <SimpleForm redirect="list">
-          <DisabledInput source="id" />
-          <DisabledInput source="username" />
+          <TextInput disabled source="id" />
+          <TextInput disabled source="username" />
           <TextInput source="email" type="email" isRequired={true} />
           <TextInput source="password" type="password" isRequired={true} />
           <RadioButtonGroupInput source="status" choices={userStatusChoices} />

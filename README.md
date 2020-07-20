@@ -11,9 +11,8 @@
 ```
 # Development
 cp .env.example .env
-adonis key:generate
-adonis migration:run
-adonis seed
-adonis serve --dev
+node ace migration:run
+node ace seed
+yarn start
 yarn watch
 ```

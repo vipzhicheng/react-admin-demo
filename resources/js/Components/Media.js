@@ -1,5 +1,4 @@
 import PropTypes from 'prop-types'
-import timeago from 'timeago.js'
 import React from 'react'
 import {
   List,
@@ -21,10 +20,8 @@ import {
   SimpleForm,
   AutocompleteInput,
   TextInput,
-  DisabledInput,
   FileInput,
   ImageInput,
-  LongTextInput,
   SelectInput,
   DateInput,
   RadioButtonGroupInput,
