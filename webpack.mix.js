@@ -13,7 +13,7 @@ let mix = require('laravel-mix')
 
 mix.setPublicPath('public')
 
-mix.react('resources/js/index.js', '')
+mix.js('resources/js/index.js', '').react()
 mix.sass('resources/css/index.scss', '')
 mix.copy('node_modules/grapesjs/dist', 'public/assets/grapesjs');
 mix.copy('node_modules/grapesjs-preset-webpage/dist', 'public/assets/grapesjs-preset-webpage');

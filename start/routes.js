@@ -33,7 +33,7 @@ Route.group(() => {
 
   // 用户相关
   Route.post('user/login', 'UserController.login')
-  Route.get('user/check', 'UserController.check')
+  Route.post('user/check', 'UserController.check')
   Route.get('user/logout', 'UserController.logout')
   Route.get('users', 'UserController.index').middleware('auth')
   Route.post('users', 'UserController.store').middleware('auth')

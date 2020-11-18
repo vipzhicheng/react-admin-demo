@@ -16,3 +16,7 @@ node ace seed
 yarn start
 yarn watch
 ```
+
+## Caution
+
+* For node v14.15.1, sass package can not be the newest for now.

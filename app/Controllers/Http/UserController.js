@@ -20,12 +20,12 @@ class UserController {
 
   async check({ auth }) {
     await auth.check()
-    return 'Logged in'
+    return '/'
   }
 
   async logout({ auth }) {
     await auth.logout()
-    return 'Logged out successfully'
+    return '/login'
   }
 
   async index({ request, response, params }) {
