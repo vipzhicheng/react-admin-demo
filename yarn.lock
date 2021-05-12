@@ -3173,10 +3173,10 @@ colorette@1.0.7:
   resolved "https://registry.npm.taobao.org/colorette/download/colorette-1.0.7.tgz?cache=0&sync_timestamp=1593955804228&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fcolorette%2Fdownload%2Fcolorette-1.0.7.tgz#7adf43c445ee63a541b4a4aef7d13f03df1e0cc0"
   integrity sha1-et9DxEXuY6VBtKSu99E/A98eDMA=
 
-colorette@^1.2.1:
-  version "1.2.1"
-  resolved "https://registry.npm.taobao.org/colorette/download/colorette-1.2.1.tgz?cache=0&sync_timestamp=1593955804228&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fcolorette%2Fdownload%2Fcolorette-1.2.1.tgz#4d0b921325c14faf92633086a536db6e89564b1b"
-  integrity sha1-TQuSEyXBT6+SYzCGpTbbbolWSxs=
+colorette@^1.2.1, colorette@^1.2.2:
+  version "1.2.2"
+  resolved "https://registry.npm.taobao.org/colorette/download/colorette-1.2.2.tgz?cache=0&sync_timestamp=1614265280292&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fcolorette%2Fdownload%2Fcolorette-1.2.2.tgz#cbcc79d5e99caea2dbf10eb3a26fd8b3e6acfa94"
+  integrity sha1-y8x51emcrqLb8Q6zom/Ys+as+pQ=
 
 colors@1.0.3:
   version "1.0.3"
@@ -6348,14 +6348,6 @@ liftoff@3.1.0:
     rechoir "^0.6.2"
     resolve "^1.1.7"
 
-line-column@^1.0.2:
-  version "1.0.2"
-  resolved "https://registry.npm.taobao.org/line-column/download/line-column-1.0.2.tgz#d25af2936b6f4849172b312e4792d1d987bc34a2"
-  integrity sha1-0lryk2tvSEkXKzEuR5LR2Ye8NKI=
-  dependencies:
-    isarray "^1.0.0"
-    isobject "^2.0.0"
-
 lines-and-columns@^1.1.6:
   version "1.1.6"
   resolved "https://registry.npm.taobao.org/lines-and-columns/download/lines-and-columns-1.1.6.tgz#1c00c743b433cd0a4e80758f7b64a57440d9ff00"
@@ -6858,15 +6850,10 @@ nan@^2.12.1:
   resolved "https://registry.npm.taobao.org/nan/download/nan-2.14.2.tgz?cache=0&sync_timestamp=1602591709094&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fnan%2Fdownload%2Fnan-2.14.2.tgz#f5376400695168f4cc694ac9393d0c9585eeea19"
   integrity sha1-9TdkAGlRaPTMaUrJOT0MlYXu6hk=
 
-nanoid@^3.1.16:
-  version "3.1.16"
-  resolved "https://registry.npm.taobao.org/nanoid/download/nanoid-3.1.16.tgz?cache=0&sync_timestamp=1603674784294&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fnanoid%2Fdownload%2Fnanoid-3.1.16.tgz#b21f0a7d031196faf75314d7c65d36352beeef64"
-  integrity sha1-sh8KfQMRlvr3UxTXxl02NSvu72Q=
-
-nanoid@^3.1.20:
-  version "3.1.20"
-  resolved "https://registry.npm.taobao.org/nanoid/download/nanoid-3.1.20.tgz#badc263c6b1dcf14b71efaa85f6ab4c1d6cfc788"
-  integrity sha1-utwmPGsdzxS3HvqoX2q0wdbPx4g=
+nanoid@^3.1.22:
+  version "3.1.23"
+  resolved "https://registry.nlark.com/nanoid/download/nanoid-3.1.23.tgz#f744086ce7c2bc47ee0a8472574d5c78e4183a81"
+  integrity sha1-90QIbOfCvEfuCoRyV01ceOQYOoE=
 
 nanomatch@^1.2.9:
   version "1.2.13"
@@ -8068,23 +8055,13 @@ postcss@7.0.21:
     source-map "^0.6.1"
     supports-color "^6.1.0"
 
-postcss@8.2.4:
-  version "8.2.4"
-  resolved "https://registry.npm.taobao.org/postcss/download/postcss-8.2.4.tgz?cache=0&sync_timestamp=1610188234851&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fpostcss%2Fdownload%2Fpostcss-8.2.4.tgz#20a98a39cf303d15129c2865a9ec37eda0031d04"
-  integrity sha1-IKmKOc8wPRUSnChlqew37aADHQQ=
+postcss@8.2.10, postcss@^8.1.4:
+  version "8.2.10"
+  resolved "https://registry.nlark.com/postcss/download/postcss-8.2.10.tgz#ca7a042aa8aff494b334d0ff3e9e77079f6f702b"
+  integrity sha1-ynoEKqiv9JSzNND/Pp53B59vcCs=
   dependencies:
-    colorette "^1.2.1"
-    nanoid "^3.1.20"
-    source-map "^0.6.1"
-
-postcss@^8.1.4:
-  version "8.1.7"
-  resolved "https://registry.npm.taobao.org/postcss/download/postcss-8.1.7.tgz?cache=0&sync_timestamp=1605023949458&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fpostcss%2Fdownload%2Fpostcss-8.1.7.tgz#ff6a82691bd861f3354fd9b17b2332f88171233f"
-  integrity sha1-/2qCaRvYYfM1T9mxeyMy+IFxIz8=
-  dependencies:
-    colorette "^1.2.1"
-    line-column "^1.0.2"
-    nanoid "^3.1.16"
+    colorette "^1.2.2"
+    nanoid "^3.1.22"
     source-map "^0.6.1"
 
 postgres-array@~2.0.0:
